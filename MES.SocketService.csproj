@@ -115,12 +115,46 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Content Include="bin\Debug\Bucklematerial.dll" />
+    <Content Include="bin\Debug\DM_API.dll" />
+    <Content Include="bin\Debug\log4net.dll" />
+    <Content Include="bin\Debug\MES.SocketService.exe" />
+    <Content Include="bin\Debug\MES.SocketService.pdb" />
+    <Content Include="bin\Debug\MES.SocketService.vshost.exe" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\SuperSocket.Common.dll" />
+    <Content Include="bin\Debug\SuperSocket.Facility.dll" />
+    <Content Include="bin\Debug\SuperSocket.SocketBase.dll" />
+    <Content Include="bin\Debug\SuperSocket.SocketEngine.dll" />
+    <Content Include="bin\Debug\SuperSocket.SocketService.exe" />
     <Content Include="Config\log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Config\log4net.unix.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="bin\Debug\Config\log4net.config" />
+    <None Include="bin\Debug\Config\log4net.unix.config" />
+    <None Include="bin\Debug\InstallUtil.InstallLog" />
+    <None Include="bin\Debug\Logs\debug.log" />
+    <None Include="bin\Debug\Logs\debug20180512.log" />
+    <None Include="bin\Debug\Logs\debug20180514.log" />
+    <None Include="bin\Debug\Logs\err.log" />
+    <None Include="bin\Debug\Logs\err20180512.log" />
+    <None Include="bin\Debug\Logs\err20180513.log" />
+    <None Include="bin\Debug\Logs\err20180514.log" />
+    <None Include="bin\Debug\Logs\info.log" />
+    <None Include="bin\Debug\Logs\info20180512.log" />
+    <None Include="bin\Debug\Logs\info20180513.log" />
+    <None Include="bin\Debug\Logs\info20180514.log" />
+    <None Include="bin\Debug\Logs\perf.log" />
+    <None Include="bin\Debug\Logs\perf20180512.log" />
+    <None Include="bin\Debug\Logs\perf20180513.log" />
+    <None Include="bin\Debug\Logs\perf20180514.log" />
+    <None Include="bin\Debug\MES.SocketService.exe.config" />
+    <None Include="bin\Debug\MES.SocketService.InstallLog" />
+    <None Include="bin\Debug\MES.SocketService.vshost.exe.config" />
+    <None Include="bin\Debug\MES.SocketService.vshost.exe.manifest" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -128,6 +162,7 @@
     <None Include="supersocket.sh" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Release\" />
     <Folder Include="CommandsFilter\" />
   </ItemGroup>
   <ItemGroup>
