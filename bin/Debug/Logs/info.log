@@ -1,0 +1,6 @@
+﻿2018-05-15 10:49:11,117 [10] INFO  MES.SocketService - Mes Server 启动
+2018-05-15 10:49:11,118 [10] INFO  MES.SocketService - The server instance MES.SocketService has been started!
+2018-05-15 10:49:39,132 [12] INFO  MES.SocketService - 新增连接：127.0.0.1:59489
+2018-05-15 10:49:39,136 [12] INFO  MES.SocketService - Session: 6e3066f1-cf55-4fd9-826a-dfd5030e6ea1/127.0.0.1:59489
+A new session connected!
+2018-05-15 10:49:39,137 [12] INFO  MES.SocketService - 加入新的连接:127.0.0.1:59489

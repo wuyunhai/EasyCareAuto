@@ -1,0 +1,128 @@
+﻿2018-05-12 10:25:35,382 [9] INFO  MES.SocketService - Mes Server 启动
+2018-05-12 10:25:35,383 [9] INFO  MES.SocketService - The server instance MES.SocketService has been started!
+2018-05-12 10:45:54,954 [5] INFO  MES.SocketService - Mes Server 启动
+2018-05-12 10:45:54,955 [5] INFO  MES.SocketService - The server instance MES.SocketService has been started!
+2018-05-12 10:46:05,337 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56841
+2018-05-12 10:46:05,339 [3] INFO  MES.SocketService - Session: 75ca5f45-4eff-41b2-8340-244b4bbfbdb3/192.168.30.108:56841
+A new session connected!
+2018-05-12 10:46:05,339 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:06,919 [12] INFO  MES.SocketService - Session: 75ca5f45-4eff-41b2-8340-244b4bbfbdb3/192.168.30.108:56841
+This session was closed for ClientClosing!
+2018-05-12 10:46:07,432 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56846
+2018-05-12 10:46:07,432 [3] INFO  MES.SocketService - Session: 06057995-93ee-42ae-bf25-d8990d836f16/192.168.30.108:56846
+A new session connected!
+2018-05-12 10:46:07,432 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:08,271 [5] INFO  MES.SocketService - Session: 06057995-93ee-42ae-bf25-d8990d836f16/192.168.30.108:56846
+This session was closed for ClientClosing!
+2018-05-12 10:46:08,737 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56849
+2018-05-12 10:46:08,737 [3] INFO  MES.SocketService - Session: 79177429-2506-47a8-a956-1c7b2d5f1053/192.168.30.108:56849
+A new session connected!
+2018-05-12 10:46:08,737 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:09,336 [5] INFO  MES.SocketService - Session: 79177429-2506-47a8-a956-1c7b2d5f1053/192.168.30.108:56849
+This session was closed for ClientClosing!
+2018-05-12 10:46:09,771 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56854
+2018-05-12 10:46:09,771 [3] INFO  MES.SocketService - Session: 806ba010-9f66-4e1f-bfb7-534246ab9b49/192.168.30.108:56854
+A new session connected!
+2018-05-12 10:46:09,771 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:10,365 [12] INFO  MES.SocketService - Session: 806ba010-9f66-4e1f-bfb7-534246ab9b49/192.168.30.108:56854
+This session was closed for ClientClosing!
+2018-05-12 10:46:10,815 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56861
+2018-05-12 10:46:10,815 [3] INFO  MES.SocketService - Session: 44654bfa-8765-4d79-907b-d787d35460fe/192.168.30.108:56861
+A new session connected!
+2018-05-12 10:46:10,815 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:11,334 [12] INFO  MES.SocketService - Session: 44654bfa-8765-4d79-907b-d787d35460fe/192.168.30.108:56861
+This session was closed for ClientClosing!
+2018-05-12 10:46:11,778 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56865
+2018-05-12 10:46:11,778 [3] INFO  MES.SocketService - Session: e75c0cce-37ac-4e2d-86ba-9560d9c31520/192.168.30.108:56865
+A new session connected!
+2018-05-12 10:46:11,778 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:12,219 [12] INFO  MES.SocketService - Session: e75c0cce-37ac-4e2d-86ba-9560d9c31520/192.168.30.108:56865
+This session was closed for ClientClosing!
+2018-05-12 10:46:12,644 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56868
+2018-05-12 10:46:12,644 [3] INFO  MES.SocketService - Session: 6de4be72-a378-4796-903a-2a7b99a45f20/192.168.30.108:56868
+A new session connected!
+2018-05-12 10:46:12,644 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:13,130 [12] INFO  MES.SocketService - Session: 6de4be72-a378-4796-903a-2a7b99a45f20/192.168.30.108:56868
+This session was closed for ClientClosing!
+2018-05-12 10:46:13,547 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56871
+2018-05-12 10:46:13,547 [3] INFO  MES.SocketService - Session: 096fb99b-3dab-4655-b4da-003b22a6100f/192.168.30.108:56871
+A new session connected!
+2018-05-12 10:46:13,547 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:14,051 [12] INFO  MES.SocketService - Session: 096fb99b-3dab-4655-b4da-003b22a6100f/192.168.30.108:56871
+This session was closed for ClientClosing!
+2018-05-12 10:46:14,458 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56874
+2018-05-12 10:46:14,458 [3] INFO  MES.SocketService - Session: 7aad775e-6961-49b3-abd7-11f168b63504/192.168.30.108:56874
+A new session connected!
+2018-05-12 10:46:14,458 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:14,919 [6] INFO  MES.SocketService - Session: 7aad775e-6961-49b3-abd7-11f168b63504/192.168.30.108:56874
+This session was closed for ClientClosing!
+2018-05-12 10:46:15,359 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56877
+2018-05-12 10:46:15,360 [3] INFO  MES.SocketService - Session: 80ec7af5-ae9f-4ab1-b6f2-476160bde9b2/192.168.30.108:56877
+A new session connected!
+2018-05-12 10:46:15,360 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:15,901 [11] INFO  MES.SocketService - Session: 80ec7af5-ae9f-4ab1-b6f2-476160bde9b2/192.168.30.108:56877
+This session was closed for ClientClosing!
+2018-05-12 10:46:16,352 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56880
+2018-05-12 10:46:16,353 [3] INFO  MES.SocketService - Session: b88178fd-00ad-49b2-a0a7-c4373fdab13b/192.168.30.108:56880
+A new session connected!
+2018-05-12 10:46:16,353 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:16,832 [11] INFO  MES.SocketService - Session: b88178fd-00ad-49b2-a0a7-c4373fdab13b/192.168.30.108:56880
+This session was closed for ClientClosing!
+2018-05-12 10:46:17,317 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56883
+2018-05-12 10:46:17,317 [3] INFO  MES.SocketService - Session: 93286c93-56b5-42ea-9117-3b5f137ddd0c/192.168.30.108:56883
+A new session connected!
+2018-05-12 10:46:17,317 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:46:17,901 [11] INFO  MES.SocketService - Session: 93286c93-56b5-42ea-9117-3b5f137ddd0c/192.168.30.108:56883
+This session was closed for ClientClosing!
+2018-05-12 10:46:18,318 [3] INFO  MES.SocketService - 新增连接：192.168.30.108:56886
+2018-05-12 10:46:18,318 [3] INFO  MES.SocketService - Session: 80108a37-cda8-4ecf-b91e-798c4fad50aa/192.168.30.108:56886
+A new session connected!
+2018-05-12 10:46:18,318 [3] INFO  MES.SocketService - 加入新的连接:192.168.30.108:6543
+2018-05-12 10:48:27,283 [12] INFO  MES.SocketService - Mes Server 停止
+2018-05-12 10:48:27,283 [12] INFO  MES.SocketService - The server instance MES.SocketService has been stopped!
+2018-05-12 10:48:27,285 [5] INFO  MES.SocketService - Session: 80108a37-cda8-4ecf-b91e-798c4fad50aa/192.168.30.108:56886
+This session was closed for ServerShutdown!
+2018-05-12 10:53:16,801 [9] INFO  MES.SocketService - Mes Server 启动
+2018-05-12 10:53:16,802 [9] INFO  MES.SocketService - The server instance MES.SocketService has been started!
+2018-05-12 22:28:07,810 [15] INFO  MES.SocketService - 新增连接：192.168.0.42:57824
+2018-05-12 22:28:07,836 [15] INFO  MES.SocketService - Session: 092e3dd7-5171-4689-a35b-43beea155d84/192.168.0.42:57824
+A new session connected!
+2018-05-12 22:28:07,837 [15] INFO  MES.SocketService - 加入新的连接:192.168.0.42:6543
+2018-05-12 23:33:50,470 [8] INFO  MES.SocketService - Mes Server 启动
+2018-05-12 23:33:50,470 [8] INFO  MES.SocketService - The server instance MES.SocketService has been started!
+2018-05-12 23:33:53,247 [9] INFO  MES.SocketService - 新增连接：192.168.0.42:50181
+2018-05-12 23:33:53,248 [9] INFO  MES.SocketService - Session: 1ee7cd4f-333e-4867-ae39-3dd2e11e1c42/192.168.0.42:50181
+A new session connected!
+2018-05-12 23:33:53,249 [9] INFO  MES.SocketService - 加入新的连接:192.168.0.42:50181
+2018-05-12 23:33:59,399 [16] INFO  MES.SocketService - Session: 1ee7cd4f-333e-4867-ae39-3dd2e11e1c42/192.168.0.42:50181
+This session was closed for ClientClosing!
+2018-05-12 23:34:00,310 [9] INFO  MES.SocketService - 新增连接：192.168.0.42:50196
+2018-05-12 23:34:00,310 [9] INFO  MES.SocketService - Session: 84a54364-1da1-42db-b89d-6f20633a196c/192.168.0.42:50196
+A new session connected!
+2018-05-12 23:34:00,310 [9] INFO  MES.SocketService - 加入新的连接:192.168.0.42:50196
+2018-05-12 23:34:05,889 [14] INFO  MES.SocketService - Session: 84a54364-1da1-42db-b89d-6f20633a196c/192.168.0.42:50196
+This session was closed for ClientClosing!
+2018-05-12 23:34:06,739 [9] INFO  MES.SocketService - 新增连接：192.168.0.42:50211
+2018-05-12 23:34:06,739 [9] INFO  MES.SocketService - Session: 45ff3ce8-35dd-4ab9-84fc-be1adaf9a904/192.168.0.42:50211
+A new session connected!
+2018-05-12 23:34:06,739 [9] INFO  MES.SocketService - 加入新的连接:192.168.0.42:50211
+2018-05-12 23:34:16,852 [9] INFO  MES.SocketService - 新增连接：192.168.0.42:50232
+2018-05-12 23:34:16,852 [9] INFO  MES.SocketService - Session: 2314e567-4bf1-40a8-9dc2-a101c225c32f/192.168.0.42:50232
+A new session connected!
+2018-05-12 23:34:16,852 [9] INFO  MES.SocketService - 加入新的连接:192.168.0.42:50232
+2018-05-12 23:34:47,410 [9] INFO  MES.SocketService - 新增连接：192.168.0.42:50305
+2018-05-12 23:34:47,410 [9] INFO  MES.SocketService - Session: 2709f632-ad57-4902-805e-937f08b15009/192.168.0.42:50305
+A new session connected!
+2018-05-12 23:34:47,410 [9] INFO  MES.SocketService - 加入新的连接:192.168.0.42:50305
+2018-05-12 23:35:30,048 [9] INFO  MES.SocketService - 新增连接：192.168.0.42:50392
+2018-05-12 23:35:30,048 [9] INFO  MES.SocketService - Session: 5aeadbea-0f9b-4f8e-b7a7-1b26825b39cd/192.168.0.42:50392
+A new session connected!
+2018-05-12 23:35:30,048 [9] INFO  MES.SocketService - 加入新的连接:192.168.0.42:50392
+2018-05-12 23:35:53,852 [21] INFO  MES.SocketService - Session: 2314e567-4bf1-40a8-9dc2-a101c225c32f/192.168.0.42:50232
+This session was closed for SocketError!
+2018-05-12 23:35:53,869 [21] INFO  MES.SocketService - Session: 5aeadbea-0f9b-4f8e-b7a7-1b26825b39cd/192.168.0.42:50392
+This session was closed for SocketError!
+2018-05-12 23:35:53,869 [21] INFO  MES.SocketService - Session: 2709f632-ad57-4902-805e-937f08b15009/192.168.0.42:50305
+This session was closed for SocketError!
+2018-05-12 23:35:53,898 [21] INFO  MES.SocketService - Session: 45ff3ce8-35dd-4ab9-84fc-be1adaf9a904/192.168.0.42:50211
+This session was closed for SocketError!

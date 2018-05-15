@@ -1,0 +1,272 @@
+﻿2018-05-13 00:12:03,510 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-13 00:12:03,561 [9] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 00:12:03,576 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-13 00:12:07,626 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-13 00:12:07,626 [9] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-13 00:12:07,650 [9] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-13 00:12:07,658 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-13 00:13:47,478 [16] DEBUG MES.SocketService - 未知请求：锑CHE123CHE 123CHE 123ISR 12 21
+2018-05-13 00:14:48,688 [16] DEBUG MES.SocketService - 未知请求：CHE123
+2018-05-13 00:15:03,614 [23] DEBUG MES.SocketService - 未知请求：CHE123CHE 123
+2018-05-13 00:15:08,268 [23] DEBUG MES.SocketService - 未知请求：CHE123
+2018-05-13 00:16:58,763 [27] DEBUG MES.SocketService - 未知请求：CHE123
+2018-05-13 00:17:54,097 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-13 00:17:54,156 [9] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 00:17:54,172 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-13 00:17:57,124 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-13 00:17:57,124 [9] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-13 00:17:57,148 [9] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-13 00:17:57,153 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-13 00:18:06,519 [17] DEBUG MES.SocketService - 未知请求：CHE123
+2018-05-13 00:18:43,287 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-13 00:18:43,339 [9] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 00:18:43,340 [9] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 00:18:43,354 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-13 00:18:46,123 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-13 00:18:46,123 [9] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-13 00:18:46,147 [9] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-13 00:18:46,153 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-13 17:34:19,983 [8] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-13 17:34:20,095 [8] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 17:34:20,095 [8] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 17:34:20,095 [8] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 17:34:20,110 [8] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-13 17:34:26,135 [8] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-13 17:34:26,135 [8] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-13 17:34:26,207 [8] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-13 17:34:26,230 [8] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-13 17:36:50,111 [17] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:38:00,911 [17] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:41:42,991 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-13 17:41:43,047 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 17:41:43,047 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 17:41:43,047 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 17:41:43,063 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-13 17:41:46,166 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-13 17:41:46,166 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-13 17:41:46,191 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-13 17:41:46,197 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-13 17:42:13,120 [17] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:42:52,255 [19] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:07,860 [19] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:12,878 [19] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:40,740 [19] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:44,342 [19] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:45,871 [19] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:46,851 [21] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:47,727 [19] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:48,285 [19] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:48,505 [17] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:48,703 [17] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:48,926 [17] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:49,143 [17] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:49,459 [19] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:49,675 [17] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:49,892 [20] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 17:43:51,006 [19] DEBUG MES.SocketService - 异常信息：输入字符串的格式不正确。
+2018-05-13 18:26:20,786 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-13 18:26:20,866 [9] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:26:20,866 [9] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:26:20,866 [9] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:26:20,881 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-13 18:26:24,277 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-13 18:26:24,277 [9] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-13 18:26:24,308 [9] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-13 18:26:24,328 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-13 18:31:51,918 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-13 18:31:51,959 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:31:51,959 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:31:51,959 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:31:51,974 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-13 18:31:55,134 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-13 18:31:55,134 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-13 18:31:55,156 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-13 18:31:55,156 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-13 18:32:58,448 [15] DEBUG MES.SocketService - 未知请求： SNC 
+2018-05-13 18:43:03,725 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-13 18:43:03,783 [9] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:43:03,784 [9] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:43:03,784 [9] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:43:03,798 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-13 18:43:06,832 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-13 18:43:06,832 [9] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-13 18:43:06,860 [9] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-13 18:43:06,867 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-13 18:46:28,394 [8] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-13 18:46:28,456 [8] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:46:28,456 [8] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:46:28,456 [8] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-13 18:46:28,475 [8] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-13 18:46:31,339 [8] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-13 18:46:31,339 [8] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-13 18:46:31,369 [8] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-13 18:46:31,375 [8] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 09:24:41,648 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 09:24:41,711 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 09:24:41,711 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 09:24:41,711 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 09:24:41,711 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 09:24:45,174 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 09:24:45,174 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 09:24:45,221 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 09:24:45,221 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 10:17:20,426 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 10:17:20,504 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:17:20,504 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:17:20,504 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:17:20,519 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 10:17:23,552 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 10:17:23,552 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 10:17:23,567 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 10:17:23,583 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 10:18:12,266 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 10:18:12,313 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:18:12,313 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:18:12,313 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:18:12,328 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 10:18:15,386 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 10:18:15,386 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 10:18:15,417 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 10:18:15,433 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 10:19:07,157 [15] DEBUG MES.SocketService - 异常信息：未将对象引用设置到对象的实例。
+2018-05-14 10:23:22,140 [18] DEBUG MES.SocketService - 异常信息：未将对象引用设置到对象的实例。
+2018-05-14 10:24:04,181 [18] DEBUG MES.SocketService - 异常信息：未将对象引用设置到对象的实例。
+2018-05-14 10:24:06,389 [18] DEBUG MES.SocketService - 异常信息：未将对象引用设置到对象的实例。
+2018-05-14 10:27:29,671 [8] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 10:27:29,733 [8] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:27:29,733 [8] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:27:29,733 [8] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:27:29,749 [8] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 10:27:33,047 [8] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 10:27:33,047 [8] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 10:27:33,079 [8] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 10:27:33,079 [8] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 10:28:56,515 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 10:28:56,577 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:28:56,577 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:28:56,577 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 10:28:56,577 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 10:28:59,741 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 10:28:59,741 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 10:28:59,772 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 10:28:59,772 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 11:06:10,108 [27] DEBUG MES.SocketService - 未知请求：{"WO":"WO0231","EquipmentID":"L01.OP010.1","SN":“DS201568974”,"PartCode":null,"CheckResult":null,"Description":null,"TestItems":{}}
+2018-05-14 11:12:12,729 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 11:12:12,776 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 11:12:12,776 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 11:12:12,776 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 11:12:12,792 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 11:12:16,052 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 11:12:16,052 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 11:12:16,083 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 11:12:16,083 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 22:23:34,742 [8] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 22:23:34,831 [8] DEBUG MES.SocketService - The command VIC(MES.SocketService.VIC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:23:34,831 [8] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:23:34,831 [8] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:23:34,831 [8] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:23:34,844 [8] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 22:23:38,434 [8] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 22:23:38,435 [8] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 22:23:38,462 [8] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 22:23:38,487 [8] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 22:28:56,645 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 22:28:56,690 [10] DEBUG MES.SocketService - The command VIC(MES.SocketService.VIC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:28:56,690 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:28:56,690 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:28:56,690 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:28:56,706 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 22:29:00,169 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 22:29:00,169 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 22:29:00,194 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 22:29:00,219 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 22:36:54,552 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 22:36:54,598 [9] DEBUG MES.SocketService - The command VIC(MES.SocketService.VIC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:36:54,598 [9] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:36:54,599 [9] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:36:54,599 [9] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:36:54,612 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 22:36:58,300 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 22:36:58,300 [9] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 22:36:58,326 [9] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 22:36:58,351 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 22:43:10,164 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 22:43:10,217 [10] DEBUG MES.SocketService - The command VIC(MES.SocketService.VIC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:43:10,217 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:43:10,217 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:43:10,217 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:43:10,236 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 22:43:13,519 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 22:43:13,519 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 22:43:13,545 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 22:43:13,570 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 22:54:40,662 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 22:54:40,720 [9] DEBUG MES.SocketService - The command VIC(MES.SocketService.VIC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:54:40,721 [9] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:54:40,721 [9] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:54:40,721 [9] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 22:54:40,738 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 22:54:43,995 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 22:54:43,995 [9] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 22:54:44,018 [9] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 22:54:44,046 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 23:09:54,434 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 23:09:54,489 [10] DEBUG MES.SocketService - The command VIC(MES.SocketService.VIC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:09:54,489 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:09:54,489 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:09:54,489 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:09:54,505 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 23:09:57,735 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 23:09:57,735 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 23:09:57,760 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 23:09:57,786 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 23:11:33,719 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 23:11:33,770 [9] DEBUG MES.SocketService - The command VIC(MES.SocketService.VIC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:11:33,770 [9] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:11:33,770 [9] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:11:33,770 [9] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:11:33,785 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 23:11:36,909 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 23:11:36,909 [9] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 23:11:36,954 [9] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 23:11:36,979 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 23:21:03,207 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 23:21:03,276 [9] DEBUG MES.SocketService - The command VIC(MES.SocketService.VIC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:21:03,276 [9] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:21:03,276 [9] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:21:03,276 [9] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:21:03,292 [9] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 23:21:06,588 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 23:21:06,588 [9] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 23:21:06,612 [9] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 23:21:06,637 [9] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 23:34:14,046 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 23:34:14,109 [10] DEBUG MES.SocketService - The command VIC(MES.SocketService.VIC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:34:14,109 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:34:14,109 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:34:14,109 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:34:14,123 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 23:34:17,281 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 23:34:17,281 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 23:34:17,306 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 23:34:17,333 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 23:35:04,914 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 23:35:04,970 [10] DEBUG MES.SocketService - The command VIC(MES.SocketService.VIC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:35:04,970 [10] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:35:04,970 [10] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:35:04,970 [10] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:35:04,986 [10] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 23:35:08,142 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 23:35:08,142 [10] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 23:35:08,168 [10] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 23:35:08,196 [10] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!
+2018-05-14 23:45:25,936 [7] DEBUG DefaultBootstrap - The server instance MES.SocketService has been created!
+2018-05-14 23:45:25,990 [7] DEBUG MES.SocketService - The command VIC(MES.SocketService.VIC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:45:25,990 [7] DEBUG MES.SocketService - The command CHE(MES.SocketService.CHE, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:45:25,990 [7] DEBUG MES.SocketService - The command SNC(MES.SocketService.SNC, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:45:25,990 [7] DEBUG MES.SocketService - The command ISR(MES.SocketService.ISR, MES.SocketService, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null) has been discovered
+2018-05-14 23:45:26,008 [7] DEBUG DefaultBootstrap - The server instance MES.SocketService has been initialized!
+2018-05-14 23:45:29,255 [7] DEBUG DefaultBootstrap - The PerformanceMonitor has been initialized!
+2018-05-14 23:45:29,255 [7] DEBUG DefaultBootstrap - The Bootstrap has been initialized!
+2018-05-14 23:45:29,279 [7] DEBUG MES.SocketService - Listener (0.0.0.0:6543) was started
+2018-05-14 23:45:29,304 [7] DEBUG DefaultBootstrap - The PerformanceMonitor has been started!

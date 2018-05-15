@@ -1,0 +1,1722 @@
+﻿2018-05-14 08:59:35,290 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 44,593,152.00, Total Thread Count: 30
+AvailableWorkingThreads: 32765, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/13 18:46:31
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 89
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 09:00:33,596 Performance - ---------------------------------------------------
+CPU Usage: 0.02%, Physical Memory Usage: 46,309,376.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/13 18:46:31
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 89
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 09:24:45,299 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 66,932,736.00, Total Thread Count: 29
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 9:24:45
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 09:25:45,235 Performance - ---------------------------------------------------
+CPU Usage: 0.02%, Physical Memory Usage: 67,477,504.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 9:24:45
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 09:26:45,248 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 67,489,792.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 9:24:45
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 09:27:45,256 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 67,497,984.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 9:24:45
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 09:28:45,269 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 67,514,368.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 9:24:45
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 09:29:45,298 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 67,600,384.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 9:24:45
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 09:30:45,321 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 67,698,688.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 9:24:45
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 10:17:23,661 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 66,564,096.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:17:23
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 10:18:15,542 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 67,276,800.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:18:15
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 10:19:15,447 Performance - ---------------------------------------------------
+CPU Usage: 0.13%, Physical Memory Usage: 72,237,056.00, Total Thread Count: 29
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:18:15
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 10:20:15,472 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 72,204,288.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:18:15
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 10:23:22,140 Performance - ---------------------------------------------------
+CPU Usage: 0.02%, Physical Memory Usage: 73,089,024.00, Total Thread Count: 27
+AvailableWorkingThreads: 32764, AvailableCompletionPortThreads: 998
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:18:15
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:24:22,136 Performance - ---------------------------------------------------
+CPU Usage: 0.12%, Physical Memory Usage: 73,293,824.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:18:15
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 1
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 10:27:33,203 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 67,223,552.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:27:33
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 10:28:33,120 Performance - ---------------------------------------------------
+CPU Usage: 0.07%, Physical Memory Usage: 68,120,576.00, Total Thread Count: 29
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:27:33
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 7
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:28:59,881 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 66,895,872.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 10:29:59,779 Performance - ---------------------------------------------------
+CPU Usage: 0.04%, Physical Memory Usage: 67,719,168.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 1
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:30:59,805 Performance - ---------------------------------------------------
+CPU Usage: 0.02%, Physical Memory Usage: 67,829,760.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:31:59,804 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 67,862,528.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:32:59,827 Performance - ---------------------------------------------------
+CPU Usage: 0.02%, Physical Memory Usage: 67,973,120.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:33:59,855 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 67,997,696.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:34:59,854 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 68,136,960.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:35:59,885 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 68,218,880.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:36:59,897 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 68,272,128.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:37:59,906 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 68,407,296.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:38:59,937 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 68,542,464.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:39:59,938 Performance - ---------------------------------------------------
+CPU Usage: 0.06%, Physical Memory Usage: 68,571,136.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:40:59,940 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 68,603,904.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:41:59,967 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 68,575,232.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:42:59,977 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 68,571,136.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:43:59,979 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 68,771,840.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:45:00,002 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 69,070,848.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:46:00,007 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 69,378,048.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:47:00,028 Performance - ---------------------------------------------------
+CPU Usage: 0.02%, Physical Memory Usage: 69,677,056.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:48:00,046 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 69,980,160.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:49:00,046 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 70,275,072.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:50:00,079 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 70,578,176.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:51:00,087 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 70,881,280.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:52:00,089 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 71,016,448.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:53:00,118 Performance - ---------------------------------------------------
+CPU Usage: 0.06%, Physical Memory Usage: 71,106,560.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:54:00,126 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 71,188,480.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:55:00,128 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,274,496.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:56:00,142 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 71,360,512.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:57:00,160 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 71,442,432.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:58:00,192 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,569,408.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 10:59:00,247 Performance - ---------------------------------------------------
+CPU Usage: 0.03%, Physical Memory Usage: 71,610,368.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:00:00,197 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 71,581,696.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:01:00,230 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 71,585,792.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:02:00,231 Performance - ---------------------------------------------------
+CPU Usage: 0.02%, Physical Memory Usage: 71,585,792.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:03:00,253 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,585,792.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:04:00,258 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,581,696.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:05:00,277 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,585,792.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:06:00,281 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,589,888.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 50
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:07:00,292 Performance - ---------------------------------------------------
+CPU Usage: 0.03%, Physical Memory Usage: 72,011,776.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 52
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:08:00,317 Performance - ---------------------------------------------------
+CPU Usage: 0.08%, Physical Memory Usage: 75,112,448.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 53
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:09:06,806 Performance - ---------------------------------------------------
+CPU Usage: 0.04%, Physical Memory Usage: 75,415,552.00, Total Thread Count: 26
+AvailableWorkingThreads: 32763, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 55
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:10:48,548 Performance - ---------------------------------------------------
+CPU Usage: 0.03%, Physical Memory Usage: 77,045,760.00, Total Thread Count: 27
+AvailableWorkingThreads: 32764, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 56
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:11:48,556 Performance - ---------------------------------------------------
+CPU Usage: 0.13%, Physical Memory Usage: 77,307,904.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 10:28:59
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 57
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:12:16,146 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 67,198,976.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 11:12:16
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 11:13:16,101 Performance - ---------------------------------------------------
+CPU Usage: 0.16%, Physical Memory Usage: 71,831,552.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 11:12:16
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 1
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:14:16,113 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,823,360.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 11:12:16
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 4
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:15:16,143 Performance - ---------------------------------------------------
+CPU Usage: 0.05%, Physical Memory Usage: 71,835,648.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 11:12:16
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 48
+Request Handling Speed (#/second): 1
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:16:16,151 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,954,432.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 11:12:16
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 48
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:17:16,157 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,966,720.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 11:12:16
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 48
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:18:16,180 Performance - ---------------------------------------------------
+CPU Usage: 0.03%, Physical Memory Usage: 72,077,312.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 11:12:16
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 48
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:19:16,185 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 72,224,768.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 11:12:16
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 48
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:20:16,211 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 72,355,840.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 11:12:16
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 48
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:21:16,209 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 72,396,800.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 11:12:16
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 48
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 11:22:16,244 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 72,404,992.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 11:12:16
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 48
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:23:38,664 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 63,234,048.00, Total Thread Count: 29
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:23:38
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 22:25:09,315 Performance - ---------------------------------------------------
+CPU Usage: 0.15%, Physical Memory Usage: 64,372,736.00, Total Thread Count: 29
+AvailableWorkingThreads: 32764, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:23:38
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:26:09,286 Performance - ---------------------------------------------------
+CPU Usage: 0.22%, Physical Memory Usage: 64,286,720.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:23:38
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:27:09,289 Performance - ---------------------------------------------------
+CPU Usage: 0.25%, Physical Memory Usage: 64,253,952.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:23:38
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:28:09,302 Performance - ---------------------------------------------------
+CPU Usage: 0.25%, Physical Memory Usage: 64,397,312.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:23:38
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:29:00,282 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 68,321,280.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:29:00
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 22:30:00,236 Performance - ---------------------------------------------------
+CPU Usage: 0.32%, Physical Memory Usage: 69,681,152.00, Total Thread Count: 29
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:29:00
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:31:00,267 Performance - ---------------------------------------------------
+CPU Usage: 0.22%, Physical Memory Usage: 69,820,416.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:29:00
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:32:00,268 Performance - ---------------------------------------------------
+CPU Usage: 0.21%, Physical Memory Usage: 69,947,392.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:29:00
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:33:00,281 Performance - ---------------------------------------------------
+CPU Usage: 0.25%, Physical Memory Usage: 70,074,368.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:29:00
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:34:00,292 Performance - ---------------------------------------------------
+CPU Usage: 0.29%, Physical Memory Usage: 70,176,768.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:29:00
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:35:00,301 Performance - ---------------------------------------------------
+CPU Usage: 0.29%, Physical Memory Usage: 70,324,224.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:29:00
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:36:58,412 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,319,552.00, Total Thread Count: 29
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:36:58
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 22:37:58,378 Performance - ---------------------------------------------------
+CPU Usage: 0.29%, Physical Memory Usage: 71,663,616.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:36:58
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 22:38:58,425 Performance - ---------------------------------------------------
+CPU Usage: 0.29%, Physical Memory Usage: 72,024,064.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:36:58
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 22:39:58,413 Performance - ---------------------------------------------------
+CPU Usage: 0.36%, Physical Memory Usage: 74,420,224.00, Total Thread Count: 31
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:36:58
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:40:58,417 Performance - ---------------------------------------------------
+CPU Usage: 0.23%, Physical Memory Usage: 74,358,784.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:36:58
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:41:58,433 Performance - ---------------------------------------------------
+CPU Usage: 0.25%, Physical Memory Usage: 74,424,320.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:36:58
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:43:13,630 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 69,025,792.00, Total Thread Count: 29
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:43:13
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 22:44:13,594 Performance - ---------------------------------------------------
+CPU Usage: 0.34%, Physical Memory Usage: 70,090,752.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:43:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:45:13,614 Performance - ---------------------------------------------------
+CPU Usage: 0.28%, Physical Memory Usage: 70,303,744.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:43:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:46:13,629 Performance - ---------------------------------------------------
+CPU Usage: 0.23%, Physical Memory Usage: 70,238,208.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:43:13
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:54:44,110 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,499,776.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:54:44
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 22:56:00,060 Performance - ---------------------------------------------------
+CPU Usage: 0.19%, Physical Memory Usage: 72,515,584.00, Total Thread Count: 31
+AvailableWorkingThreads: 32764, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:54:44
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:56:59,139 Performance - ---------------------------------------------------
+CPU Usage: 0.18%, Physical Memory Usage: 72,663,040.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:54:44
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:57:59,146 Performance - ---------------------------------------------------
+CPU Usage: 0.16%, Physical Memory Usage: 72,716,288.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:54:44
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:58:59,146 Performance - ---------------------------------------------------
+CPU Usage: 0.15%, Physical Memory Usage: 72,753,152.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:54:44
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 22:59:59,169 Performance - ---------------------------------------------------
+CPU Usage: 0.14%, Physical Memory Usage: 72,962,048.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:54:44
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 23:00:59,170 Performance - ---------------------------------------------------
+CPU Usage: 0.12%, Physical Memory Usage: 73,003,008.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:54:44
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 23:01:59,186 Performance - ---------------------------------------------------
+CPU Usage: 0.15%, Physical Memory Usage: 73,101,312.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 22:54:44
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 23:09:57,846 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 68,390,912.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:09:57
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:11:37,044 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 69,742,592.00, Total Thread Count: 30
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:11:36
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:12:36,994 Performance - ---------------------------------------------------
+CPU Usage: 0.21%, Physical Memory Usage: 70,529,024.00, Total Thread Count: 29
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:11:36
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 23:21:06,712 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 65,347,584.00, Total Thread Count: 29
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:21:06
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:22:06,656 Performance - ---------------------------------------------------
+CPU Usage: 0.14%, Physical Memory Usage: 66,469,888.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:21:06
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 23:23:06,667 Performance - ---------------------------------------------------
+CPU Usage: 0.17%, Physical Memory Usage: 66,641,920.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:21:06
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 23:24:06,685 Performance - ---------------------------------------------------
+CPU Usage: 0.13%, Physical Memory Usage: 66,768,896.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:21:06
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 23:25:06,700 Performance - ---------------------------------------------------
+CPU Usage: 0.16%, Physical Memory Usage: 66,859,008.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:21:06
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 23:26:06,712 Performance - ---------------------------------------------------
+CPU Usage: 0.17%, Physical Memory Usage: 66,977,792.00, Total Thread Count: 26
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:21:06
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
+2018-05-14 23:34:17,478 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,725,056.00, Total Thread Count: 27
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:34:17
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:35:08,259 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 71,380,992.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:35:08
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:36:08,218 Performance - ---------------------------------------------------
+CPU Usage: 0.09%, Physical Memory Usage: 73,875,456.00, Total Thread Count: 29
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:35:08
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:37:08,227 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 73,764,864.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:35:08
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:38:08,238 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 73,773,056.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:35:08
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:39:08,251 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 73,850,880.00, Total Thread Count: 25
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:35:08
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:40:08,274 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 73,883,648.00, Total Thread Count: 22
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:35:08
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:41:08,297 Performance - ---------------------------------------------------
+CPU Usage: 0.01%, Physical Memory Usage: 74,018,816.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:35:08
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:42:08,311 Performance - ---------------------------------------------------
+CPU Usage: 0.02%, Physical Memory Usage: 74,092,544.00, Total Thread Count: 24
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:35:08
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:43:08,314 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 74,145,792.00, Total Thread Count: 22
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:35:08
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:44:08,332 Performance - ---------------------------------------------------
+CPU Usage: 0.02%, Physical Memory Usage: 74,268,672.00, Total Thread Count: 23
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:35:08
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:45:29,388 Performance - ---------------------------------------------------
+CPU Usage: 0.00%, Physical Memory Usage: 64,897,024.00, Total Thread Count: 28
+AvailableWorkingThreads: 32766, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:45:29
+Is Running: True
+Total Connections: 0
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 256
+Total Sending Queue Items: 256
+
+2018-05-14 23:46:30,359 Performance - ---------------------------------------------------
+CPU Usage: 0.14%, Physical Memory Usage: 66,117,632.00, Total Thread Count: 30
+AvailableWorkingThreads: 32765, AvailableCompletionPortThreads: 1000
+MaxWorkingThreads: 32767, MaxCompletionPortThreads: 1000
+MES.SocketService ----------------------------------
+Started Time: 2018/5/14 23:45:29
+Is Running: True
+Total Connections: 1
+Maximum Allowed Connection Number: 1000
+Total Handled Requests: 0
+Request Handling Speed (#/second): 0
+Avialable Sending Queue Items: 255
+Total Sending Queue Items: 256
+
