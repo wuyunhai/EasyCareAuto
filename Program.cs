@@ -18,7 +18,7 @@ namespace MES.SocketService
 {
     static partial class Program
     {
-        // test change
+        // test
         /// <summary>
         /// 命令集合
         /// </summary>
