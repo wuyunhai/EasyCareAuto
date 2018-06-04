@@ -1,67 +1,227 @@
-﻿using Newtonsoft.Json;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace MES.SocketService
 {
-    /// <summary>
-    /// Json帮助类
-    /// </summary>
-    public class JsonHelper
+    public static class JsonHelper
     {
+        //Json序列化设置对象
+        private static JsonSerializerSettings JsonSettings;
+
+        private const string EmptyJson = "[]";
+
         /// <summary>
-        /// 将对象序列化为JSON格式
+        /// 构造函数
         /// </summary>
-        /// <param name="o">对象</param>
-        /// <returns>json字符串</returns>
-        public static string SerializeObject(object o)
+        static JsonHelper()
         {
-            string json = JsonConvert.SerializeObject(o);
-            return json;
+            var datetimeConverter = new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-dd HH:mm:ss" };
+            JsonSettings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+            JsonSettings.Converters.Add(datetimeConverter);
+        }
+
+        /// <summary>
+        /// 序列化对象到JSON格式的字符串
+        /// </summary>
+        /// <param name="obj">任意对象</param>
+        /// <param name="format">指定格式设置选项</param>
+        /// <param name="jsonSettings">指定序列化设置</param>
+        /// <returns>标准的JSON格式的字符串</returns>
+        public static string Serialize(object obj, Formatting format, JsonSerializerSettings jsonSettings)
+        {
+            try
+            {
+                return obj == null ? string.Empty : JsonConvert.SerializeObject(obj, format, jsonSettings ?? JsonSettings);
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// 序列化对象到JSON格式的字符串（重载）
+        /// </summary>
+        public static string Serialize(object obj, Formatting format)
+        {
+            return Serialize(obj, format, JsonSettings);
+        }
+
+        /// <summary>
+        /// 序列化对象到JSON格式的字符串（重载）
+        /// </summary>
+        public static string Serialize(object obj)
+        {
+            return Serialize(obj, Formatting.None, JsonSettings);
+        }
+
+        /// <summary>
+        /// 序列化对象集合到JSON格式的字符串
+        /// </summary>
+        /// <param name="obj">对象集合</param>
+        /// <param name="format">指定格式设置选项</param>
+        /// <param name="jsonSettings">指定序列化设置</param>
+        /// <returns>标准的JSON格式的字符串</returns>
+        public static string SerializeList<T>(IEnumerable<T> list, Formatting format, JsonSerializerSettings jsonSettings) where T : class
+        {
+            try
+            {
+                return list == null ? EmptyJson : JsonConvert.SerializeObject(list, format, jsonSettings ?? JsonSettings);
+            }
+            catch (Exception)
+            {
+                return EmptyJson;
+            }
+        }
+
+        /// <summary>
+        /// 序列化对象集合到JSON格式的字符串（重载）
+        /// </summary>
+        public static string SerializeList<T>(IEnumerable<T> list, Formatting format) where T : class
+        {
+            return SerializeList<T>(list, format, JsonSettings);
+        }
+
+        /// <summary>
+        /// 序列化对象集合到JSON格式的字符串（重载）
+        /// </summary>
+        public static string SerializeList<T>(IEnumerable<T> list) where T : class
+        {
+            return SerializeList<T>(list, Formatting.None, JsonSettings);
         }
 
         
         /// <summary>
-        /// 解析JSON字符串生成对象实体
+        /// 反序列化JSON数据到对象
         /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="json">json字符串(eg.{"ID":"01","Name":"达明"})</param>
-        /// <returns>对象实体</returns>
-        public static T DeserializeJsonToObject<T>(string json) where T : class
+        /// <param name="json">需要反序列化的JSON字符串</param>
+        /// <param name="format">格式设置选项</param>
+        /// <param name="jsonSettings">指定序列化设置</param>
+        /// <typeparam name="T">对象的类型</typeparam>
+        /// <returns>指定类型的对象</returns>
+        public static T Deserialize<T>(string json, JsonSerializerSettings jsonSettings) where T : class
         {
-            JsonSerializer serializer = new JsonSerializer();
-            StringReader sr = new StringReader(json);
-            object o = serializer.Deserialize(new JsonTextReader(sr), typeof(T));
-            T t = o as T;
-            return t;
+            T result;
+            if (jsonSettings == null)
+            {
+                jsonSettings = JsonSettings;
+            }
+            try
+            {
+                result = string.IsNullOrWhiteSpace(json) ? default(T) : JsonConvert.DeserializeObject<T>(json, jsonSettings);
+            }
+            catch (JsonSerializationException)  //在发生异常后，再以集合的方式重试一次.
+            {
+                try
+                {
+                    var array = JsonConvert.DeserializeObject<IEnumerable<T>>(json, jsonSettings);
+                    result = array.FirstOrDefault();
+                }
+                catch (Exception)
+                {
+                    result = default(T);
+                }
+            }
+            catch (Exception)
+            {
+                result = default(T);
+            }
+            return result;
         }
 
         /// <summary>
-        /// 解析JSON数组生成对象实体集合
+        /// 反序列化JSON数据到对象（重载）
         /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="json">json数组字符串(eg.[{"ID":"01","Name":"达明"}])</param>
-        /// <returns>对象实体集合</returns>
-        public static List<T> DeserializeJsonToList<T>(string json) where T : class
+        public static T Deserialize<T>(string json) where T : class
         {
-            JsonSerializer serializer = new JsonSerializer();
-            StringReader sr = new StringReader(json);
-            object o = serializer.Deserialize(new JsonTextReader(sr), typeof(List<T>));
-            List<T> list = o as List<T>;
-            return list;
+            return Deserialize<T>(json, JsonSettings);
+        }
+
+
+        /// <summary>
+        /// 反序列化JSON数据到对象集合
+        /// </summary>
+        /// <param name="json">需要反序列化的JSON字符串</param>
+        /// <param name="format">格式设置选项</param>
+        /// <param name="jsonSettings">指定序列化设置</param>
+        /// <typeparam name="T">对象的类型</typeparam>
+        /// <returns>对象集合</returns>
+        public static IEnumerable<T> DeserializeToList<T>(string json, JsonSerializerSettings jsonSettings) where T : class
+        {
+            IEnumerable<T> result;
+            if (jsonSettings == null)
+            {
+                jsonSettings = JsonSettings;
+            }
+            try
+            {
+                result = string.IsNullOrWhiteSpace(json) ? null : JsonConvert.DeserializeObject<IEnumerable<T>>(json, jsonSettings);
+            }
+            catch (Exception)
+            {
+                result = null;
+            }
+            return result;
         }
 
         /// <summary>
-        /// 反序列化JSON到给定的匿名对象.
+        /// 反序列化JSON数据到对象集合(重载)
         /// </summary>
-        /// <typeparam name="T">匿名对象类型</typeparam>
-        /// <param name="json">json字符串</param>
-        /// <param name="anonymousTypeObject">匿名对象</param>
-        /// <returns>匿名对象</returns>
-        public static T DeserializeAnonymousType<T>(string json, T anonymousTypeObject)
+        public static IEnumerable<T> DeserializeToList<T>(string json, Formatting format) where T : class
         {
-            T t = JsonConvert.DeserializeAnonymousType(json, anonymousTypeObject);
-            return t;
+            return DeserializeToList<T>(json, JsonSettings);
         }
+
+        /// <summary>
+        /// 反序列化JSON数据到对象集合(重载)
+        /// </summary>
+        public static IEnumerable<T> DeserializeToList<T>(string json) where T : class
+        {
+            return DeserializeToList<T>(json, JsonSettings);
+        }
+  
+    #region 扩展方法
+
+        /// <summary>
+        /// 序列化对象到JSON格式的字符串（重载）
+        /// </summary>
+        public static string ToJson(this object obj)
+        {
+            return Serialize(obj, Formatting.None, JsonSettings);
+        }
+
+        /// <summary>
+        /// 序列化对象集合到JSON格式的字符串（重载）
+        /// </summary>
+        public static string ToJson<T>(this IEnumerable<T> lst) where T : class
+        {
+            return SerializeList<T>(lst, Formatting.None, JsonSettings);
+        }
+
+        /// <summary>
+        /// 反序列化JSON数据到对象（重载）
+        /// </summary>
+        public static T ToObj<T>(this string json) where T : class
+        {
+            return Deserialize<T>(json);
+        }
+
+        /// <summary>
+        /// 反序列化JSON数据到对象集合
+        /// </summary>
+        public static IEnumerable<T> ToObjList<T>(this string json) where T : class
+        {
+            return DeserializeToList<T>(json);
+        }
+
+    #endregion
     }
 }

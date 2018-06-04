@@ -8,7 +8,7 @@ namespace MES.SocketService
     {
         public TransmitData()
         {
-            Items = new Dictionary<string, string>();
+            TestItems = new Dictionary<string, string>();
         }
         /// <summary>
         /// 功能码
@@ -41,7 +41,7 @@ namespace MES.SocketService
         /// <summary>
         /// 存储测试项/检验项等
         /// </summary>
-        public Dictionary<string, string> Items { get; set; }
+        public Dictionary<string, string> TestItems { get; set; }
 
         public override string ToString()
         {
@@ -52,7 +52,7 @@ namespace MES.SocketService
             sb.Append("CheckResult:" + CheckResult + "\r\n");
             sb.Append("Description:" + Description + "\r\n");
             sb.Append("----------------$-------------------------\r\n");
-            foreach (var item in Items)
+            foreach (var item in TestItems)
             {
 
                 sb.Append(item.Key + ":" + item.Value + "\r\n");

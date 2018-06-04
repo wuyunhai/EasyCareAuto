@@ -7,7 +7,7 @@ using SuperSocket.SocketBase.Protocol;
 
 namespace MES.SocketService
 {
-    public class MesSession : AppSession<MesSession>
+    public class MesSession : AppSession<MesSession, MesRequestInfo>
     {
 
         /// <summary>
@@ -18,11 +18,11 @@ namespace MES.SocketService
         protected override void OnInit()
         {
             base.OnInit();
-            Logger.Info("新增连接：" + this.RemoteEndPoint.ToString()  );
+            DelegateState.NewSessionConnected?.Invoke(this);
         }
         protected override void OnSessionStarted()
         {
-            base.OnSessionStarted(); 
+            base.OnSessionStarted();
         }
         protected override void HandleException(Exception e)
         {
@@ -30,7 +30,7 @@ namespace MES.SocketService
 
             Logger.Debug("异常信息：" + e.Message);
         }
-        protected override void HandleUnknownRequest(StringRequestInfo requestInfo)
+        protected override void HandleUnknownRequest(MesRequestInfo requestInfo)
         {
             base.HandleUnknownRequest(requestInfo);
             Logger.Debug("未知请求：" + requestInfo.Key + requestInfo.Body);
@@ -42,6 +42,7 @@ namespace MES.SocketService
         protected override void OnSessionClosed(CloseReason reason)
         {
             base.OnSessionClosed(reason);
+            DelegateState.SessionClosed?.Invoke(this, reason);
 
         }
     }

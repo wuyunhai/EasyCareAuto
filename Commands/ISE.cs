@@ -10,9 +10,9 @@ using System.Reflection;
 namespace MES.SocketService
 {
     /// <summary>
-    /// 条码校验/前工序校验
+    /// 尾数判断请求类
     /// </summary>
-    public class SNC : CommandBase<MesSession, MesRequestInfo>
+    public class ISE : CommandBase<MesSession, MesRequestInfo>
     {
         public override void ExecuteCommand(MesSession session, MesRequestInfo requestInfo)
         {
@@ -26,8 +26,8 @@ namespace MES.SocketService
             }
             else
             {
-                GlobalData.KeyWordIsNullRecv(session, requestInfo.TData, "The current input Equipment:" + requestInfo.TData.EquipmentID + " is not in station ;///");
-                session.Logger.Error("当前设备[" + requestInfo.TData + "]不应出现在该工站!");
+                GlobalData.KeyWordIsNullRecv(session, requestInfo.TData, "EquipmentID");
+                session.Logger.Error("未能识别该设备!");
                 return;
             }
         }
@@ -35,21 +35,41 @@ namespace MES.SocketService
         #region 个性化注液业务逻辑处理
 
         /// <summary>
-        /// 个性化线：01 - 上工序校验
+        /// 个性化线：03 - 尾数判断
         /// </summary>
         /// <param name="sN"></param>        
         private void GXHProcess(MesSession session, TransmitData data)
         {
-            GlobalData.CheckRouteOnlyCheck(data);
+            try
+            {
+                //TODO：个性化线：03 - 尾数判断
+                bool bIsEnd = BottleIsEnd(data.SN);
+                if (bIsEnd) // 成功 
+                {
+                    data.CheckResult = CheckResult.OK.ToString();
+                }
+                else
+                {
+                    data.CheckResult = CheckResult.NG.ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                data.CheckResult = CheckResult.NG.ToString();
+                data.Description = e.Message;
+            }
 
             string msg = MethodBase.GetCurrentMethod().DeclaringType.Name + " " + JsonHelper.Serialize(data) + Environment.NewLine;
             session.Send(msg);
             session.Logger.Info(" 发送 >> " + msg);
             DelegateState.ServerStateInfo?.Invoke(" 发送 >> " + msg);
             Console.WriteLine(DateTime.Now.ToString() + " 发送>> " + msg);
-
         }
-        
+
+        private bool BottleIsEnd(string sN)
+        {
+            return false;
+        }
 
         #endregion
     }

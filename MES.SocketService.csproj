@@ -5,12 +5,28 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AF470F87-B3A3-428D-8583-F123C99E677B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MES.SocketService</RootNamespace>
     <AssemblyName>MES.SocketService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,11 +47,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bucklematerial, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Bucklematerial.dll</HintPath>
+    </Reference>
+    <Reference Include="CSkin">
+      <HintPath>..\EsayCare.MES\bin\Debug\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="DM_API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -72,10 +96,13 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,12 +112,24 @@
   <ItemGroup>
     <Compile Include="AppServer\MesServer.cs" />
     <Compile Include="AppSession\MesSession.cs" />
+    <Compile Include="CommandsFilter\MesReceiveFilter.cs" />
+    <Compile Include="CommandsFilter\MesRequestInfo.cs" />
+    <Compile Include="Commands\AOI.cs" />
+    <Compile Include="Commands\BMC.cs" />
+    <Compile Include="Commands\ROD.cs" />
+    <Compile Include="Commands\ISE.cs" />
+    <Compile Include="Commands\POD.cs" />
+    <Compile Include="Commands\IST.cs" />
+    <Compile Include="Commands\SED.cs" />
     <Compile Include="Commands\VIC.cs" />
-    <Compile Include="Commands\CHE.cs" />
     <Compile Include="Commands\SNC.cs" />
-    <Compile Include="Commands\ISR.cs" />
     <Compile Include="ControlCommand.cs" />
-    <Compile Include="GlobalMsgList.cs" />
+    <Compile Include="Frm_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Main.Designer.cs">
+      <DependentUpon>Frm_Main.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -98,22 +137,43 @@
       <DependentUpon>MainService.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjectInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Public\ConfigHelper.cs" />
+    <Compile Include="Public\DelegateState.cs" />
     <Compile Include="Public\GlobalData.cs" />
     <Compile Include="Public\JsonHelper.cs" />
+    <Compile Include="Public\LogHelper.cs" />
     <Compile Include="Public\Tools.cs" />
     <Compile Include="Public\TransmitData.cs" />
     <Compile Include="SelfInstaller.cs" />
-    <Compile Include="ThreadSendMsg.cs" />
+    <Compile Include="SocketServiceInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SocketServiceInstaller.Designer.cs">
+      <DependentUpon>SocketServiceInstaller.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\mouse_up.png" />
+    <None Include="Resources\mouse_over.png" />
+    <None Include="Resources\mouse_down.png" />
+    <None Include="Resources\07822.png" />
+    <None Include="Resources\07821.png" />
+    <None Include="Resources\00043[17x25x8BPP].png" />
+    <None Include="Resources\00042[17x25x8BPP].png" />
+    <None Include="Resources\00041[17x25x8BPP].png" />
+    <None Include="Resources\00040[17x25x8BPP].png" />
+    <None Include="Resources\00039[17x25x8BPP].png" />
+    <None Include="Resources\00038[17x25x8BPP].png" />
+    <None Include="Resources\00037[17x25x8BPP].png" />
+    <None Include="Resources\00036[17x25x8BPP].png" />
+    <None Include="Resources\00035[17x25x8BPP].png" />
+    <None Include="Resources\00034[17x25x8BPP].png" />
     <None Include="App.config" />
     <Content Include="bin\Debug\Bucklematerial.dll" />
     <Content Include="bin\Debug\DM_API.dll" />
@@ -163,12 +223,35 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
-    <Folder Include="CommandsFilter\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Main.resx">
+      <DependentUpon>Frm_Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SocketServiceInstaller.resx">
+      <DependentUpon>SocketServiceInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,16 +3,16 @@ using DM_API;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace MES.SocketService
 {
-    // 称重校验
-    public class VIC : CommandBase<MesSession, MesRequestInfo>
+    /// <summary>
+    /// 个性化线瓶子分流请求类
+    /// </summary>
+    public class ROD : CommandBase<MesSession, MesRequestInfo>
     {
         public override void ExecuteCommand(MesSession session, MesRequestInfo requestInfo)
         {
@@ -20,12 +20,12 @@ namespace MES.SocketService
 
             DelegateState.ServerStateInfo?.Invoke(" 接收 >> " + requestInfo.Data);
             Console.WriteLine(DateTime.Now.ToString() + " 接收 >> " + requestInfo.Data);
-            if (requestInfo.TData.EquipmentID == GlobalData.GXH_6_DeviceID)
+            if (requestInfo.TData.EquipmentID == GlobalData.GXH_8_DeviceID)
             {
                 GXHProcess(session, requestInfo.TData);
             }
             else
-            {
+            { 
                 GlobalData.KeyWordIsNullRecv(session, requestInfo.TData, "The current input Equipment:" + requestInfo.TData.EquipmentID + " is not in station ;///");
                 session.Logger.Error("当前设备[" + requestInfo.TData + "]不应出现在该工站!");
                 return;
@@ -35,27 +35,19 @@ namespace MES.SocketService
         #region 个性化注液业务逻辑处理
 
         /// <summary>
-        /// 个性化线：04 - 称重校验判断
+        /// 个性化线：06 - 分流判断
         /// </summary>
         /// <param name="sN"></param>        
         private void GXHProcess(MesSession session, TransmitData data)
         {
             try
             {
-                //TODO：个性化线：04 - 称重校验
-                double dWeight = double.Parse(data.TestItems["weight"]);
-                bool bIsOK = WeightCheck(data.SN, dWeight);
-                if (bIsOK) // 成功 
+                //TODO：个性化线：07 - 瓶子分流请求
+                int iType = BottleShunt(data.SN);
+                if (iType > 0 && iType < 5) // 成功 
                 {
                     data.CheckResult = CheckResult.OK.ToString();
-
-                    //TODO：个性化线：05 - 查询瓶盖信息
-                    DataTable dt = GetCoverInfo(data.SN);
-
-                    data.TestItems.Clear();
-
-                    data.TestItems.Add("cover", dt.Rows[0][0].ToString());
-                    data.TestItems.Add("pumpingCover", dt.Rows[0][1].ToString());
+                    data.TestItems.Add("routeType", iType.ToString());
                 }
                 else
                 {
@@ -68,9 +60,9 @@ namespace MES.SocketService
                 data.Description = e.Message;
             }
 
-            // 虚拟搅拌过站{实际设备并未返回该节点信号}
-            GlobalData.CheckRoute(data,GlobalData.GXH_5_DeviceID);
-            // 称重过站
+            // 虚拟旋盖过站
+            GlobalData.CheckRoute(data, GlobalData.GXH_7_DeviceID);
+            // 条码校验，瓶子分流过站
             GlobalData.CheckRoute(data, "");
 
             string msg = MethodBase.GetCurrentMethod().DeclaringType.Name + " " + JsonHelper.Serialize(data) + Environment.NewLine;
@@ -81,32 +73,19 @@ namespace MES.SocketService
         }
 
         /// <summary>
-        /// 获取瓶盖信息
-        /// </summary>
-        /// <param name="data"></param>
-        private DataTable GetCoverInfo(string data)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("cover");
-            dt.Columns.Add("pumpingCover");
-
-            DataRow dr = dt.NewRow();
-            dr["cover"] = "C023568";
-            dr["pumpingCover"] = "CP023568";
-            dt.Rows.Add(dr);
-
-            return dt;
-        }
-
-        /// <summary>
-        /// 称重校验
+        /// 判断瓶子SN条码属性：1-NG类条码；2-抽检类条码；3-尾数类条码；4-正常条码;
         /// </summary>
         /// <param name="sN"></param>
-        /// <param name="dWeight"></param>
         /// <returns></returns>
-        private bool WeightCheck(string sN, double dWeight)
+        private int BottleShunt(string sN)
         {
-            return true;
+            Random r = new Random();
+            return r.Next(1, 4);
+        }
+
+        private bool IsEnd(string sN)
+        {
+            return false;
         }
 
         #endregion

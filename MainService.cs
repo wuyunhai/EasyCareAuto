@@ -22,6 +22,7 @@ namespace MES.SocketService
         {
             InitializeComponent();
             m_Bootstrap = BootstrapFactory.CreateBootstrap();
+           
         }
 
         /// <summary>
@@ -38,8 +39,7 @@ namespace MES.SocketService
         }
 
         protected override void OnStop()
-        {
-            // TODO:  在此处添加代码以执行停止服务所需的关闭操作。
+        { 
             m_Bootstrap.Stop();
             base.OnStop();
         }

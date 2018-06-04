@@ -1,54 +1,74 @@
-﻿using SuperSocket.Common;
-using SuperSocket.SocketBase;
-using SuperSocket.SocketBase.Config;
-using SuperSocket.SocketEngine;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using System.Text;
 using System.IO;
 using System.Reflection;
-using System.Runtime.Remoting.Channels;
-using System.ServiceProcess;
 using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Ipc;
-using System.Linq;
+using System.ServiceProcess;
+using SuperSocket.Common;
+using SuperSocket.SocketBase;
+using SuperSocket.SocketBase.Config;
+using SuperSocket.SocketEngine;
+using System.Windows.Forms;
 
 namespace MES.SocketService
 {
     static partial class Program
     {
-        // test
         /// <summary>
         /// 命令集合
         /// </summary>
         private static Dictionary<string, ControlCommand> m_CommandHandlers = new Dictionary<string, ControlCommand>(StringComparer.OrdinalIgnoreCase);
+
         private static bool setConsoleColor;
+
+        /// <summary>
+        /// 应用程序的主入口点。
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Frm_Main());
+        }
 
         /// <summary>
         /// 主入口
         /// </summary>
         /// <param name="args"></param>
-        static void Main(string[] args)
+        //static void Main(string[] args)
+        //{
+        //    RunMain(args);
+
+        //}
+
+        private static void RunMain(string[] args)
         {
+            //如果是运行在Linux上，则改变脚本的执行
             if (Platform.IsMono && Path.DirectorySeparatorChar == '/')
                 ChangeScriptExecutable();
 
-            if ((!Platform.IsMono && !Environment.UserInteractive)// windows service
-                || (Platform.IsMono && !AppDomain.CurrentDomain.FriendlyName.Equals(Path.GetFileName(Assembly.GetEntryAssembly().CodeBase))))//MonoService
+            if ((!Platform.IsMono && !Environment.UserInteractive) // windows service
+                 || (Platform.IsMono && !AppDomain.CurrentDomain.FriendlyName.Equals(Path.GetFileName(Assembly.GetEntryAssembly().CodeBase))))//MonoService
             {
                 RunAsService();
                 return;
             }
 
+
             string exeArg = string.Empty;
             if (args == null || args.Length < 1)
             {
-                Console.WriteLine("Welcome to MesServer !");
+                Console.WriteLine("Welcome to SuperSocket SocketService!");
                 Console.WriteLine("请输入以继续...");
-                Console.WriteLine("-[r]：以控制台程序运行；");
-                Console.WriteLine("-[i]：以windows 服务运行；");
-                Console.WriteLine("-[u]：从windows 服务中卸载该程序；");
+                Console.WriteLine("-[r]: 以控制台程序运行;");
+                Console.WriteLine("-[i]: 以windows 服务运行;");
+                Console.WriteLine("-[u]: 从windows 服务中卸载该程序");
 
                 while (true)
                 {
@@ -62,6 +82,7 @@ namespace MES.SocketService
             else
             {
                 exeArg = args[0];
+
                 if (!string.IsNullOrEmpty(exeArg))
                     exeArg = exeArg.TrimStart('-');
 
@@ -73,7 +94,7 @@ namespace MES.SocketService
         /// 初始化命令逻辑判断
         /// </summary>
         /// <param name="exeArg"></param>
-        /// <param name="p"></param>
+        /// <param name="startArgs"></param>
         /// <returns></returns>
         private static bool Run(string exeArg, string[] startArgs)
         {
@@ -101,70 +122,16 @@ namespace MES.SocketService
                     Console.WriteLine("无效的参数!");
                     return false;
             }
+
         }
 
-        private static void RunAsController(string[] arguments)
-        {
-            if (arguments == null || arguments.Length < 2)
-            {
-                Console.WriteLine("无效的参数！");
-                return;
-            }
-
-            var config = ConfigurationManager.GetSection("superSocket") as IConfigurationSource;
-            if (config == null)
-            {
-                Console.WriteLine("superSocket不存在于Section节点");
-                return;
-            }
-
-            var clientChannel = new IpcClientChannel();
-            ChannelServices.RegisterChannel(clientChannel, false);
-
-            IBootstrap bootstrap = null;
-            try
-            {
-                var remoteBootstrapUri = string.Format("ipc://SuperSocket.Bootstrap[{0}]/Bootstrap.rem", Math.Abs(AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar).GetHashCode()));
-                bootstrap = (IBootstrap)Activator.GetObject(typeof(IBootstrap), remoteBootstrapUri);
-
-
-            }
-            catch (RemotingException)
-            {
-                if (config.Isolation != IsolationMode.Process)
-                {
-                    Console.WriteLine("错误：该SuperSocket引擎尚未启动！");
-                    return;
-                }
-            }
-
-            RegisterCommands();
-
-            var cmdName = arguments[1];
-            ControlCommand cmd;
-            if (!m_CommandHandlers.TryGetValue(cmdName, out cmd))
-            {
-                Console.WriteLine("未知命令");
-                return;
-            }
-
-            try
-            {
-                if (cmd.Handler(bootstrap, arguments.Skip(1).ToArray()))
-                    Console.WriteLine("Ok");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("错误. " + e.Message);
-            }
-        }
 
         /// <summary>
         /// 以控制台形式运行Socket服务
         /// </summary>
-        private static void RunAsConsole()
+        static void RunAsConsole()
         {
-            Console.WriteLine("Welcome to MES Service!");
+            Console.WriteLine("Welcome to SuperSocket SocketService!");
 
             CheckCanSetConsoleColor();
 
@@ -230,15 +197,72 @@ namespace MES.SocketService
 
             bootstrap.Stop();
 
-            Console.WriteLine("The MES ServiceEngine has been stopped!");
+            Console.WriteLine("The SuperSocket ServiceEngine has been stopped!");
 
         }
+
+        private static void RunAsController(string[] arguments)
+        {
+            if (arguments == null || arguments.Length < 2)
+            {
+                Console.WriteLine("无效的参数！");
+                return;
+            }
+
+            var config = ConfigurationManager.GetSection("superSocket") as IConfigurationSource;
+            if (config == null)
+            {
+                Console.WriteLine("superSocket不存在于Section节点");
+                return;
+            }
+
+            var clientChannel = new IpcClientChannel();
+            ChannelServices.RegisterChannel(clientChannel, false);
+
+            IBootstrap bootstrap = null;
+            try
+            {
+                var remoteBootstrapUri = string.Format("ipc://SuperSocket.Bootstrap[{0}]/Bootstrap.rem", Math.Abs(AppDomain.CurrentDomain.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar).GetHashCode()));
+                bootstrap = (IBootstrap)Activator.GetObject(typeof(IBootstrap), remoteBootstrapUri);
+
+
+            }
+            catch (RemotingException)
+            {
+                if (config.Isolation != IsolationMode.Process)
+                {
+                    Console.WriteLine("错误：该SuperSocket引擎尚未启动！");
+                    return;
+                }
+            }
+
+            RegisterCommands();
+
+            var cmdName = arguments[1];
+            ControlCommand cmd;
+            if (!m_CommandHandlers.TryGetValue(cmdName, out cmd))
+            {
+                Console.WriteLine("未知命令");
+                return;
+            }
+
+            try
+            {
+                if (cmd.Handler(bootstrap, arguments.Skip(1).ToArray()))
+                    Console.WriteLine("Ok");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("错误. " + e.Message);
+            }
+        }
+
 
         /// <summary>
         /// 递归以接收命令
         /// </summary>
         /// <param name="bootstrap"></param>
-        private static void ReadConsoleCommand(IBootstrap bootstrap)
+        static void ReadConsoleCommand(IBootstrap bootstrap)
         {
             var line = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(line))
@@ -273,6 +297,34 @@ namespace MES.SocketService
             ReadConsoleCommand(bootstrap);
         }
 
+
+        /// <summary>
+        /// 改变控制台显示的颜色
+        /// </summary>
+        static void CheckCanSetConsoleColor()
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.Green;//前景色
+                Console.ResetColor();
+                setConsoleColor = true;
+            }
+            catch
+            {
+                setConsoleColor = false;
+            }
+        }
+
+        /// <summary>
+        /// 改变控制台前景色
+        /// </summary>
+        /// <param name="color"></param>
+        private static void SetConsoleColor(ConsoleColor color)
+        {
+            if (setConsoleColor)
+                Console.ForegroundColor = color;
+        }
+
         /// <summary>
         /// 添加命令
         /// </summary>
@@ -291,12 +343,16 @@ namespace MES.SocketService
             m_CommandHandlers.Add(command.Name, command);
         }
 
+        /// <summary>
+        /// 注册命令
+        /// </summary>
         private static void RegisterCommands()
         {
             AddCommand("List", "List all server instances", ListCommand);
             AddCommand("Start", "Start a server instance: Start {ServerName}", StartCommand);
             AddCommand("Stop", "Stop a server instance: Stop {ServerName}", StopCommand);
         }
+
 
         /// <summary>
         /// 启动服务命令
@@ -374,23 +430,6 @@ namespace MES.SocketService
         }
 
         /// <summary>
-        /// 改变控制台显示的颜色
-        /// </summary>
-        static void CheckCanSetConsoleColor()
-        {
-            try
-            {
-                Console.ForegroundColor=ConsoleColor.Green;//前景色
-                Console.ResetColor();
-                setConsoleColor =true;
-            }
-            catch
-            {
-                setConsoleColor = false;
-            }
-        }
-        
-        /// <summary>
         /// 如果是运行在Linux上，则改变脚本执行
         /// </summary>
         static void ChangeScriptExecutable()
@@ -413,24 +452,15 @@ namespace MES.SocketService
         /// <summary>
         /// 如果本身就在windows service中或Linux中运行，则重新注册
         /// </summary>
-        private static void RunAsService()
+        static void RunAsService()
         {
-            ServiceBase[] serviceToRun;
-            serviceToRun = new ServiceBase[] { new MainService() };
-            ServiceBase.Run(serviceToRun);
+            ServiceBase[] servicesToRun;
 
+            servicesToRun = new ServiceBase[] { new MainService() };
+
+            ServiceBase.Run(servicesToRun);
         }
-
-        /// <summary>
-        /// 改变控制台前景色
-        /// </summary>
-        /// <param name="color"></param>
-        private static void SetConsoleColor(ConsoleColor color)
-        {
-            if (setConsoleColor)
-                Console.ForegroundColor = color;
-        }
-
-        
     }
+
+
 }

@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SuperSocket.SocketBase.Config;
+using SuperSocket.SocketBase.Protocol;
 
 namespace MES.SocketService
 {
-    public class MesServer : AppServer<MesSession>
+    public class MesServer : AppServer<MesSession, MesRequestInfo>
     {
+        public MesServer() : base(new DefaultReceiveFilterFactory<MesReceiveFilter, MesRequestInfo>()) //使用默认的接受过滤器工厂  
+        {
+
+        }
         protected override bool Setup(IRootConfig rootConfig, IServerConfig config)
         {
             return base.Setup(rootConfig, config);

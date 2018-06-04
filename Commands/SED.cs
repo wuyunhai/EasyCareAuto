@@ -3,24 +3,24 @@ using DM_API;
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace MES.SocketService
 {
-    // 称重校验
-    public class VIC : CommandBase<MesSession, MesRequestInfo>
+    /// <summary>
+    /// 个性化注液数据请求
+    /// </summary>
+    public class SED : CommandBase<MesSession, MesRequestInfo>
     {
         public override void ExecuteCommand(MesSession session, MesRequestInfo requestInfo)
         {
-            if (!GlobalData.CheckMesRequestInfo(session, requestInfo, CheckType.DeviceSN)) return;
+            if (!GlobalData.CheckMesRequestInfo(session, requestInfo, CheckType.Device)) return;
 
             DelegateState.ServerStateInfo?.Invoke(" 接收 >> " + requestInfo.Data);
             Console.WriteLine(DateTime.Now.ToString() + " 接收 >> " + requestInfo.Data);
-            if (requestInfo.TData.EquipmentID == GlobalData.GXH_6_DeviceID)
+            if (requestInfo.TData.EquipmentID == GlobalData.GXH_4_DeviceID)
             {
                 GXHProcess(session, requestInfo.TData);
             }
@@ -35,32 +35,36 @@ namespace MES.SocketService
         #region 个性化注液业务逻辑处理
 
         /// <summary>
-        /// 个性化线：04 - 称重校验判断
+        /// 个性化线：02 - 各注液位剂量信息下发
         /// </summary>
         /// <param name="sN"></param>        
         private void GXHProcess(MesSession session, TransmitData data)
         {
             try
             {
-                //TODO：个性化线：04 - 称重校验
-                double dWeight = double.Parse(data.TestItems["weight"]);
-                bool bIsOK = WeightCheck(data.SN, dWeight);
-                if (bIsOK) // 成功 
+                //TODO：个性化线：02 - 各注液位剂量信息下发
+                DataTable dtReturn = new DataTable();
+                dtReturn.Columns.Add("position");//注液泵位置
+                dtReturn.Columns.Add("sn");//对应瓶子条码
+                dtReturn.Columns.Add("dose");//注液剂量
+                dtReturn.Columns.Add("density");//注液密度
+                dtReturn.Columns.Add("absorb");//回吸量
+
+                foreach (var item in data.TestItems)
                 {
-                    data.CheckResult = CheckResult.OK.ToString();
-
-                    //TODO：个性化线：05 - 查询瓶盖信息
-                    DataTable dt = GetCoverInfo(data.SN);
-
-                    data.TestItems.Clear();
-
-                    data.TestItems.Add("cover", dt.Rows[0][0].ToString());
-                    data.TestItems.Add("pumpingCover", dt.Rows[0][1].ToString());
+                    DataRow dr = dtReturn.NewRow();
+                    dr[0] = item.Key;
+                    dr[1] = item.Value;
+                    dtReturn.Rows.Add(dr);
                 }
-                else
+
+                DataTable dtSend = GetIndividuationDose(dtReturn);
+                data.TestItems.Clear();
+                foreach (DataRow dr in dtSend.Rows)
                 {
-                    data.CheckResult = CheckResult.NG.ToString();
+                    data.TestItems.Add(dr[0].ToString(), dr[2] + "_" + dr[3] + "_" + dr[4]);
                 }
+                data.CheckResult = CheckResult.OK.ToString();
             }
             catch (Exception e)
             {
@@ -68,9 +72,7 @@ namespace MES.SocketService
                 data.Description = e.Message;
             }
 
-            // 虚拟搅拌过站{实际设备并未返回该节点信号}
-            GlobalData.CheckRoute(data,GlobalData.GXH_5_DeviceID);
-            // 称重过站
+            // ByPass过站
             GlobalData.CheckRoute(data, "");
 
             string msg = MethodBase.GetCurrentMethod().DeclaringType.Name + " " + JsonHelper.Serialize(data) + Environment.NewLine;
@@ -81,32 +83,20 @@ namespace MES.SocketService
         }
 
         /// <summary>
-        /// 获取瓶盖信息
+        /// 查询个性化液灌装剂量-密度-回吸量
         /// </summary>
         /// <param name="data"></param>
-        private DataTable GetCoverInfo(string data)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("cover");
-            dt.Columns.Add("pumpingCover");
-
-            DataRow dr = dt.NewRow();
-            dr["cover"] = "C023568";
-            dr["pumpingCover"] = "CP023568";
-            dt.Rows.Add(dr);
-
-            return dt;
-        }
-
-        /// <summary>
-        /// 称重校验
-        /// </summary>
-        /// <param name="sN"></param>
-        /// <param name="dWeight"></param>
         /// <returns></returns>
-        private bool WeightCheck(string sN, double dWeight)
+        private DataTable GetIndividuationDose(DataTable dt)
         {
-            return true;
+            Random r1 = new Random(0);
+            foreach (DataRow dr in dt.Rows)
+            {
+                dr[2] = r1.Next(10, 25);
+                dr[3] = r1.Next(1, 3);
+                dr[4] = r1.Next(3, 6);
+            }
+            return dt;
         }
 
         #endregion

@@ -2,23 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Configuration.Install;
 using System.Linq;
 using System.ServiceProcess;
+using System.Threading.Tasks;
+using System.Configuration;
 
 namespace MES.SocketService
 {
     [RunInstaller(true)]
-    public partial class ProjectInstaller : System.Configuration.Install.Installer
+    public partial class SocketServiceInstaller : System.Configuration.Install.Installer
     {
         private ServiceInstaller serviceInstaller;
         private ServiceProcessInstaller processInstaller;
 
-        public ProjectInstaller()
+        public SocketServiceInstaller()
         {
             InitializeComponent();
-             
+
             processInstaller = new ServiceProcessInstaller();
             serviceInstaller = new ServiceInstaller();
 
@@ -38,6 +39,7 @@ namespace MES.SocketService
 
             Installers.Add(serviceInstaller);
             Installers.Add(processInstaller);
+
         }
     }
 }
