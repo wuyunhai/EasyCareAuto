@@ -114,8 +114,8 @@ namespace MES.SocketService
             this.TabControl1.PageImagePosition = CCWin.SkinControl.SkinTabControl.ePageImagePosition.Right;
             this.TabControl1.PageNorml = null;
             this.TabControl1.PageNormlTxtColor = System.Drawing.Color.White;
-            this.TabControl1.SelectedIndex = 0;
-            this.TabControl1.Size = new System.Drawing.Size(1065, 532);
+            this.TabControl1.SelectedIndex = 2;
+            this.TabControl1.Size = new System.Drawing.Size(1192, 712);
             this.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.TabControl1.TabIndex = 0;
             // 
@@ -546,32 +546,32 @@ namespace MES.SocketService
             this.skinTabPage3.ForeColor = System.Drawing.Color.White;
             this.skinTabPage3.Location = new System.Drawing.Point(0, 75);
             this.skinTabPage3.Name = "skinTabPage3";
-            this.skinTabPage3.Size = new System.Drawing.Size(1065, 457);
+            this.skinTabPage3.Size = new System.Drawing.Size(1192, 637);
             this.skinTabPage3.TabIndex = 2;
             this.skinTabPage3.TabItemImage = null;
             this.skinTabPage3.Text = "连接信息";
             // 
             // listAllView
             // 
-            this.listAllView.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.listAllView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader11,
             this.columnHeader12,
             this.columnHeader14,
             this.columnHeader13});
             this.listAllView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listAllView.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.listAllView.HoverSelection = true;
             this.listAllView.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.listAllView.Location = new System.Drawing.Point(0, 0);
             this.listAllView.Name = "listAllView";
-            this.listAllView.Size = new System.Drawing.Size(1065, 457);
+            this.listAllView.Size = new System.Drawing.Size(1192, 637);
             this.listAllView.TabIndex = 155;
             this.listAllView.UseCompatibleStateImageBehavior = false;
             this.listAllView.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader11
             // 
-            this.columnHeader11.Text = "序号";
+            this.columnHeader11.Text = "SessionID";
             this.columnHeader11.Width = 350;
             // 
             // columnHeader12
@@ -637,7 +637,7 @@ namespace MES.SocketService
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(200)))), ((int)(((byte)(100)))));
             this.BorderColor = System.Drawing.Color.Silver;
             this.CaptionFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.ClientSize = new System.Drawing.Size(1073, 570);
+            this.ClientSize = new System.Drawing.Size(1200, 750);
             this.CloseBoxSize = new System.Drawing.Size(27, 22);
             this.CloseDownBack = ((System.Drawing.Image)(resources.GetObject("$this.CloseDownBack")));
             this.CloseMouseBack = ((System.Drawing.Image)(resources.GetObject("$this.CloseMouseBack")));
@@ -661,7 +661,7 @@ namespace MES.SocketService
             this.RestoreNormlBack = ((System.Drawing.Image)(resources.GetObject("$this.RestoreNormlBack")));
             this.ShadowWidth = 9;
             this.SkinOpacity = 0.99D;
-            this.Text = "MES服务连接中心 1.0.9 Beta";
+            this.Text = "MES服务连接中心 1.1.9 ";
             this.TitleCenter = false;
             this.TitleColor = System.Drawing.Color.White;
             this.TitleOffset = new System.Drawing.Point(1, 0);

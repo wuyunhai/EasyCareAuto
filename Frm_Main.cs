@@ -27,9 +27,15 @@ namespace MES.SocketService
             SetStyle(ControlStyles.DoubleBuffer, true); // 双缓冲
 
             DelegateState.ServerStateInfo = ServerShowStateInfo;
-            DelegateState.NewSessionConnected = NewSessionConnected; 
+            DelegateState.NewSessionConnected = NewSessionConnected;
             DelegateState.SessionClosed = SessionClosed;
 
+        }
+
+        // 加载
+        private void Frm_Main_Load(object sender, EventArgs e)
+        {
+            SetupAppServer();
         }
 
         #region  <启动服务模块>
@@ -50,22 +56,22 @@ namespace MES.SocketService
                 mesServer.Start();
                 btnTCP.Text = "MES服务停止";
                 PicBoxTCP.BackgroundImage = Properties.Resources._07822;
-                txtMsg.AppendText(DateTime.Now + ">> MES服务器启动成功" + Environment.NewLine);  
+                txtMsg.AppendText(DateTime.Now + ">> MES服务器启动成功" + Environment.NewLine);
                 lblTCP.Text = "MES服务器地址:" + mesServer.Config.Ip + ":" + mesServer.Config.Port;
             }
             else
-            { 
-                mesServer.Stop(); 
+            {
+                mesServer.Stop();
                 btnTCP.Text = "MES服务启动";
                 PicBoxTCP.BackgroundImage = Properties.Resources._07821;
                 txtMsg.AppendText(DateTime.Now + ">> MES服务器停止" + Environment.NewLine);
                 lblTCP.Text = "MES服务器地址:";
-            } 
+            }
             btnTCP.Enabled = true;
         }
 
         #region
-         
+
         #region 连接关闭事件
 
         void SessionClosed(MesSession session, global::SuperSocket.SocketBase.CloseReason value)
@@ -74,11 +80,11 @@ namespace MES.SocketService
             {
                 ListViewItem item = listAllView.FindItemWithText(session.SessionID);
                 if (item != null)
-                { 
+                {
                     listAllView.Items.Remove(item);
 
-                    TeartbeatShowStateInfo(listAllView.Items.Count, session.RemoteEndPoint + " 已断开连接.");
-                    ServerShowStateInfo(" >> " + session.RemoteEndPoint + " 已断开连接.");
+                    TeartbeatShowStateInfo(listAllView.Items.Count, session.RemoteEndPoint + " 已断开连接，原因：" + value);
+                    //ServerShowStateInfo(" >> " + session.RemoteEndPoint + " 已断开连接，原因：" + value);
                 }
             }));
         }
@@ -106,7 +112,7 @@ namespace MES.SocketService
         }
 
         #endregion
-         
+
         /// <summary>
         /// 信息添加
         /// </summary>
@@ -115,7 +121,7 @@ namespace MES.SocketService
         {
             this.Invoke(new ThreadStart(delegate
             {
-                tpe2txtMsg.AppendText(DateTime.Now + ":" + msg + Environment.NewLine);
+                tpe2txtMsg.AppendText(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + ":" + msg + Environment.NewLine);
             }));
         }
 
@@ -168,11 +174,9 @@ namespace MES.SocketService
 
         #endregion
 
-        private void Frm_Main_Load(object sender, EventArgs e)
-        {
-            SetupAppServer();
-        }
-
+        /// <summary>
+        /// 初始化服务器
+        /// </summary>
         private void SetupAppServer()
         {
             if (mesServer == null)

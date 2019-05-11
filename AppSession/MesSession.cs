@@ -28,13 +28,19 @@ namespace MES.SocketService
         {
             base.HandleException(e);
 
-            Logger.Debug("异常信息：" + e.Message);
+            string logMsg = GlobalData.Exception + e.Message;
+            Logger.Debug(logMsg);
+            GlobalData.ViewLog(logMsg);
         }
         protected override void HandleUnknownRequest(MesRequestInfo requestInfo)
         {
             base.HandleUnknownRequest(requestInfo);
-            Logger.Debug("未知请求：" + requestInfo.Key + requestInfo.Body);
+            string logMsg = GlobalData.UnknownRequest + requestInfo.Key + requestInfo.Body;
+            Logger.Debug(logMsg);
+            GlobalData.ViewLog(logMsg);
         }
+        
+
         /// <summary>
         /// 连接关闭
         /// </summary>
@@ -42,6 +48,11 @@ namespace MES.SocketService
         protected override void OnSessionClosed(CloseReason reason)
         {
             base.OnSessionClosed(reason);
+
+            string logMsg = GlobalData.ClientDisConnect + this.RemoteEndPoint + ",原因：" + reason + ".";
+            Logger.Debug(logMsg);
+            GlobalData.ViewLog(logMsg);
+
             DelegateState.SessionClosed?.Invoke(this, reason);
 
         }

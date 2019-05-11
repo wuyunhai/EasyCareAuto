@@ -1,65 +1,71 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace MES.SocketService
 {
-    //MES-EQC传输数据格式
+    //MES-PLC传输数据格式
     public class TransmitData
     {
-        public TransmitData()
-        {
-            TestItems = new Dictionary<string, string>();
-        }
         /// <summary>
-        /// 功能码
+        /// 通讯码
         /// </summary>
-        public string Func { get; set; }
+        public string CommuCode { get; set; }
         /// <summary>
-        /// 制令单号
+        /// 端口号
         /// </summary>
-        public string WO { get; set; }
+        public string COM { get; set; }
         /// <summary>
-        /// 设备编码 
+        /// 站号 
         /// </summary>
-        public string EquipmentID { get; set; }
+        public string StationID { get; set; }
         /// <summary>
-        /// 产品条码
+        /// RFID
         /// </summary>
-        public string SN { get; set; }
-        /// <summary>
-        /// 装配件条码
-        /// </summary> 
-        public string PartCode { get; set; }
+        public string UID { get; set; }
         /// <summary>
         /// 结果（校验/装配/...）
         /// </summary> 
         public string CheckResult { get; set; }
         /// <summary>
-        /// 描述（如果结果为NG,需描述原因）
+        /// 存储道ID
         /// </summary> 
-        public string Description { get; set; }
-        /// <summary>
-        /// 存储测试项/检验项等
-        /// </summary>
-        public Dictionary<string, string> TestItems { get; set; }
+        public string StorageId { get; set; }
+
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder("TransmitData----------------------------------------\r\n");
-            sb.Append("EquipmentID:" + EquipmentID + "\r\n");
-            sb.Append("SN:" + SN + "\r\n");
-            sb.Append("PartCode:" + PartCode + "\r\n");
-            sb.Append("CheckResult:" + CheckResult + "\r\n");
-            sb.Append("Description:" + Description + "\r\n");
-            sb.Append("----------------$-------------------------\r\n");
-            foreach (var item in TestItems)
+            StringBuilder sb = new StringBuilder();
+            if (CommuCode != null)
             {
-
-                sb.Append(item.Key + ":" + item.Value + "\r\n");
+                sb.Append(CommuCode + GlobalData.SplitChar);
+            }
+            if (COM != null)
+            {
+                sb.Append(COM + GlobalData.SplitChar);
+            }
+            if (StationID != null)
+            {
+                sb.Append(StationID + GlobalData.SplitChar);
+            }
+            if (UID != null)
+            {
+                sb.Append(GlobalData.UID_Prefix + UID + GlobalData.SplitChar);
+            }
+            if (StorageId != null)
+            {
+                sb.Append(GlobalData.StorageId_Prefix + StorageId + GlobalData.SplitChar);
+            }
+            if (CheckResult != null)
+            {
+                sb.Append(CheckResult + GlobalData.SplitChar);
             }
 
-            return sb.ToString();
+            string nS = sb.ToString().TrimEnd(';');
+            nS += Environment.NewLine ; 
 
+            return nS ;
         }
     }
     /// <summary>
@@ -103,5 +109,96 @@ namespace MES.SocketService
         /// 组装工序过站 
         /// </summary>
         BMC
+    }
+
+
+    /// <summary>
+    /// 工站
+    /// </summary>
+    public enum StationCode
+    {
+        /// <summary>
+        /// 面料上料
+        /// </summary>
+        [Description("0101")]
+        MaterialFilling = 0101,
+        /// <summary>
+        /// 面料上料
+        /// </summary>
+        [Description("0102")]
+        MaterialInWarehouse = 0102,
+        /// <summary>
+        /// 面料上料
+        /// </summary>
+        [Description("0103")]
+        MaterialOutWarehouse = 0103,
+        /// <summary>
+        /// 裁片上料
+        /// </summary>
+        [Description("0201")]
+        PartFilling = 0201,
+        /// <summary>
+        /// 裁片入备料仓
+        /// </summary>
+        [Description("0202")]
+        PartInReadyhouse = 0202,
+        /// <summary>
+        /// 裁片入缓存仓
+        /// </summary>
+        [Description("0203")]
+        PartInCachehouse = 0203
+
+
+    }
+
+    /// <summary>
+    /// 通讯代码
+    /// </summary>
+    public enum CommunicationCode
+    {
+        /// <summary>
+        /// 握手：询问
+        /// </summary>
+        [Description("1010")]
+        Ask = 1010,
+        /// <summary>
+        /// 握手：回复
+        /// </summary>
+        [Description("1011")]
+        Ask_R = 1011,
+
+        /// <summary>
+        /// 数据传输：过程数据
+        /// </summary>
+        [Description("2030")]
+        ProcessData = 2030,
+        /// <summary>
+        /// 数据传输：回复
+        /// </summary>
+        [Description("2031")]
+        ProcessData_R = 2031,
+
+        /// <summary>
+        /// 完成：结果数据
+        /// </summary>
+        [Description("2010")]
+        ResultData = 2010,
+        /// <summary>
+        /// 完成：回复
+        /// </summary>
+        [Description("2011")]
+        ResultData_R = 2011,
+
+        /// <summary>
+        /// 心跳
+        /// </summary>
+        [Description("999")]
+        Heart = 999,
+
+        /// <summary>
+        /// 心跳
+        /// </summary>
+        [Description("0000")]
+        Error = 0000
     }
 }

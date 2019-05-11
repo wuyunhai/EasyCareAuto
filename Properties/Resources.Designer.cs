@@ -22,7 +22,7 @@ namespace MES.SocketService.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace MES.SocketService.Properties {
         ///   返回此类使用的缓存的 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MES.SocketService.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace MES.SocketService.Properties {
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _00034_17x25x8BPP_ {
+        public static System.Drawing.Bitmap _00034_17x25x8BPP_ {
             get {
                 object obj = ResourceManager.GetObject("_00034_17x25x8BPP_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _00035_17x25x8BPP_ {
+        public static System.Drawing.Bitmap _00035_17x25x8BPP_ {
             get {
                 object obj = ResourceManager.GetObject("_00035_17x25x8BPP_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _00036_17x25x8BPP_ {
+        public static System.Drawing.Bitmap _00036_17x25x8BPP_ {
             get {
                 object obj = ResourceManager.GetObject("_00036_17x25x8BPP_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _00037_17x25x8BPP_ {
+        public static System.Drawing.Bitmap _00037_17x25x8BPP_ {
             get {
                 object obj = ResourceManager.GetObject("_00037_17x25x8BPP_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _00038_17x25x8BPP_ {
+        public static System.Drawing.Bitmap _00038_17x25x8BPP_ {
             get {
                 object obj = ResourceManager.GetObject("_00038_17x25x8BPP_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _00039_17x25x8BPP_ {
+        public static System.Drawing.Bitmap _00039_17x25x8BPP_ {
             get {
                 object obj = ResourceManager.GetObject("_00039_17x25x8BPP_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _00040_17x25x8BPP_ {
+        public static System.Drawing.Bitmap _00040_17x25x8BPP_ {
             get {
                 object obj = ResourceManager.GetObject("_00040_17x25x8BPP_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +133,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _00041_17x25x8BPP_ {
+        public static System.Drawing.Bitmap _00041_17x25x8BPP_ {
             get {
                 object obj = ResourceManager.GetObject("_00041_17x25x8BPP_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +143,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _00042_17x25x8BPP_ {
+        public static System.Drawing.Bitmap _00042_17x25x8BPP_ {
             get {
                 object obj = ResourceManager.GetObject("_00042_17x25x8BPP_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +153,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _00043_17x25x8BPP_ {
+        public static System.Drawing.Bitmap _00043_17x25x8BPP_ {
             get {
                 object obj = ResourceManager.GetObject("_00043_17x25x8BPP_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +163,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _07821 {
+        public static System.Drawing.Bitmap _07821 {
             get {
                 object obj = ResourceManager.GetObject("_07821", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +173,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap _07822 {
+        public static System.Drawing.Bitmap _07822 {
             get {
                 object obj = ResourceManager.GetObject("_07822", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +183,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap mouse_down {
+        public static System.Drawing.Bitmap mouse_down {
             get {
                 object obj = ResourceManager.GetObject("mouse_down", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +193,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap mouse_over {
+        public static System.Drawing.Bitmap mouse_over {
             get {
                 object obj = ResourceManager.GetObject("mouse_over", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +203,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap mouse_up {
+        public static System.Drawing.Bitmap mouse_up {
             get {
                 object obj = ResourceManager.GetObject("mouse_up", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

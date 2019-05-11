@@ -5,13 +5,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AF470F87-B3A3-428D-8583-F123C99E677B}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MES.SocketService</RootNamespace>
     <AssemblyName>MES.SocketService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -52,6 +52,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bucklematerial, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -64,8 +67,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\DM_API.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -108,21 +112,19 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="YUN.Framework.Commons">
+      <HintPath>..\..\..\Pro_Yun\src\YUN-Winform框架\05-公用类库\Lib\YUN.Framework.Commons.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppServer\MesServer.cs" />
     <Compile Include="AppSession\MesSession.cs" />
     <Compile Include="CommandsFilter\MesReceiveFilter.cs" />
     <Compile Include="CommandsFilter\MesRequestInfo.cs" />
-    <Compile Include="Commands\AOI.cs" />
-    <Compile Include="Commands\BMC.cs" />
-    <Compile Include="Commands\ROD.cs" />
-    <Compile Include="Commands\ISE.cs" />
-    <Compile Include="Commands\POD.cs" />
-    <Compile Include="Commands\IST.cs" />
-    <Compile Include="Commands\SED.cs" />
-    <Compile Include="Commands\VIC.cs" />
-    <Compile Include="Commands\SNC.cs" />
+    <Compile Include="Commands\ResultData.cs" />
+    <Compile Include="Commands\ProcessData_R.cs" />
+    <Compile Include="Commands\ResultData_R.cs" />
+    <Compile Include="Commands\ASK.cs" />
     <Compile Include="ControlCommand.cs" />
     <Compile Include="Frm_Main.cs">
       <SubType>Form</SubType>
@@ -146,9 +148,6 @@
     <Compile Include="Public\ConfigHelper.cs" />
     <Compile Include="Public\DelegateState.cs" />
     <Compile Include="Public\GlobalData.cs" />
-    <Compile Include="Public\JsonHelper.cs" />
-    <Compile Include="Public\LogHelper.cs" />
-    <Compile Include="Public\Tools.cs" />
     <Compile Include="Public\TransmitData.cs" />
     <Compile Include="SelfInstaller.cs" />
     <Compile Include="SocketServiceInstaller.cs">
@@ -174,7 +173,9 @@
     <None Include="Resources\00036[17x25x8BPP].png" />
     <None Include="Resources\00035[17x25x8BPP].png" />
     <None Include="Resources\00034[17x25x8BPP].png" />
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="bin\Debug\Bucklematerial.dll" />
     <Content Include="bin\Debug\DM_API.dll" />
     <Content Include="bin\Debug\log4net.dll" />
@@ -193,24 +194,13 @@
     <Content Include="Config\log4net.unix.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="bin\Debug\Config\log4net.config" />
-    <None Include="bin\Debug\Config\log4net.unix.config" />
+    <Content Include="bin\Debug\Config\log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\Config\log4net.unix.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="bin\Debug\InstallUtil.InstallLog" />
-    <None Include="bin\Debug\Logs\debug.log" />
-    <None Include="bin\Debug\Logs\debug20180512.log" />
-    <None Include="bin\Debug\Logs\debug20180514.log" />
-    <None Include="bin\Debug\Logs\err.log" />
-    <None Include="bin\Debug\Logs\err20180512.log" />
-    <None Include="bin\Debug\Logs\err20180513.log" />
-    <None Include="bin\Debug\Logs\err20180514.log" />
-    <None Include="bin\Debug\Logs\info.log" />
-    <None Include="bin\Debug\Logs\info20180512.log" />
-    <None Include="bin\Debug\Logs\info20180513.log" />
-    <None Include="bin\Debug\Logs\info20180514.log" />
-    <None Include="bin\Debug\Logs\perf.log" />
-    <None Include="bin\Debug\Logs\perf20180512.log" />
-    <None Include="bin\Debug\Logs\perf20180513.log" />
-    <None Include="bin\Debug\Logs\perf20180514.log" />
     <None Include="bin\Debug\MES.SocketService.exe.config" />
     <None Include="bin\Debug\MES.SocketService.InstallLog" />
     <None Include="bin\Debug\MES.SocketService.vshost.exe.config" />
@@ -222,6 +212,7 @@
     <None Include="supersocket.sh" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Debug\Logs\" />
     <Folder Include="bin\Release\" />
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +220,7 @@
       <DependentUpon>Frm_Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="SocketServiceInstaller.resx">

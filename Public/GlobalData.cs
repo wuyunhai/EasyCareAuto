@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using YUN.Framework.Commons;
 
 namespace MES.SocketService
 {
@@ -13,59 +14,28 @@ namespace MES.SocketService
         #region var
 
         /// <summary>
-        ///  个性化上瓶
+        /// UID前缀
         /// </summary>
-        public static string GXH_1_DeviceID;
+        public static string UID_Prefix;
         /// <summary>
-        ///  个性化基液灌装
+        /// 仓库ID前缀
         /// </summary>
-        public static string GXH_2_DeviceID;
+        public static string StorageId_Prefix;
         /// <summary>
-        ///  个性化基液称重
+        /// 协议分隔符
         /// </summary>
-        public static string GXH_3_DeviceID;
-        /// <summary>
-        /// 个性化灌装
-        /// </summary>
-        public static string GXH_4_DeviceID;
-        /// <summary>
-        /// 个性化搅拌
-        /// </summary>
-        public static string GXH_5_DeviceID;
-        /// <summary>
-        /// 个性化称重
-        /// </summary>
-        public static string GXH_6_DeviceID;
-        /// <summary>
-        /// 个性化旋盖
-        /// </summary>
-        public static string GXH_7_DeviceID;
-        /// <summary>
-        /// 个性化分流
-        /// </summary>
-        public static string GXH_8_DeviceID;
-        /// <summary>
-        /// 个性化仓库分配
-        /// </summary>
-        public static string GXH_9_DeviceID;
-        /// <summary>
-        /// 个性化入库
-        /// </summary>
-        public static string GXH_10_DeviceID;
+        public static string SplitChar;
 
+        public static string Pre_Send;
+        public static string Pre_Receive;
+        public static string ServerStart;
+        public static string ServerStop;
+        public static string ClientConnect;
+        public static string ClientDisConnect;
+        public static string UnknownRequest;
+        public static string Exception;
 
-        /// <summary>
-        ///  彩盒线_上彩盒_设备ID
-        /// </summary>
-        public static string CH_1_DeviceID;
-        /// <summary>
-        ///  彩盒线_通用料_设备ID
-        /// </summary>
-        public static string CH_2_DeviceID;
-        /// <summary>
-        ///  彩盒线_齐套_设备ID
-        /// </summary>
-        public static string CH_3_DeviceID;
+        public static string RUN_TYPE;
 
         #endregion
 
@@ -98,22 +68,23 @@ namespace MES.SocketService
             if (requestInfo.TData == null)
             {
                 GlobalData.KeyWordIsNullRecv(session, requestInfo.TData, "RequestInfo");
-                session.Logger.Error("RequestInfo is not json format !");
+                session.Logger.Error("RequestInfo is not format !");
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(requestInfo.TData.EquipmentID))
+            if (string.IsNullOrWhiteSpace(requestInfo.TData.StationID))
             {
-                GlobalData.KeyWordIsNullRecv(session, requestInfo.TData, "EquipmentID");
-                session.Logger.Error("EquipmentID error !");
+                GlobalData.KeyWordIsNullRecv(session, requestInfo.TData, "StationID");
+                session.Logger.Error("StationID error !");
                 return false;
             }
-            if (checkType == CheckType.DeviceSN && string.IsNullOrWhiteSpace(requestInfo.TData.SN))
+            if (checkType == CheckType.UID && string.IsNullOrWhiteSpace(requestInfo.TData.UID))
             {
-                GlobalData.KeyWordIsNullRecv(session, requestInfo.TData, "SN");
-                session.Logger.Error("SN error !");
+                GlobalData.KeyWordIsNullRecv(session, requestInfo.TData, "UID");
+                session.Logger.Error("UID error !");
                 return false;
             }
+
             return true;
         }
 
@@ -131,110 +102,113 @@ namespace MES.SocketService
         {
 
             _transData.CheckResult = CheckResult.ERROR.ToString();
-            _transData.Description = _keyWord + " is null or white space or format error ?";
-            string msg = _transData.Func + " " + JsonHelper.Serialize(_transData) + Environment.NewLine;
+            string errorMsg = _keyWord + " is null or white space or format error ?";
+            string msg = _transData.ToString();// _transData.CommuCode + " " + JsonHelper.Serialize(_transData) + Environment.NewLine;
             _session.Send(msg);
-            _session.Logger.Error(_transData.CheckResult + "---" + _transData.Description);
+
+            string logMsg = GlobalData.Pre_Send + msg;
+            _session.Logger.Info(logMsg);
+            GlobalData.ViewLog(logMsg);
         }
 
         #endregion
 
-        #region 【上工序校验】
+        #region 协议拼装
 
         /// <summary>
-        /// 上工序校验
+        /// 协议拼装
         /// </summary>
-        /// <param name="session"></param>
-        /// <param name="data"></param>
+        /// <param name="_transData"></param>
         /// <returns></returns>
-        public static bool CheckRouteOnlyCheck(TransmitData data)
+        public static string ToTranString(TransmitData _transData)
         {
-            try
+            StringBuilder sb = new StringBuilder();
+            sb.Append(_transData.CommuCode);
+            sb.Append(GlobalData.SplitChar);
+            sb.Append(_transData.COM);
+            sb.Append(GlobalData.SplitChar);
+            sb.Append(_transData.StationID);
+
+            if (_transData.UID != null)
             {
-                //上工序校验
-                DM_SFCInterface DM_SFC = new DM_SFCInterface();
-                DataTable dt = DM_SFC.SFC_DM_CheckRouteOnlyCheck(data.SN, data.EquipmentID, "", "");//FAIL
-                string CheckStatus = dt.Rows[0][0].ToString().ToString();
-                string ReturnMsg = dt.Rows[0][1].ToString().ToString();
-                if (CheckStatus == "1") // 成功 
-                {
-                    data.CheckResult = CheckResult.OK.ToString();
-                    return true;
-                }
-                else
-                {
-                    data.CheckResult = CheckResult.ERROR.ToString();
-                    data.Description = ReturnMsg;
-                    return false;
-                }
+                sb.Append(GlobalData.SplitChar);
+                sb.Append(GlobalData.UID_Prefix + _transData.UID);
             }
-            catch (Exception e)
+            if (_transData.StorageId != null)
             {
-                data.CheckResult = CheckResult.ERROR.ToString();
-                data.Description = e.Message;
-                return false;
+                sb.Append(GlobalData.SplitChar);
+                sb.Append(GlobalData.StorageId_Prefix + _transData.StorageId);
             }
+
+            CommunicationCode commuCode = EnumHelper.GetInstance<CommunicationCode>(_transData.CommuCode);
+            switch (commuCode)
+            {
+                case CommunicationCode.Ask:
+                case CommunicationCode.ProcessData:
+                case CommunicationCode.ResultData:
+
+                    break;
+                case CommunicationCode.Ask_R:
+                case CommunicationCode.ProcessData_R:
+                case CommunicationCode.ResultData_R:
+                    sb.Append(GlobalData.SplitChar);
+                    sb.Append(_transData.CheckResult);
+                    break;
+            }
+
+            sb.Append(Environment.NewLine);
+            return sb.ToString();
         }
-
-        #endregion 
-
-        #region 【ByPass工序过站】
-
-        /// <summary>
-        /// 上工序校验
-        /// </summary>
-        /// <param name="session"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public static bool CheckRoute(TransmitData data, string deviceID)
-        {
-            try
-            {
-                //上工序校验
-                DM_SFCInterface DM_SFC = new DM_SFCInterface();
-                DataTable dt = DM_SFC.SFC_DM_CheckRoute(data.SN, string.IsNullOrWhiteSpace(deviceID) ? data.EquipmentID : deviceID, "", "PASS");//FAIL
-                string CheckStatus = dt.Rows[0][0].ToString().ToString();
-                string ReturnMsg = dt.Rows[0][1].ToString().ToString();
-                if (CheckStatus == "1") // 成功 
-                {
-                    data.CheckResult = CheckResult.OK.ToString();
-                    return true;
-                }
-                else
-                {
-                    data.CheckResult = CheckResult.ERROR.ToString();
-                    data.Description = ReturnMsg;
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                data.CheckResult = CheckResult.ERROR.ToString();
-                data.Description = e.Message;
-                return false;
-            }
-        }
-
-        #endregion 
+        #endregion
 
         /// <summary>
         /// 读取配置参数
         /// </summary>
         public static void LoadConfig()
         {
-            //读取配置参数
-            GXH_4_DeviceID = CfgHelper.GetKeyValue("GXH_4_DeviceID");
-            GXH_5_DeviceID = CfgHelper.GetKeyValue("GXH_5_DeviceID");
-            GXH_6_DeviceID = CfgHelper.GetKeyValue("GXH_6_DeviceID");
-            GXH_7_DeviceID = CfgHelper.GetKeyValue("GXH_7_DeviceID");
-            GXH_8_DeviceID = CfgHelper.GetKeyValue("GXH_8_DeviceID");
-            GXH_9_DeviceID = CfgHelper.GetKeyValue("GXH_9_DeviceID");
-            GXH_10_DeviceID = CfgHelper.GetKeyValue("GXH_10_DeviceID");
+            UID_Prefix = "UID=";
+            StorageId_Prefix = "StorageId=";
+            SplitChar = ";";
 
-            CH_1_DeviceID = CfgHelper.GetKeyValue("CH_1_DeviceID");
-            CH_2_DeviceID = CfgHelper.GetKeyValue("CH_2_DeviceID");
-            CH_3_DeviceID = CfgHelper.GetKeyValue("CH_3_DeviceID");
+            Pre_Send = " 发送 >> ";
+            Pre_Receive = " 接收 >> ";
+            ServerStart = "MES.SocketService 启动.";
+            ServerStop = "MES.SocketService 停止.";
+            ClientConnect = "客户端连接事件：";
+            ClientDisConnect = "客户端断开事件：";
+            UnknownRequest = "未知请求：";
+            Exception = "异常信息：";
+            //读取配置参数
+            //GXH_4_DeviceID = CfgHelper.GetKeyValue("GXH_4_DeviceID");
+
         }
+        
+        #region 
+
+        public static void ViewLog(string msg)
+        {
+            switch (RUN_TYPE.ToLower())
+            {
+                case "r":
+                    ConsoleView(msg);
+                    break;
+                case "w":
+                    WinFormView(msg);
+                    break;
+            }
+        }
+
+        private static void ConsoleView(string msg)
+        {
+            Console.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + ":" + msg);
+        }
+
+        private static void WinFormView(string msg)
+        {
+            DelegateState.ServerStateInfo?.Invoke(msg);
+        }
+
+        #endregion
     }
 
     public enum CheckResult
@@ -245,7 +219,7 @@ namespace MES.SocketService
     }
     public enum CheckType
     {
-        DeviceSN,
+        UID,
         Device
     }
 }

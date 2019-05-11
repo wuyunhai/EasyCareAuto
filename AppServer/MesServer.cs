@@ -24,13 +24,16 @@ namespace MES.SocketService
             base.OnStarted();
 
             GlobalData.InitGlobalData();//初始化全局数据
-            Logger.Info("Mes Server 启动");
+
+            Logger.Info(GlobalData.ServerStart);
+            GlobalData.ViewLog(GlobalData.ServerStart);
         }
 
         protected override void OnStopped()
         {
             base.OnStopped();
-            Logger.Info("Mes Server 停止");
+            Logger.Info(GlobalData.ServerStop);
+            GlobalData.ViewLog(GlobalData.ServerStop);
         }
 
         /// <summary>
@@ -41,8 +44,19 @@ namespace MES.SocketService
         {
             base.OnNewSessionConnected(session);
 
-            Logger.Info("加入新的连接:" + session.RemoteEndPoint.ToString());
-            
+            string logMsg = GlobalData.ClientConnect + session.RemoteEndPoint + ".";
+            Logger.Info(logMsg);
+            GlobalData.ViewLog(logMsg);
+
+        }
+
+        protected override void OnSessionClosed(MesSession session, CloseReason reason)
+        {
+            base.OnSessionClosed(session, reason);
+
+            string logMsg = GlobalData.ClientDisConnect + session.RemoteEndPoint + ".";
+            Logger.Info(logMsg);
+            GlobalData.ViewLog(logMsg);
         }
 
     }

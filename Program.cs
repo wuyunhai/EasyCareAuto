@@ -14,6 +14,7 @@ using SuperSocket.SocketBase;
 using SuperSocket.SocketBase.Config;
 using SuperSocket.SocketEngine;
 using System.Windows.Forms;
+using YUN.Framework.Commons;
 
 namespace MES.SocketService
 {
@@ -29,23 +30,23 @@ namespace MES.SocketService
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_Main());
-        }
+        //[STAThread]
+        //static void Main()
+        //{
+        //    Application.EnableVisualStyles();
+        //    Application.SetCompatibleTextRenderingDefault(false);
+        //    Application.Run(new Frm_Main());
+        //}
 
         /// <summary>
         /// 主入口
         /// </summary>
         /// <param name="args"></param>
-        //static void Main(string[] args)
-        //{
-        //    RunMain(args);
+        static void Main(string[] args)
+        {
+            RunMain(args);
 
-        //}
+        }
 
         private static void RunMain(string[] args)
         {
@@ -64,15 +65,20 @@ namespace MES.SocketService
             string exeArg = string.Empty;
             if (args == null || args.Length < 1)
             {
-                Console.WriteLine("Welcome to SuperSocket SocketService!");
+                //Console.WriteLine(EnumHelper.GetMemberValue<CommunicationCode>(CommunicationCode.Ask.ToString()));
+                //Console.WriteLine(EnumHelper.GetMemberName<StationCode>("0101"));
+
+                Console.WriteLine("Welcome to MES SocketService!");
                 Console.WriteLine("请输入以继续...");
                 Console.WriteLine("-[r]: 以控制台程序运行;");
+                Console.WriteLine("-[w]: 以windows 窗体程序运行;");
                 Console.WriteLine("-[i]: 以windows 服务运行;");
                 Console.WriteLine("-[u]: 从windows 服务中卸载该程序");
 
                 while (true)
                 {
                     exeArg = Console.ReadKey().KeyChar.ToString();
+                    GlobalData.RUN_TYPE = exeArg;
                     Console.WriteLine();
 
                     if (Run(exeArg, null))
@@ -118,11 +124,22 @@ namespace MES.SocketService
                     RunAsController(startArgs);
                     return true;
 
+                case ("w"):
+                    RunAsWindowsForm(startArgs);
+                    return true;
+
                 default:
                     Console.WriteLine("无效的参数!");
                     return false;
             }
 
+        }
+
+        private static void RunAsWindowsForm(string[] startArgs)
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Frm_Main());
         }
 
 

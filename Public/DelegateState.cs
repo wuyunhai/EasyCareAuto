@@ -15,6 +15,7 @@ namespace MES.SocketService
         public delegate void SockeTeartbeatStateCallBack(int num);
         public delegate void SocketConnStateCallBack(string RemoteIp,string TCPUDP);
 
+
         /// <summary>
         /// 发送或接受消息界面UI显示
         /// </summary>
