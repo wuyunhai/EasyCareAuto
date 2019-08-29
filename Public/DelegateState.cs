@@ -11,7 +11,7 @@ namespace MES.SocketService
     {
         //信息显示
         public delegate void MsgSendRecvCallBack(string msg);
-        public delegate void SocketStateCallBack(string msg); 
+        public delegate void SocketStateCallBack(LogInfo log); 
         public delegate void SockeTeartbeatStateCallBack(int num);
         public delegate void SocketConnStateCallBack(string RemoteIp,string TCPUDP);
 

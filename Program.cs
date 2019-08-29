@@ -15,6 +15,7 @@ using SuperSocket.SocketBase.Config;
 using SuperSocket.SocketEngine;
 using System.Windows.Forms;
 using YUN.Framework.Commons;
+using System.Diagnostics;
 
 namespace MES.SocketService
 {
@@ -26,22 +27,39 @@ namespace MES.SocketService
         private static Dictionary<string, ControlCommand> m_CommandHandlers = new Dictionary<string, ControlCommand>(StringComparer.OrdinalIgnoreCase);
 
         private static bool setConsoleColor;
-
+         
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         //[STAThread]
         //static void Main()
         //{
-        //    Application.EnableVisualStyles();
-        //    Application.SetCompatibleTextRenderingDefault(false);
-        //    Application.Run(new Frm_Main());
+          
+        //    //获取运行的软件进程    
+
+        //    Process instance = StartupHelper.RunningInstance();
+        //    if (instance == null)
+        //    {
+        //        Application.EnableVisualStyles();
+        //        Application.SetCompatibleTextRenderingDefault(false);
+        //        GlobalData.RUN_TYPE = "w";
+        //        Splasher.Show(typeof(frmSplash));
+        //        Application.Run(new Frm_Main());
+
+        //    }
+        //    else
+        //    {
+        //        //如果已经存在进程，那么提示信息，并切换到存在的界面    
+        //        StartupHelper.HandleRunningInstance(instance, "系统已经在运行！");
+        //    }
+             
         //}
 
         /// <summary>
         /// 主入口
         /// </summary>
         /// <param name="args"></param>
+        [STAThread]
         static void Main(string[] args)
         {
             RunMain(args);

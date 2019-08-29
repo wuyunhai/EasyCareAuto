@@ -55,26 +55,43 @@
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Socket.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bucklematerial, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Bucklematerial.dll</HintPath>
-    </Reference>
     <Reference Include="CSkin">
       <HintPath>..\EsayCare.MES\bin\Debug\CSkin.dll</HintPath>
     </Reference>
     <Reference Include="DM_API, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\DM_API.dll</HintPath>
+      <HintPath>..\..\..\Pro_Meta\OPServer_wangyijun\OPServer\DAService\bin\Debug\DM_API.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.168.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.ClientEngine, Version=0.10.0.0, Culture=neutral, PublicKeyToken=ee9af13f57f00acc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SuperSocket.ClientEngine.dll</HintPath>
     </Reference>
     <Reference Include="SuperSocket.Common, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
       <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net40\SuperSocket.Common.dll</HintPath>
@@ -83,6 +100,10 @@
     <Reference Include="SuperSocket.Facility, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
       <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net40\SuperSocket.Facility.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.ProtoBase, Version=1.7.0.17, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SuperSocket.ProtoBase.dll</HintPath>
     </Reference>
     <Reference Include="SuperSocket.SocketBase, Version=1.6.6.1, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
       <HintPath>..\packages\SuperSocket.1.6.6.1\lib\net40\SuperSocket.SocketBase.dll</HintPath>
@@ -100,18 +121,38 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.IO, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.1.1.10\lib\net40\System.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Management" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.1.1.10\lib\net40\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Threading.Tasks, Version=2.6.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Bcl.1.1.10\lib\net40\System.Threading.Tasks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="YUN.Framework.BaseUISk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\YUN.Framework.BaseUISk.dll</HintPath>
+    </Reference>
     <Reference Include="YUN.Framework.Commons">
       <HintPath>..\..\..\Pro_Yun\src\YUN-Winform框架\05-公用类库\Lib\YUN.Framework.Commons.dll</HintPath>
     </Reference>
@@ -119,18 +160,31 @@
   <ItemGroup>
     <Compile Include="AppServer\MesServer.cs" />
     <Compile Include="AppSession\MesSession.cs" />
-    <Compile Include="CommandsFilter\MesReceiveFilter.cs" />
+    <Compile Include="CommandsFilter\MesClientTerminatorReceiveFiltercs.cs" />
+    <Compile Include="CommandsFilter\MesTerminatorReceiveFilter.cs" />
     <Compile Include="CommandsFilter\MesRequestInfo.cs" />
-    <Compile Include="Commands\ResultData.cs" />
-    <Compile Include="Commands\ProcessData_R.cs" />
-    <Compile Include="Commands\ResultData_R.cs" />
-    <Compile Include="Commands\ASK.cs" />
+    <Compile Include="Commands\HEA.cs" />
+    <Compile Include="Commands\BRC.cs" />
+    <Compile Include="Commands\NDQ.cs" />
+    <Compile Include="Commands\PTC.cs" />
+    <Compile Include="Commands\PTR.cs" />
+    <Compile Include="Commands\WOR.cs" />
+    <Compile Include="Commands\STM.cs" />
+    <Compile Include="Commands\TVC.cs" />
+    <Compile Include="Commands\PRC.cs" />
+    <Compile Include="Commands\NRC.cs" />
     <Compile Include="ControlCommand.cs" />
     <Compile Include="Frm_Main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_Main.Designer.cs">
       <DependentUpon>Frm_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Msg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Msg.Designer.cs">
+      <DependentUpon>Frm_Msg.cs</DependentUpon>
     </Compile>
     <Compile Include="MainService.cs">
       <SubType>Component</SubType>
@@ -145,38 +199,52 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Public\ConfigHelper.cs" />
     <Compile Include="Public\DelegateState.cs" />
     <Compile Include="Public\GlobalData.cs" />
+    <Compile Include="Public\LogInfo.cs" />
     <Compile Include="Public\TransmitData.cs" />
     <Compile Include="SelfInstaller.cs" />
+    <Compile Include="ServerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerForm.Designer.cs">
+      <DependentUpon>ServerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SocketServiceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SocketServiceInstaller.Designer.cs">
       <DependentUpon>SocketServiceInstaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="Web References\OP010WebReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\mouse_up.png" />
-    <None Include="Resources\mouse_over.png" />
-    <None Include="Resources\mouse_down.png" />
-    <None Include="Resources\07822.png" />
-    <None Include="Resources\07821.png" />
-    <None Include="Resources\00043[17x25x8BPP].png" />
-    <None Include="Resources\00042[17x25x8BPP].png" />
-    <None Include="Resources\00041[17x25x8BPP].png" />
-    <None Include="Resources\00040[17x25x8BPP].png" />
-    <None Include="Resources\00039[17x25x8BPP].png" />
-    <None Include="Resources\00038[17x25x8BPP].png" />
-    <None Include="Resources\00037[17x25x8BPP].png" />
-    <None Include="Resources\00036[17x25x8BPP].png" />
-    <None Include="Resources\00035[17x25x8BPP].png" />
-    <None Include="Resources\00034[17x25x8BPP].png" />
-    <None Include="App.config">
-      <SubType>Designer</SubType>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Content Include="bin\Debug\Bucklematerial.dll" />
+    <None Include="Web References\OP010WebReference\Print.disco" />
+    <None Include="Resources\btnSet.png" />
+    <None Include="Resources\btnSave.png" />
+    <Content Include="Socket.ico" />
+    <None Include="Resources\scan2.gif" />
+    <None Include="Resources\link_broken.png" />
+    <None Include="Resources\end.png" />
+    <None Include="Resources\start.png" />
+    <Content Include="App.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="bin\Debug\DM_API.dll" />
     <Content Include="bin\Debug\log4net.dll" />
     <Content Include="bin\Debug\MES.SocketService.exe" />
@@ -190,6 +258,7 @@
     <Content Include="bin\Debug\SuperSocket.SocketService.exe" />
     <Content Include="Config\log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Config\log4net.unix.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -210,18 +279,30 @@
     </None>
     <None Include="supersocket.cmd" />
     <None Include="supersocket.sh" />
+    <None Include="Web References\OP010WebReference\Print.wsdl" />
+    <None Include="Web References\OP010WebReference\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\Logs\" />
     <Folder Include="bin\Release\" />
+    <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Frm_Main.resx">
       <DependentUpon>Frm_Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Msg.resx">
+      <DependentUpon>Frm_Msg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerForm.resx">
+      <DependentUpon>ServerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SocketServiceInstaller.resx">
       <DependentUpon>SocketServiceInstaller.cs</DependentUpon>
@@ -244,7 +325,51 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="LabelManager2">
+      <Guid>{3624B9C2-9E5D-11D3-A896-00C04F324E22}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://127.0.0.1:6666/Print.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\OP010WebReference\</RelPath>
+      <UpdateFromURL>http://127.0.0.1:6666/Print.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>MES_SocketService_OP010WebReference_Print</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

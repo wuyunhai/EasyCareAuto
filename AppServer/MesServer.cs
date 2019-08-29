@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using SuperSocket.SocketBase.Config;
 using SuperSocket.SocketBase.Protocol;
+using YUN.Framework.Commons;
 
 namespace MES.SocketService
 {
     public class MesServer : AppServer<MesSession, MesRequestInfo>
     {
-        public MesServer() : base(new DefaultReceiveFilterFactory<MesReceiveFilter, MesRequestInfo>()) //使用默认的接受过滤器工厂  
+        //MesTerminatorReceiveFilter
+        public MesServer() : base(new DefaultReceiveFilterFactory<MesTerminatorReceiveFilter, MesRequestInfo>()) //使用默认的接受过滤器工厂  
         {
 
         }
@@ -23,17 +25,15 @@ namespace MES.SocketService
         {
             base.OnStarted();
 
-            GlobalData.InitGlobalData();//初始化全局数据
+            GlobalData.InitGlobalData();//初始化全局数据 
+            LogInfo log = new SocketService.LogInfo(this, LogLevel.Info, GlobalData.ServerStart);
 
-            Logger.Info(GlobalData.ServerStart);
-            GlobalData.ViewLog(GlobalData.ServerStart);
         }
 
         protected override void OnStopped()
         {
             base.OnStopped();
-            Logger.Info(GlobalData.ServerStop);
-            GlobalData.ViewLog(GlobalData.ServerStop);
+            LogInfo log = new SocketService.LogInfo(this, LogLevel.Info, GlobalData.ServerStop);
         }
 
         /// <summary>
@@ -44,9 +44,26 @@ namespace MES.SocketService
         {
             base.OnNewSessionConnected(session);
 
-            string logMsg = GlobalData.ClientConnect + session.RemoteEndPoint + ".";
-            Logger.Info(logMsg);
-            GlobalData.ViewLog(logMsg);
+            //设置连接别名w
+
+            AppConfig config = new AppConfig();
+            string remoteDeviceName = config.AppConfigGet(session.RemoteEndPoint.Address.ToString());
+            string localDeviceName = config.AppConfigGet(session.LocalEndPoint.Port.ToString());
+            if (!string.IsNullOrEmpty(remoteDeviceName))
+            {
+                session.RemoteDeviceName = string.Format("{0} [{1}]", remoteDeviceName, session.RemoteEndPoint);
+            }
+            if (!string.IsNullOrEmpty(localDeviceName))
+            {
+                session.LocalDeviceName = string.Format("{0} [{1}]", localDeviceName, session.LocalEndPoint);
+            }
+            //添加至客户端连接List
+            GlobalData.ClientSessionList.Add(session);
+
+            LogInfo log = new SocketService.LogInfo(session, LogLevel.Info, GlobalData.ClientConnect + session.RemoteEndPoint);
+
+            //触发事件
+            DelegateState.NewSessionConnected?.Invoke(session);
 
         }
 
@@ -54,9 +71,11 @@ namespace MES.SocketService
         {
             base.OnSessionClosed(session, reason);
 
-            string logMsg = GlobalData.ClientDisConnect + session.RemoteEndPoint + ".";
-            Logger.Info(logMsg);
-            GlobalData.ViewLog(logMsg);
+            GlobalData.ClientSessionList.Remove(session);
+
+            LogInfo log = new SocketService.LogInfo(session, LogLevel.Info, GlobalData.ClientDisConnect + session.RemoteEndPoint + ",Reason：" + reason);
+
+            DelegateState.SessionClosed?.Invoke(session, reason);
         }
 
     }

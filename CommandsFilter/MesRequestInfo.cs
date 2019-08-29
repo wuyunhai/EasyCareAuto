@@ -5,14 +5,14 @@ namespace MES.SocketService
 {
     public class MesRequestInfo : IRequestInfo
     {
-        public MesRequestInfo(string header, string body,string fullData, TransmitData tData)
+        public MesRequestInfo(string header, string body,string fullData, TransData tData)
         { 
             Key = header;
             Header = header;
             Body = body;
             Data = fullData;
 
-            TData = new TransmitData();
+            TData = new TransData();
             TData = tData;
         }
         /// <summary>
@@ -28,10 +28,10 @@ namespace MES.SocketService
         /// </summary>
         public string Body { get; set; } 
 
-        public TransmitData  TData { get; set; }
+        public TransData  TData { get; set; }
 
         /// <summary>
-        /// [不使用]
+        /// 功能码
         /// </summary>
         public string Key { get; set; }
     }

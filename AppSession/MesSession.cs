@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SuperSocket.SocketBase.Protocol;
+using YUN.Framework.Commons;
 
 namespace MES.SocketService
 {
@@ -11,14 +12,23 @@ namespace MES.SocketService
     {
 
         /// <summary>
-        /// 唯一码
-        /// </summary>
-        public string SN { get; set; }
+        /// 远程别名
+        /// </summary> 
+        public string RemoteDeviceName { get; set; }
+
+        /// <summary>
+        /// 本地别名
+        /// </summary> 
+        public string LocalDeviceName { get; set; }
+
+        /// <summary>
+        /// 是否显示日志
+        /// </summary> 
+        public bool IsView { get; set; }
 
         protected override void OnInit()
         {
             base.OnInit();
-            DelegateState.NewSessionConnected?.Invoke(this);
         }
         protected override void OnSessionStarted()
         {
@@ -28,18 +38,24 @@ namespace MES.SocketService
         {
             base.HandleException(e);
 
-            string logMsg = GlobalData.Exception + e.Message;
-            Logger.Debug(logMsg);
-            GlobalData.ViewLog(logMsg);
+            LogInfo log = new SocketService.LogInfo(this, LogLevel.Error, GlobalData.Exception + e.ToString());
         }
+
         protected override void HandleUnknownRequest(MesRequestInfo requestInfo)
         {
             base.HandleUnknownRequest(requestInfo);
-            string logMsg = GlobalData.UnknownRequest + requestInfo.Key + requestInfo.Body;
-            Logger.Debug(logMsg);
-            GlobalData.ViewLog(logMsg);
+
+            LogInfo log = new SocketService.LogInfo(this, LogLevel.Error, string.Format("未知请求，该功能码[{0}]在服务中未注册，当前请求内容：{1}。", requestInfo.Key, requestInfo.Body));
         }
-        
+
+        public override void Initialize(IAppServer<MesSession, MesRequestInfo> appServer, ISocketSession socketSession)
+        {
+            base.Initialize(appServer, socketSession);
+
+            IsView = true;
+            RemoteDeviceName = string.Format("Normal client [{0}]", this.RemoteEndPoint);
+            LocalDeviceName = string.Format("Listen server [{0}]", this.LocalEndPoint);
+        }
 
         /// <summary>
         /// 连接关闭
@@ -48,13 +64,7 @@ namespace MES.SocketService
         protected override void OnSessionClosed(CloseReason reason)
         {
             base.OnSessionClosed(reason);
-
-            string logMsg = GlobalData.ClientDisConnect + this.RemoteEndPoint + ",原因：" + reason + ".";
-            Logger.Debug(logMsg);
-            GlobalData.ViewLog(logMsg);
-
-            DelegateState.SessionClosed?.Invoke(this, reason);
-
         }
+
     }
 }
