@@ -22,7 +22,7 @@ namespace MES.SocketService.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace MES.SocketService.Properties {
         ///   返回此类使用的缓存的 ResourceManager 实例。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MES.SocketService.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace MES.SocketService.Properties {
         ///   重写当前线程的 CurrentUICulture 属性。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap btnSave {
+        internal static System.Drawing.Bitmap btnSave {
             get {
                 object obj = ResourceManager.GetObject("btnSave", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap btnSet {
+        internal static System.Drawing.Bitmap btnSet {
             get {
                 object obj = ResourceManager.GetObject("btnSet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,9 +83,9 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap connect {
+        internal static System.Drawing.Bitmap connecting {
             get {
-                object obj = ResourceManager.GetObject("connect", resourceCulture);
+                object obj = ResourceManager.GetObject("connecting", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap disconnect {
+        internal static System.Drawing.Bitmap disConnecting {
             get {
-                object obj = ResourceManager.GetObject("disconnect", resourceCulture);
+                object obj = ResourceManager.GetObject("disConnecting", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap end {
+        internal static System.Drawing.Bitmap heart128 {
             get {
-                object obj = ResourceManager.GetObject("end", resourceCulture);
+                object obj = ResourceManager.GetObject("heart128", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,29 @@ namespace MES.SocketService.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap start {
+        internal static System.Drawing.Bitmap heart128_b {
             get {
-                object obj = ResourceManager.GetObject("start", resourceCulture);
+                object obj = ResourceManager.GetObject("heart128_b", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap readyRun {
+            get {
+                object obj = ResourceManager.GetObject("readyRun", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap run {
+            get {
+                object obj = ResourceManager.GetObject("run", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

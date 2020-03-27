@@ -35,7 +35,10 @@ namespace MES.SocketService
             key = Regex.Split(cmdFullText, "\u003b")[0];//[\u0020]-空格；[\u003b]-分号。
             body = string.Join("", cmdFullText.ToArray().Skip(key.ToArray().Length + 1).ToList());
             body = cmdFullText.TrimEnd("\r\n".ToCharArray());
+            parameters = body.Split(';');
             return new StringPackageInfo(key, body, parameters);
         }
+
+
     }
 }

@@ -17,11 +17,12 @@ namespace MES.SocketService
     /// </summary>
     public class NDQ : CommandBase<MesSession, MesRequestInfo>
     {
+        private string EmployeeName = "通用数据采集";
         private DM_API.DM_SFCInterface Dm_Interface = new DM_API.DM_SFCInterface();
 
         public override void ExecuteCommand(MesSession session, MesRequestInfo requestInfo)
         {
-            CheckRoute(session, requestInfo.TData);
+            ExecuteNDQ(session, requestInfo.TData);
         }
 
         #region 【通用数据采集】方法
@@ -31,161 +32,116 @@ namespace MES.SocketService
         /// </summary>
         /// <param name="_session"></param>
         /// <param name="_transData"></param>
-        private void CheckRoute(MesSession _session, TransData _transData)
+        private void ExecuteNDQ(MesSession _session, TransData _transData)
         {
-            LogInfo log = null;
-
-            //1、获取EquipmentNumber 并校验---------------------------------
-            AppConfig cfg = new AppConfig();
-            string EquipmentNumber = cfg.AppConfigGet(_transData.DeviceCode + "_" + _transData.OpeIndex);
-            if (string.IsNullOrEmpty(EquipmentNumber))
-            { 
-                log = new SocketService.LogInfo(_session, LogLevel.Error, string.Format("[{0}]执行【通用数据采集】接口失败>> 参数错误，根据机台编码[{1}]与操作序号[{2}]获取设备编码失败，请检查配置文件中的机台映射关系是否正确。", _transData.SerialNumber, _transData.DeviceCode, _transData.OpeIndex));
-                SendMsg(_session, _transData, CheckResult.NG);
+            //1、参数校验---equipmentID---------------------------------
+            string equipmentID = string.Empty;
+            if (!EmployeeComm.CheckEquipmentID(_session, _transData, out equipmentID, EmployeeName))
                 return;
-            }
 
-            //2、获取过程数据并校验---------------------------------
-            List<string> lstProcessData = StringHelper.GetStrArray(_transData.ProcessData, ',', false);
-            if (lstProcessData.Count < 2)
-            { 
-                log = new SocketService.LogInfo(_session, LogLevel.Error, string.Format("[{0}]执行【通用数据采集】接口失败>> 协议错误，请检查协议中是否至少包含采集类别码，采集数据,当前过程数据：{1}。", _transData.SerialNumber, _transData.ProcessData));
-                SendMsg(_session, _transData, CheckResult.NG);
+            //2、参数校验---ProcessData > 2项------------------------------
+            List<string> lstProcessData = new List<string>();
+            if (!EmployeeComm.CheckProcessData(_session, _transData, out lstProcessData, EmployeeName, Comparator.MoreThan, 2))
                 return;
-            }
 
-            //2.1 按采集类别校验
-            #region check
-
-            bool check = true;
-            switch (lstProcessData[0])
+            if (!GlobalData.IsDebug)
             {
-                case "01": //螺丝数据采集
-                    if (lstProcessData.Count != 6)
-                    {
-                        check = false;
-                        log = new SocketService.LogInfo(_session, LogLevel.Error, string.Format("[{0}]执行【通用数据采集】接口失败>> 协议错误，请检查协议中是否至少包含采集类别码，采集数据（6项）,当前过程数据：{1}。", _transData.SerialNumber, _transData.ProcessData));
-                    }
-                    break;
+                if ((lstProcessData[0]) == "02")
+                {
+                    string nEmployeeName = $"气密性测试数据采集-通用过站";
 
-                case "02": //气密性测试数据采集 
-                    if (lstProcessData.Count != 3)
-                    {
-                        check = false;
-                        log = new SocketService.LogInfo(_session, LogLevel.Error, string.Format("[{0}]执行【通用数据采集】接口失败>> 协议错误，请检查协议中是否至少包含采集类别码，采集数据（3项）,当前过程数据：{1}。", _transData.SerialNumber, _transData.ProcessData));
-                    }
-                    break;
+                    //2.1、参数校验---apiStatus
+                    string apiStatus = string.Empty;
+                    if (!EmployeeComm.CheckApiStatus(_session, _transData, out apiStatus, nEmployeeName))
+                        return;
 
-                case "03": //预热温度数据采集 
-                    if (lstProcessData.Count != 3)
-                    {
-                        check = false;
-                        log = new SocketService.LogInfo(_session, LogLevel.Error, string.Format("[{0}]执行【通用数据采集】接口失败>> 协议错误，请检查协议中是否至少包含采集类别码，采集数据（3项）,当前过程数据：{1}。", _transData.SerialNumber, _transData.ProcessData));
-                    }
-                    break;
+                    //2.2、【气密性测试数据采集】需要提前执行【通过过站】操作 //不需要传制令单号
+                    if (!EmployeeComm.CheckRoute(_session, _transData, "", equipmentID, apiStatus, nEmployeeName))
+                        return;
 
-                case "04": //固化温度数据采集 
-                    if (lstProcessData.Count != 3)
-                    {
-                        check = false;
-                        log = new SocketService.LogInfo(_session, LogLevel.Error, string.Format("[{0}]执行【通用数据采集】接口失败>> 协议错误，请检查协议中是否至少包含采集类别码，采集数据（3项）,当前过程数据：{1}。", _transData.SerialNumber, _transData.ProcessData));
-                    }
-                    break;
+                    //2.3、队列方式进行报工(如果记录了不良则无需进行第二次报工，因为记录不良时已经进行第一次报工了)
+                    if (apiStatus != "FAIL")
+                        GlobalData.queueServerNDQ.EnqueueItem(new TestItemFlex(_session, _transData, equipmentID, nEmployeeName, "103OUT")); 
+                }
 
-                case "05": //点胶胶量数据采集 
-                    if (lstProcessData.Count != 2)
-                    {
-                        check = false;
-                        log = new SocketService.LogInfo(_session, LogLevel.Error, string.Format("[{0}]执行【通用数据采集】接口失败>> 协议错误，请检查协议中是否至少包含采集类别码，采集数据（2项）,当前过程数据：{1}。", _transData.SerialNumber, _transData.ProcessData));
-                    }
-                    break;
-
-                default: //未知类别
-                    check = false;
-                    log = new SocketService.LogInfo(_session, LogLevel.Error, string.Format("[{0}]执行【通用数据采集】接口失败>> 协议错误，未知的采集类别码,当前过程数据：{1}。", _transData.SerialNumber, _transData.ProcessData));
-                    break;
+                //3、采集数据参数校验
+                if (!CheckNdqParam(_session, _transData, equipmentID, lstProcessData))
+                    return;
             }
-            if (!check)
-            { 
-                SendMsg(_session, _transData, CheckResult.NG);
-                return;
+
+            //4、API执行成功  ---------------------------------
+            EmployeeComm.SendMsg(_session, _transData, CheckResult.OK);
+
+            //5、队列方式保存采集数据
+            GlobalData.queueServerNDQ.EnqueueItem(new TestItemFlex(_transData.SN, _transData.DeviceCode, equipmentID, lstProcessData, _session));
+        }
+
+        private bool CheckNdqParam(MesSession _session, TransData _transData, string equipmentNumber, List<string> lstProcessData)
+        {
+            LogInfo log;
+
+            #region 参数校验[螺丝/气密性/预热/固话/点胶]及包含参数是否正确
+
+            string ndqType = string.Empty;
+            bool paramCheck = true;
+            int paramCount = GetNDQParamCount(lstProcessData, out ndqType); //确认采集类别及参数数量 
+            if (lstProcessData.Count != paramCount)
+                paramCheck = false;
+
+            string mEmployeeName = $"{EmployeeName}-{ndqType}";
+            if (!paramCheck)
+            {
+                log = new SocketService.LogInfo(_session, LogLevel.Error, $"[{_transData.SN}]执行【{mEmployeeName}】接口失败>> 协议错误，请检查协议中是否至少包含采集类别码，业务数据（{paramCount}项）,执行参数：{_transData.ProcessData}。");
+                _transData.ProcessData = $"Protocol error, procedure data should be {paramCount} items, current is {lstProcessData.Count} items, procedure data: {_transData.ProcessData}";
+                EmployeeComm.SendMsg(_session, _transData, CheckResult.NG);
+                return false;
             }
 
             #endregion
 
-            //3、API执行是否超时 ---------------------------------
-            DataTable dt = GlobalData.RunTaskWithTimeout<DataTable>((Func<DataTable>)delegate { return InsertNDQ(_transData.SerialNumber, EquipmentNumber, lstProcessData); }, GlobalData.ApiTimeout);
-            if (dt == null)
-            { 
-                log = new SocketService.LogInfo(_session, LogLevel.Error, string.Format("[{0}]执行【通用数据采集】接口超时（>{1}ms），执行参数：[{0}]，[{2}]，[{3}]。", _transData.SerialNumber, GlobalData.ApiTimeout, EquipmentNumber, _transData.ProcessData));
-                SendMsg(_session, _transData, CheckResult.NG);
-                return;
-            }
-
-            //4、判断API是否执行成功 ---------------------------------
-            string checkStatus = DataTableHelper.GetCellValueinDT(dt, 0, "CheckStatus");
-            if (checkStatus != "1")
-            { 
-                log = new SocketService.LogInfo(_session, LogLevel.Error, string.Format("[{0}]执行【通用数据采集】接口失败>> 接口返回(状态码[{1}])：产品(SN[{0}])计划执行 {2} 数据采集，执行参数：[{0}]，[{3}]，[{4}]。", _transData.SerialNumber, checkStatus, lstProcessData[1], EquipmentNumber, _transData.ProcessData));
-                SendMsg(_session, _transData, CheckResult.NG);
-                return;
-            }
-
-            //6、执行成功  ---------------------------------   
-            log = new SocketService.LogInfo(_session, LogLevel.Info, string.Format("[{0}]执行【通用数据采集】接口成功>> 接口返回(状态码[{1}])：产品(SN[{0}])执行{2}数据采集。", _transData.SerialNumber, checkStatus, lstProcessData[0]));
-            SendMsg(_session, _transData, CheckResult.OK);
-
+            return true;
         }
 
-        //采集数据存入db
-        private DataTable InsertNDQ(string serialNumber, string equipmentNumber, List<string> lstProcessData)
+        private static int GetNDQParamCount(List<string> lstProcessData, out string ndqType)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("CheckStatus");
-            dt.Rows.Add(1);
+            int paramCount = 0;
             switch (lstProcessData[0])
             {
-                case "01": //螺丝数据采集
-                    //dt = 
+                case "01":
+                    paramCount = 6;
+                    ndqType = "螺丝数据采集";
                     break;
 
-                case "02": //气密性测试数据采集 
-
+                case "02":
+                    paramCount = 3;
+                    ndqType = "气密性测试数据采集";
                     break;
 
-                case "03": //预热温度数据采集 
-
+                case "03":
+                    paramCount = 5;
+                    ndqType = "预热炉温度数据采集";
                     break;
 
-                case "04": //固化温度数据采集 
-
+                case "04":
+                    paramCount = 5;
+                    ndqType = "固化炉温度数据采集";
                     break;
 
-                case "05": //点胶胶量数据采集 
+                case "05":
+                    paramCount = 5;
+                    ndqType = "点胶胶量数据采集";
+                    break;
 
+                default:
+                    paramCount = 999999;
+                    ndqType = "未知类别数据采集";
                     break;
             }
-            // Thread.Sleep(1500);
-            return dt;
-        }
 
-        /// <summary>
-        /// 反馈消息至PLC
-        /// </summary>
-        /// <param name="_session"></param>
-        /// <param name="_transData"></param>
-        /// <param name="checkR"></param>
-        private static void SendMsg(MesSession _session, TransData _transData, CheckResult checkR)
-        {
-            _transData.Status = checkR.ToString();
-            string msg = GlobalData.ToTranString(_transData);
-            _session.Send(msg);
-            LogInfo log = new SocketService.LogInfo(_session, LogLevel.Info, GlobalData.Pre_Send + msg);
+            return paramCount;
         }
 
         #endregion
-
-
 
     }
 }

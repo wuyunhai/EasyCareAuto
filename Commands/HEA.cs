@@ -18,10 +18,10 @@ namespace MES.SocketService
     {
         public override void ExecuteCommand(MesSession session, MesRequestInfo requestInfo)
         {
-            requestInfo.TData.Status = CheckResult.OK.ToString(); 
+            requestInfo.TData.Status = CheckResult.OK.ToString();
             string msg = GlobalData.ToTranString(requestInfo.TData);
             session.Send(msg);
-            LogInfo log = new LogInfo(session, LogLevel.Info, GlobalData.Pre_Send + msg); 
+            LogInfo log = new LogInfo(session, LogLevel.Debug, GlobalData.Pre_Send + msg);
         }
     }
 }

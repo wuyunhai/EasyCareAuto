@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MES.SocketService", "MES.SocketService.csproj", "{AF470F87-B3A3-428D-8583-F123C99E677B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A3A8DC48-350B-4ABC-B2E6-724604199E23} = {A3A8DC48-350B-4ABC-B2E6-724604199E23}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OP010PrintWS", "..\OP010PrintWS\OP010PrintWS.csproj", "{A3A8DC48-350B-4ABC-B2E6-724604199E23}"
 EndProject

@@ -19,6 +19,7 @@ namespace MES.SocketService
         protected override bool Setup(IRootConfig rootConfig, IServerConfig config)
         {
             return base.Setup(rootConfig, config);
+            
         }
 
         protected override void OnStarted()
@@ -31,8 +32,9 @@ namespace MES.SocketService
         }
 
         protected override void OnStopped()
-        {
+        { 
             base.OnStopped();
+
             LogInfo log = new SocketService.LogInfo(this, LogLevel.Info, GlobalData.ServerStop);
         }
 
@@ -44,18 +46,16 @@ namespace MES.SocketService
         {
             base.OnNewSessionConnected(session);
 
-            //设置连接别名w
-
-            AppConfig config = new AppConfig();
-            string remoteDeviceName = config.AppConfigGet(session.RemoteEndPoint.Address.ToString());
-            string localDeviceName = config.AppConfigGet(session.LocalEndPoint.Port.ToString());
+            //设置连接别名  
+            string remoteDeviceName = AppConfig.Instance().AppConfigGet(session.RemoteEndPoint.Address.ToString());
+            string localDeviceName = AppConfig.Instance().AppConfigGet(session.LocalEndPoint.Port.ToString());
             if (!string.IsNullOrEmpty(remoteDeviceName))
             {
-                session.RemoteDeviceName = string.Format("{0} [{1}]", remoteDeviceName, session.RemoteEndPoint);
+                session.RemoteDeviceName = $"{remoteDeviceName} [{session.RemoteEndPoint}]";
             }
             if (!string.IsNullOrEmpty(localDeviceName))
             {
-                session.LocalDeviceName = string.Format("{0} [{1}]", localDeviceName, session.LocalEndPoint);
+                session.LocalDeviceName = $"{localDeviceName} [{session.LocalEndPoint}]";
             }
             //添加至客户端连接List
             GlobalData.ClientSessionList.Add(session);

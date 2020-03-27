@@ -37,6 +37,29 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="PrintBarCodeEX">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="product" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="prdType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintBarCodeEXResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PrintBarCodeEXResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -51,6 +74,12 @@
   <wsdl:message name="PrintBarCodeSoapOut">
     <wsdl:part name="parameters" element="tns:PrintBarCodeResponse" />
   </wsdl:message>
+  <wsdl:message name="PrintBarCodeEXSoapIn">
+    <wsdl:part name="parameters" element="tns:PrintBarCodeEX" />
+  </wsdl:message>
+  <wsdl:message name="PrintBarCodeEXSoapOut">
+    <wsdl:part name="parameters" element="tns:PrintBarCodeEXResponse" />
+  </wsdl:message>
   <wsdl:portType name="PrintSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -59,6 +88,10 @@
     <wsdl:operation name="PrintBarCode">
       <wsdl:input message="tns:PrintBarCodeSoapIn" />
       <wsdl:output message="tns:PrintBarCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintBarCodeEX">
+      <wsdl:input message="tns:PrintBarCodeEXSoapIn" />
+      <wsdl:output message="tns:PrintBarCodeEXSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="PrintSoap" type="tns:PrintSoap">
@@ -81,6 +114,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="PrintBarCodeEX">
+      <soap:operation soapAction="http://tempuri.org/PrintBarCodeEX" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="PrintSoap12" type="tns:PrintSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -95,6 +137,15 @@
     </wsdl:operation>
     <wsdl:operation name="PrintBarCode">
       <soap12:operation soapAction="http://tempuri.org/PrintBarCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrintBarCodeEX">
+      <soap12:operation soapAction="http://tempuri.org/PrintBarCodeEX" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

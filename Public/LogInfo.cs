@@ -12,7 +12,7 @@ namespace MES.SocketService
     {
 
         #region 属性
-
+        
         /// <summary>
         /// 日志时间
         /// </summary>
@@ -173,11 +173,10 @@ namespace MES.SocketService
                 isView = value;
             }
         }
-
         #endregion
 
         private void BaseInfo(LogLevel logLevel, string msg)
-        {
+        { 
             IsView = true;
             logTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
             level = logLevel.ToString();
@@ -187,7 +186,7 @@ namespace MES.SocketService
         public LogInfo(MesSession session, LogLevel logLevel, string msg)
         {
             BaseInfo(logLevel, msg);
-            isView = session.IsView;
+            isView = session.IsShowLog;
             localAddress = session.LocalEndPoint.Address.ToString();
             localPort = session.LocalEndPoint.Port.ToString();
             localDeviceName = session.LocalDeviceName;
@@ -216,7 +215,7 @@ namespace MES.SocketService
 
         private void WriteLog(ILog iLog, LogLevel logLevel)
         {
-            string logMsg  = LocalDeviceName + " " + RemoteDeviceName + " " + Message;
+            string logMsg = LocalDeviceName + " " + RemoteDeviceName + " " + Message;
 
             switch (logLevel)
             {
@@ -243,7 +242,8 @@ namespace MES.SocketService
                     break;
             }
 
-            GlobalData.ViewLog(this);
+            if (IsView) //日志是否前台显示
+                GlobalData.ViewLog(this);
         }
 
         public override string ToString()
@@ -262,4 +262,5 @@ namespace MES.SocketService
         Debug = 5,
         Success = 6
     }
+
 }

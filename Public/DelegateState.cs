@@ -9,18 +9,11 @@ namespace MES.SocketService
     /// </summary>
     public class DelegateState
     {
-        //信息显示
-        public delegate void MsgSendRecvCallBack(string msg);
+        //信息显示 
         public delegate void SocketStateCallBack(LogInfo log); 
         public delegate void SockeTeartbeatStateCallBack(int num);
         public delegate void SocketConnStateCallBack(string RemoteIp,string TCPUDP);
-
-
-        /// <summary>
-        /// 发送或接受消息界面UI显示
-        /// </summary>
-        public event MsgSendRecvCallBack MsgSendRecvChanged;
-
+         
         /// <summary>
         /// 信息显示
         /// </summary>
@@ -35,8 +28,7 @@ namespace MES.SocketService
         /// 信息显示
         /// </summary>
         public static SocketConnStateCallBack ServerConnStateInfo;
-
-
+        
         #region TCP服务
         
         public delegate void SocketTCPStateCallBack(string msg);

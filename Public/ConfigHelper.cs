@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 
 namespace MES.SocketService
-{
+{ 
     public class ConfigHelper
     {
         private Configuration config = null;

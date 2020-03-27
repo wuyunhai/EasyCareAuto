@@ -32,5 +32,15 @@ namespace MES.SocketService.Properties {
                 return ((string)(this["MES_SocketService_OP010WebReference_Print"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://127.0.0.1:7777/FileUpDown.asmx")]
+        public string MES_SocketService_WebUpDown_FileUpDown {
+            get {
+                return ((string)(this["MES_SocketService_WebUpDown_FileUpDown"]));
+            }
+        }
     }
 }

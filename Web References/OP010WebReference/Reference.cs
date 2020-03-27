@@ -24,7 +24,7 @@ namespace MES.SocketService.OP010WebReference {
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="PrintSoap", Namespace="http://tempuri.org/")]
@@ -33,6 +33,8 @@ namespace MES.SocketService.OP010WebReference {
         private System.Threading.SendOrPostCallback HelloWorldOperationCompleted;
         
         private System.Threading.SendOrPostCallback PrintBarCodeOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PrintBarCodeEXOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -77,6 +79,9 @@ namespace MES.SocketService.OP010WebReference {
         
         /// <remarks/>
         public event PrintBarCodeCompletedEventHandler PrintBarCodeCompleted;
+        
+        /// <remarks/>
+        public event PrintBarCodeEXCompletedEventHandler PrintBarCodeEXCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -137,6 +142,39 @@ namespace MES.SocketService.OP010WebReference {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PrintBarCodeEX", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataTable PrintBarCodeEX(string barCode, string product, string prdType) {
+            object[] results = this.Invoke("PrintBarCodeEX", new object[] {
+                        barCode,
+                        product,
+                        prdType});
+            return ((System.Data.DataTable)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PrintBarCodeEXAsync(string barCode, string product, string prdType) {
+            this.PrintBarCodeEXAsync(barCode, product, prdType, null);
+        }
+        
+        /// <remarks/>
+        public void PrintBarCodeEXAsync(string barCode, string product, string prdType, object userState) {
+            if ((this.PrintBarCodeEXOperationCompleted == null)) {
+                this.PrintBarCodeEXOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPrintBarCodeEXOperationCompleted);
+            }
+            this.InvokeAsync("PrintBarCodeEX", new object[] {
+                        barCode,
+                        product,
+                        prdType}, this.PrintBarCodeEXOperationCompleted, userState);
+        }
+        
+        private void OnPrintBarCodeEXOperationCompleted(object arg) {
+            if ((this.PrintBarCodeEXCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PrintBarCodeEXCompleted(this, new PrintBarCodeEXCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -156,11 +194,11 @@ namespace MES.SocketService.OP010WebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void HelloWorldCompletedEventHandler(object sender, HelloWorldCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HelloWorldCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -182,11 +220,11 @@ namespace MES.SocketService.OP010WebReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     public delegate void PrintBarCodeCompletedEventHandler(object sender, PrintBarCodeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.6.1590.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PrintBarCodeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -194,6 +232,32 @@ namespace MES.SocketService.OP010WebReference {
         private object[] results;
         
         internal PrintBarCodeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataTable Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataTable)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    public delegate void PrintBarCodeEXCompletedEventHandler(object sender, PrintBarCodeEXCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.3761.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PrintBarCodeEXCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PrintBarCodeEXCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -10,6 +10,10 @@ namespace MES.SocketService
 {
     public class MesSession : AppSession<MesSession, MesRequestInfo>
     {
+        /// <summary>
+        /// 是否已经在UI中挂载显示
+        /// </summary>
+        public bool IsShowinUI { get; set; }
 
         /// <summary>
         /// 远程别名
@@ -24,7 +28,7 @@ namespace MES.SocketService
         /// <summary>
         /// 是否显示日志
         /// </summary> 
-        public bool IsView { get; set; }
+        public bool IsShowLog { get; set; }
 
         protected override void OnInit()
         {
@@ -45,16 +49,16 @@ namespace MES.SocketService
         {
             base.HandleUnknownRequest(requestInfo);
 
-            LogInfo log = new SocketService.LogInfo(this, LogLevel.Error, string.Format("未知请求，该功能码[{0}]在服务中未注册，当前请求内容：{1}。", requestInfo.Key, requestInfo.Body));
+            LogInfo log = new SocketService.LogInfo(this, LogLevel.Error, $"未知请求，该功能码[{requestInfo.Key}]在服务中未注册，当前请求内容：{requestInfo.Body}。");
         }
 
         public override void Initialize(IAppServer<MesSession, MesRequestInfo> appServer, ISocketSession socketSession)
         {
             base.Initialize(appServer, socketSession);
 
-            IsView = true;
-            RemoteDeviceName = string.Format("Normal client [{0}]", this.RemoteEndPoint);
-            LocalDeviceName = string.Format("Listen server [{0}]", this.LocalEndPoint);
+            IsShowLog = true;
+            RemoteDeviceName = $"Normal client [{RemoteEndPoint}]";
+            LocalDeviceName = $"Listen server [{LocalEndPoint}]";
         }
 
         /// <summary>

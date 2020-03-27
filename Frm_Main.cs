@@ -1,65 +1,74 @@
-﻿using CCWin;
-using SuperSocket.ClientEngine;
-using SuperSocket.ProtoBase;
+﻿using CCWin.SkinControl;
+using MES.SocketService.BLL;
+using MES.SocketService.Entity;
 using SuperSocket.SocketBase;
 using SuperSocket.SocketEngine;
 using System;
+using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using YUN.Framework.BaseUI;
 using YUN.Framework.Commons;
 using YUN.Framework.Commons.Collections;
 using YUN.Framework.Commons.Threading;
 using YUN.Framework.Commons.Winform;
+using YUN.Framework.ControlUtil;
 
 namespace MES.SocketService
 {
     public partial class Frm_Main : BaseForm
     {
+        private int MainTabIndex = 0;
+        private bool LoadFinish = false;  //开启服务,加载完成后开始显示日志
+        private bool IsViewHeartLog;      // 当页面切到【实时监控】下的【心跳日志】是才显示线条日志，其他情况心跳日志不输出至UI； 
+        private IBootstrap m_Bootstrap;   // 通过BootStrap启动Socket服务
         private MesServer mesServer;
-        private static QueueServer<LogInfo> queueServer = new QueueServer<LogInfo>();
-        private List<ListViewItem> lstvLogCache = new List<ListViewItem>();
+        private ConcurrentQueue<LogInfo> concurrentQueue = new ConcurrentQueue<LogInfo>();
+        private QueueServer<LogInfo> queueServer = new QueueServer<LogInfo>();
+        private QueueServer<MesSession> sessionClosedQueueServer = new QueueServer<MesSession>();
+        private List<ClientInfo> lstClientConnHistory = new List<ClientInfo>();
+
 
         public Frm_Main()
         {
             InitializeComponent();
+        }
+
+        public override void FormOnLoad()
+        {
+            base.FormOnLoad();
 
             Splasher.Status = ">> 正在加载程序样式设置...";
-            Thread.Sleep(100);
+            Thread.Sleep(80);
             FrmSet();
             Application.DoEvents();
 
-            Splasher.Status = ">> 正在刷新程序参数...";
-            Thread.Sleep(100);
-            RefreshConfig();
-            Application.DoEvents();
-
             Splasher.Status = ">> 正在加载测试API内容...";
-            Thread.Sleep(100);
+            Thread.Sleep(80);
             LoadMethod();
             Application.DoEvents();
 
-            Splasher.Status = ">> 开始检验网络是否畅通...";
-            Thread.Sleep(100);
-            SetupCheck();
+            Splasher.Status = ">> 正在加载测试通讯指令内容...";
+            Thread.Sleep(80);
+            LoadTxtFile("");
+            Application.DoEvents();
 
+            Splasher.Status = ">> 正在加载数据服务器配置文件...";
+            Thread.Sleep(80);
+            //SetupAppServer();
+            Application.DoEvents();
+
+            Splasher.Status = ">> 开始检验网络是否畅通...";
+            SetupCheck();
             Splasher.Close();
-            //pOp.BackgroundWork = Run;
-            //pOp.MessageInfo = "正在进行启动前检查操作……";
-            //pOp.BackgroundWorkerCompleted += POp_BackgroundWorkerCompleted;
-            //pOp.Start();
+
         }
 
         private void FrmSet()
@@ -73,8 +82,67 @@ namespace MES.SocketService
             DelegateState.NewSessionConnected = NewSessionConnected;
             DelegateState.SessionClosed = SessionClosed;
 
+            #region wgvList
+
+            Dictionary<string, string> columnNameAlias = new Dictionary<string, string>();
+            columnNameAlias.Add("SessionID", "会话ID");
+            columnNameAlias.Add("RemoteDeviceName", "远端地址");
+            columnNameAlias.Add("Time", "操作时间");
+            columnNameAlias.Add("Mode", "动作");
+            columnNameAlias.Add("Reason", "原因");
+
+            wgvList.ShowLineNumber = false;
+            wgvList.BestFitColumnWith = false;//是否设置为自动调整宽度，false为不设置   
+            wgvList.dataGridView1.DataSourceChanged += new EventHandler(wgvList_DataSourceChanged);
+            wgvList.dataGridView1.RowPostPaint += new DataGridViewRowPostPaintEventHandler(wgvList_RowPostPaint);
+            wgvList.DisplayColumns = "SessionID,RemoteDeviceName,Time,Mode,Reason";
+            wgvList.ColumnNameAlias = columnNameAlias;
+
+            #endregion
+
             queueServer.IsBackground = true;
             queueServer.ProcessItem += QueueServer_ProcessItem;
+            sessionClosedQueueServer.IsBackground = true;
+            sessionClosedQueueServer.ProcessItem += SessionClosedQueueServer_ProcessItem;
+
+            MainTabIndex = 0;
+            TabControl1.SelectedIndex = 0;
+
+            tPanelSet.DataBindings.Add(new Binding("Enabled", btnTCPStart, "Enabled", true, DataSourceUpdateMode.OnPropertyChanged));
+            lblPSetWarm.DataBindings.Add(new Binding("Visible", btnTCPStop, "Enabled", true, DataSourceUpdateMode.OnPropertyChanged));
+
+            META_ParameterInfo info = BLLFactory<META_Parameter>.Instance.FindSingle("Key='ServiceDescription'");
+            if (info != null)
+                Text = info.Value;
+
+
+        }
+
+        /// <summary>
+        /// 绑定数据后，分配各列的宽度
+        /// </summary>
+        private void wgvList_DataSourceChanged(object sender, EventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+            if (dgv.Columns.Count > 0 && dgv.RowCount > 0)
+            {
+                foreach (DataGridViewColumn column in dgv.Columns)
+                {
+                    column.Width = 350;
+                }
+            }
+        }
+        /// <summary>
+        /// 设置字体颜色
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void wgvList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            if (wgvList.dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString() == "断开")
+            {
+                wgvList.dataGridView1.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Crimson;    // 选中行
+            }
         }
 
         #region 启动检查
@@ -86,177 +154,278 @@ namespace MES.SocketService
         {
             bool checkResult = true; string strStaus = string.Empty;
             CDictionary<string, string> checkIPList = new CDictionary<string, string>();
-            AppConfig appconfig = new AppConfig();
-            checkIPList = appconfig.GetAppSettingsByPreKeyIsIP();
+
+            checkIPList = AppConfig.Instance().GetAppSettingsByPreKeyIsIP();
             if (checkIPList != null && checkIPList.Count > 0)
             {
                 foreach (var item in checkIPList)
                 {
-                    Splasher.Status = strStaus = string.Format(">> 检查{0}网络是否正常.", item.Key);
+                    Splasher.Status = strStaus = $">> 检查{item.Key}网络是否正常.";
                     Application.DoEvents();
                     txtMsg.AppendText(strStaus + Environment.NewLine);
                     if (NetworkUtil.TestNetConnectity(item.Value))
                     {
-                        Splasher.Status = strStaus = string.Format(">> {1}({2})网络正常.", DateTime.Now, item.Key, item.Value);
+                        Splasher.Status = strStaus = $">> {item.Key}({item.Value})网络正常.";
                         Application.DoEvents();
                         txtMsg.AppendText(strStaus + Environment.NewLine);
                     }
                     else
                     {
                         checkResult = false;
-                        Splasher.Status = strStaus = string.Format(">> {1}({2})网络异常,请检查.", DateTime.Now, item.Key, item.Value);
+                        Splasher.Status = strStaus = $">> {item.Key}({item.Value})网络异常,请检查.";
                         Application.DoEvents();
                         txtMsg.AppendRichText(strStaus + Environment.NewLine, new Font("微软雅黑", 9), Color.Crimson);
+                        return;
                     }
-                    //Thread.Sleep(50);
                 }
             }
 
             if (checkResult)
             {
                 Thread.Sleep(50);
-                btnTCP_Click(null, null);
-                Splasher.Status = string.Format(">> 启动数据交换服务器MES.SocketService");
+                btnTCPStart_Click(null, null);
+                Splasher.Status = ">> 启动数据交换服务器MES.SocketService";
                 Application.DoEvents();
             }
 
         }
 
+        /// <summary>
+        /// 初始化服务器
+        /// </summary>
+        private bool SetupAppServer()
+        {
+
+            m_Bootstrap = BootstrapFactory.CreateBootstrap();
+            if (!m_Bootstrap.Initialize())
+            {
+                txtMsg.AppendRichText($"{DateTime.Now}>> 初始化服务器配置文件失败，请检查.{Environment.NewLine}", new Font("微软雅黑", 9), Color.Crimson);
+                return false;
+            }
+            txtMsg.AppendRichText($"{DateTime.Now}>> 初始化服务器配置成功.{Environment.NewLine}", new Font("微软雅黑", 9), Color.FromArgb(2, 79, 142));
+            return true;
+        }
+
         #endregion
 
-        ProcessOperator pOp = new ProcessOperator();
-        // 加载
-        private void Frm_Main_Load(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void POp_BackgroundWorkerCompleted(object sender, BackgroundWorkerEventArgs e)
-        {
-            if (e.BackGroundException == null)
-            {
-
-            }
-            else
-            {
-                MessageUtilSkin.ShowTips("Exception:" + e.BackGroundException.Message);
-            }
-        }
-
-        private void Run()
-        {
-            FrmSet();
-
-            RefreshConfig(); //参数配置
-
-            LoadMethod();// API测试
-
-            SetupCheck();//启动前检查
-
-            //btnTCP_Click(null, null); // 服务启动
-        }
-
-        #region  <启动服务模块>
+        #region  <启停服务模块>
 
         /// <summary>
         /// 启动服务
         /// </summary>
-        private void btnTCP_Click(object sender, EventArgs e)
+        private void btnTCPStart_Click(object sender, EventArgs e)
         {
-            btnTCP.Enabled = false;
+            SetupAppServer();
 
-            if (mesServer == null)
+            BtnTcpControl("alloff");
+            ProcessOperator pOpStartServer = new ProcessOperator();
+            pOpStartServer.BackgroundWork = pOPStartServerBackWork;
+            pOpStartServer.MessageInfo = "正在启动服务,请稍后...";
+            pOpStartServer.BackgroundWorkerCompleted += new EventHandler<BackgroundWorkerEventArgs>(pOpStartServer_BackgroundWorkerCompleted);
+            pOpStartServer.Start();
+        }
+        private void pOPStartServerBackWork()
+        {
+            LoadFinish = false;
+            if (m_Bootstrap == null)
             {
-                if (!SetupAppServer())
-                {
-                    btnTCP.Enabled = true;
-                    return;
-                }
+                MessageUtilSkin.ShowTips("数据服务器配置加载错误，请检查服务器IP，端口是否设置正确。");
+                return;
             }
-            if (mesServer.State != ServerState.Running)
+
+            StartResult startResult = m_Bootstrap.Start();
+            if (startResult == StartResult.Success)
             {
-                mesServer.Start();
-                btnTCP.Text = " 关闭数据服务器";
-                btnTCP.Image = Properties.Resources.end;
-                PicBoxTCP.Image = null;
-                PicBoxTCP.Image = Properties.Resources.connect;
-                lblTCP.Text = "MES服务器地址:" + mesServer.Listeners[0].EndPoint.Address;
-                txtMsg.AppendText(DateTime.Now + ">> MES服务器启动成功" + Environment.NewLine);
-                txtScroll.ScrollText = DateTime.Now + ">> MES服务器启动成功";
-                lvServer.Groups["lvgPort"].Header = string.Format("服务端监听端口 [{0}]", mesServer.Listeners.Count());
-                lvServer.Groups["lvgPort"].Items.Clear();
-
-                AppConfig config = new AppConfig();
-                foreach (ListenerInfo item in mesServer.Listeners)
-                {
-                    //tab1 ListView 添加节点
-                    string localDeviceName = config.AppConfigGet(item.EndPoint.Port.ToString());
-                    localDeviceName = string.Format("{0} [{1}]", localDeviceName, item.EndPoint);
-
-                    ListViewItem lvItem = new ListViewItem(localDeviceName, 0, lvServer.Groups["lvgPort"]);
-                    lvItem.SubItems.Add(new ListViewItem.ListViewSubItem(lvItem, mesServer.StartedTime.ToString("yyyy-MM-dd HH:mm:ss"), Color.DarkGray, Color.White, new Font("微软雅黑", 8f)));
-                    lvServer.Items.Add(lvItem);
-
-                    //tab2 Treeview 添加节点
-                    TreeNode node = new TreeNode(localDeviceName, 0, 0);
-                    node.Name = item.EndPoint.ToString();
-                    node.Checked = true;
-                    tvServer.Nodes.Add(node);
-                }
+                mesServer = m_Bootstrap.AppServers.Cast<MesServer>().FirstOrDefault();
             }
             else
             {
-                mesServer.Stop();
-                btnTCP.Text = " 启动数据服务器";
-                btnTCP.Image = Properties.Resources.start;
-                PicBoxTCP.Image = null;
-                PicBoxTCP.Image = Properties.Resources.disconnect;
-                txtMsg.AppendText(DateTime.Now + ">> MES服务器已关闭" + Environment.NewLine);
-                txtScroll.ScrollText = DateTime.Now + ">> MES服务器已关闭";
-                lblTCP.Text = "MES服务器地址:";
-
-                //tab1 ListView清空
-                lvServer.Groups["lvgPort"].Items.Clear();
-                lvServer.Items.Clear();
-
-                //tab2 Treeview清空
-                tvServer.Nodes.Clear();
+                mesServer = null;
             }
-            btnTCP.Enabled = true;
+        }
+        private void pOpStartServer_BackgroundWorkerCompleted(object sender, BackgroundWorkerEventArgs e)
+        {
+
+            if (mesServer != null)
+            {
+                ServerLogNotice($"服务器启动成功");
+                ServerScrNotice($"服务器启动成功");
+                ServerLblNotice($"{mesServer.Listeners[0].EndPoint.Address}");
+                LogInfo log = new LogInfo(mesServer, LogLevel.Info, "服务器启动成功.");
+
+                BtnTcpControl("on");
+                PicTcpControl("on");
+
+                lblDataIP.Text = mesServer.Listeners[0].EndPoint.ToString();
+                lblHeartIP.Text = mesServer.Listeners[1].EndPoint.ToString();
+
+                if (GlobalData.IsDebug)
+                    lblIsDebug.Visible = true;
+                else
+                    lblIsDebug.Visible = false;
+
+                LoadFinish = true;
+            }
+            else
+            {
+                BtnTcpControl("off");
+                txtMsg.AppendRichText($"{DateTime.Now}>> 服务器启动失败,请检查服务器设置是否正确.{Environment.NewLine}", new Font("微软雅黑", 9), Color.Crimson);
+                return;
+            }
         }
 
-        #region
+        #region other
+
+        /// <summary>
+        /// 服务器启停日志
+        /// </summary>
+        /// <param name="msg"></param>
+        private void ServerLogNotice(string msg)
+        {
+            txtMsg.AppendText($"{DateTime.Now}>> {msg}{Environment.NewLine}");
+        }
+
+        /// <summary>
+        /// 服务器公告
+        /// </summary>
+        /// <param name="content"></param>
+        private void ServerLblNotice(string content)
+        {
+            //lblTCP.Text = $"MES服务器地址:{content}";
+        }
+
+        /// <summary>
+        /// 服务器滚动通知
+        /// </summary>
+        /// <param name="msg"></param>
+        private void ServerScrNotice(string content)
+        {
+            txtScroll.ScrollText = $"{DateTime.Now}>> {content}";
+        }
+
+        /// <summary>
+        /// 服务开关控制
+        /// </summary>
+        /// <param name="onoff"></param>
+        private void BtnTcpControl(string onoff)
+        {
+            switch (onoff)
+            {
+                case "on":
+                    btnTCPStop.Enabled = true;
+                    btnTCPStart.Enabled = false;
+                    break;
+                case "off":
+                    btnTCPStop.Enabled = false;
+                    btnTCPStart.Enabled = true;
+                    break;
+                case "alloff":
+                    btnTCPStop.Enabled = false;
+                    btnTCPStart.Enabled = false;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 服务图标控制
+        /// </summary>
+        /// <param name="onoff"></param>
+        private void PicTcpControl(string onoff)
+        {
+            if (onoff == "on")
+            {
+                PicBoxTCP.Image = null;
+                PicBoxTCP.Image = Properties.Resources.run;
+
+                gifData.Image = null;
+                gifData.Image = Properties.Resources.connecting;
+
+                gifHeart.Image = null;
+                gifHeart.Image = Properties.Resources.heart128;
+
+                lblDataClientCount.ForeColor = Color.FromArgb(2, 79, 142);
+                lblHeartClientCount.ForeColor = Color.FromArgb(2, 79, 142);
+
+            }
+            else
+            {
+                PicBoxTCP.Image = null;
+                PicBoxTCP.Image = Properties.Resources.readyRun;
+
+                gifData.Image = null;
+                gifData.Image = Properties.Resources.disConnecting;
+
+                gifHeart.Image = null;
+                gifHeart.Image = Properties.Resources.heart128_b;
+
+                lblDataClientCount.ForeColor = Color.DimGray;
+                lblHeartClientCount.ForeColor = Color.DimGray;
+
+                lblDataIP.Text = "--/--";
+                lblHeartIP.Text = "--/--";
+            }
+        }
+        #endregion
+
+        /// <summary>
+        /// 关闭服务
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTCPStop_Click(object sender, EventArgs e)
+        {
+            BtnTcpControl("alloff");
+            ProcessOperator pOpStopServer = new ProcessOperator();
+            pOpStopServer.BackgroundWork = pOPBackWork;
+            pOpStopServer.MessageInfo = "正在关闭服务,请稍后...";
+            pOpStopServer.BackgroundWorkerCompleted += new EventHandler<BackgroundWorkerEventArgs>(pOpStopServer_BackgroundWorkerCompleted);
+            pOpStopServer.Start();
+        }
+
+        private void pOPBackWork()
+        {
+            if (m_Bootstrap != null)
+            {
+                m_Bootstrap.Stop();
+                LogInfo log = new LogInfo(mesServer, LogLevel.Info, "服务器已关闭.");
+            }
+        }
+
+        private void pOpStopServer_BackgroundWorkerCompleted(object sender, BackgroundWorkerEventArgs e)
+        {
+            BtnTcpControl("off");
+            PicTcpControl("off");
+
+            ServerLogNotice($"服务器已关闭");
+            ServerScrNotice($"服务器已关闭");
+            ServerLblNotice($"");
+
+            lblIsDebug.Visible = false; //调试标志
+        }
+
+        #endregion
+
+
+        #region session连接关闭事件
 
         #region 连接关闭事件
 
-        void SessionClosed(MesSession session, global::SuperSocket.SocketBase.CloseReason value)
+        int dataCount;
+        int heartCount;
+        private void SessionClosedQueueServer_ProcessItem(MesSession session)
         {
             this.Invoke(new ThreadStart(delegate
             {
-                ListViewItem item = listAllView.FindItemWithText(session.SessionID);
-                if (item != null)
-                {
-                    listAllView.Items.Remove(item);
-                }
+                lstClientConnHistory.Insert(0, new ClientInfo(session.SessionID, session.RemoteDeviceName, session.StartTime.ToString("yyyy-MM-dd HH:mm:ss.fff"), "断开", ""));
 
-                //tab1 连接关闭ListView节点递减 
-                ListViewItem lvttem = lvServer.FindItemWithText(session.RemoteDeviceName.ToString());
-                if (lvttem != null)
-                {
-                    lvServer.Items.Remove(lvttem);
-                    lvServer.Groups["lvgClient"].Header = string.Format("在线客户端 [{0}]", lvServer.Groups["lvgClient"].Items.Count);
-                }
-
-                //tab2 连接关闭TreeView节点递减
-                TreeNode[] nodes = tvServer.Nodes.Find(session.RemoteEndPoint.ToString(), true);
-                foreach (TreeNode node in nodes)
-                {
-                    tvServer.Nodes.Remove(node);
-                }
-
-                TeartbeatShowStateInfo(listAllView.Items.Count, session.RemoteEndPoint + " 已断开连接，原因：" + value);
+                dataCount = GlobalData.ClientSessionList.FindAll(li => li.LocalEndPoint.Port == 5000).Count();
+                heartCount = GlobalData.ClientSessionList.FindAll(li => li.LocalEndPoint.Port == 5001).Count();
+                UpdateClientCount(dataCount, heartCount);
             }));
+        }
+        void SessionClosed(MesSession session, global::SuperSocket.SocketBase.CloseReason value)
+        {
+            sessionClosedQueueServer.EnqueueItem(session);
         }
 
         #endregion
@@ -267,38 +436,49 @@ namespace MES.SocketService
         {
             this.Invoke(new ThreadStart(delegate
             {
-                listAllView.BeginUpdate();
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = session.SessionID;
-                lvi.SubItems.Add(session.RemoteDeviceName);
-                lvi.SubItems.Add(session.StartTime.ToString("yyyy-MM-dd HH:mm:ss"));
-                lvi.SubItems.Add(session.Config.Mode.ToString());
-                listAllView.Items.Add(lvi);
-                listAllView.EndUpdate();
-
-                //tab1 新连接ListView节点递增 
-                lvServer.BeginUpdate();
-                ListViewItem lvItem = new ListViewItem(session.RemoteDeviceName, 1, lvServer.Groups["lvgClient"]);
-                lvItem.SubItems.Add(new ListViewItem.ListViewSubItem(lvItem, session.StartTime.ToString("yyyy-MM-dd HH:mm:ss"), Color.DarkGray, Color.White, new Font("微软雅黑", 8f)));
-                lvServer.Items.Add(lvItem);
-                lvServer.Groups["lvgClient"].Header = string.Format("在线客户端 [{0}]", lvServer.Groups["lvgClient"].Items.Count);
-                lvServer.EndUpdate();
-
-                //tab2 新连接TreeView节点递增 
-                //TreeNode node = new TreeNode("Client " + session.RemoteEndPoint, 1, 1);
-                TreeNode node = new TreeNode(session.RemoteDeviceName, 1, 1);
-                node.Name = session.RemoteEndPoint.ToString();
-                node.Checked = true;
-                int index = tvServer.Nodes.IndexOfKey(session.LocalEndPoint.ToString());
-                if (index >= 0)
-                {
-                    tvServer.Nodes[index].Nodes.Add(node);
-                }
-                tvServer.ExpandAll();
-                TeartbeatShowStateInfo(listAllView.Items.Count, session.RemoteEndPoint + " 成功连接至服务器中心.");
-
+                SessionConnectUpdate(session);
             }));
         }
+
+        private void SessionConnectUpdate(MesSession session)
+        {
+            lstClientConnHistory.Insert(0, new ClientInfo(session.SessionID, session.RemoteDeviceName, session.StartTime.ToString("yyyy-MM-dd HH:mm:ss.fff"), "连接", ""));
+
+            //TeartbeatShowStateInfo(GlobalData.ClientSessionList.Count, session.RemoteEndPoint + " 成功连接至服务器中心.");
+
+
+            dataCount = GlobalData.ClientSessionList.FindAll(li => li.LocalEndPoint.Port == 5000).Count();
+            heartCount = GlobalData.ClientSessionList.FindAll(li => li.LocalEndPoint.Port == 5001).Count();
+            UpdateClientCount(dataCount, heartCount);
+        }
+
+        #region 树节点排序
+        public int TreeNodeCompare(TreeNode x, TreeNode y)
+        {
+            TreeNode tx = x as TreeNode;
+            TreeNode ty = y as TreeNode;
+            return String.Compare(tx.Text, ty.Text);
+        }
+
+        public void SortTreeNode(TreeNode cur_Node)
+        {
+            Comparison<TreeNode> sorterX = new Comparison<TreeNode>(TreeNodeCompare);
+            System.Collections.Generic.List<TreeNode> al = new System.Collections.Generic.List<TreeNode>();
+
+            foreach (TreeNode tn in cur_Node.Nodes)
+            {
+                al.Add(tn);
+            }
+            al.Sort(sorterX);
+
+            cur_Node.Nodes.Clear();
+            foreach (TreeNode tn in al)
+            {
+                cur_Node.Nodes.Add(tn);
+            }
+        }
+
+        #endregion
 
         #endregion
 
@@ -308,178 +488,108 @@ namespace MES.SocketService
         /// <param name="msg"></param>
         void ServerShowStateInfo(LogInfo log)
         {
+            if ((mesServer != null && mesServer.State != ServerState.Running) || LoadFinish == false || MainTabIndex != 1)
+            {
+                queueServer.ClearItems();
+                return;
+            }
             queueServer.EnqueueItem(log);
         }
 
         private void QueueServer_ProcessItem(LogInfo log)
         {
+            bool isHeartLog = log.LocalDeviceName.Contains("心跳服务器");
+            if (isHeartLog)
+            {
+                if (IsViewHeartLog)
+                    WriteRichTextLog(richHeartLog, log);
+            }
+            else
+            {
+                WriteRichTextLog(richLog, log);
+            }
+        }
+
+        private void WriteRichTextLog(SkinChatRichTextBox richTextControl, LogInfo log)
+        {
             this.Invoke(new ThreadStart(delegate
             {
-                if (!log.IsView) return;
-
-                if (richLog.Lines.Count() > 10000)
+                if (richTextControl.Lines.Count() > 500)
                 {
-                    richLog.ResetText();
+                    richTextControl.ResetText();
                 }
                 switch (log.Level)
                 {
                     case "Error":
-                        richLog.AppendRichText(log.ToString(), new Font("微软雅黑", 9f), Color.Crimson);
+                        richTextControl.AppendRichText(log.ToString(), new Font("微软雅黑", 9f), Color.Crimson);
 
                         break;
                     default:
-                        richLog.AppendRichText(log.ToString(), new Font("微软雅黑", 9f), Color.FromArgb(51, 51, 51));
+                        richTextControl.AppendRichText(log.ToString(), new Font("微软雅黑", 9f), Color.FromArgb(2, 79, 142));
                         break;
                 }
-                richLog.AppendText(Environment.NewLine);
-                //将光标位置设置到当前内容的末尾
-                //richLog.SelectionStart = richLog.Text.Length;
+                richTextControl.AppendText(Environment.NewLine);
                 //滚动到光标位置
-                richLog.ScrollToCaret();
+                richTextControl.ScrollToCaret();
             }));
         }
+
         /// <summary>
         /// 连接计数
         /// </summary>
-        void TeartbeatShowStateInfo(int num, string msg)
+        private void UpdateClientCount(int dataCount, int heartCount)
         {
-            this.Invoke(new ThreadStart(delegate
-            {
-                txtScroll.ScrollText = msg;
-                lblClientCount.Text = num.ToString();
-            }));
+            CallCtrlWithThreadSafety.SetText(lblDataClientCount, dataCount.ToString(), this);
+            CallCtrlWithThreadSafety.SetText(lblHeartClientCount, heartCount.ToString(), this);
         }
 
         #endregion
 
-        #endregion
-
-        /// <summary>
-        /// 初始化服务器
-        /// </summary>
-        private bool SetupAppServer()
-        {
-            if (mesServer == null)
-            {
-                //方法一、采用当前应用程序中的【App.config】文件。
-                var bootstrap = BootstrapFactory.CreateBootstrap();
-                if (!bootstrap.Initialize())
-                { 
-                    txtMsg.AppendRichText(DateTime.Now + ">> 初始化服务器配置文件失败，请检查." + Environment.NewLine, new Font("微软雅黑", 9), Color.Crimson);
-                    return false;
-                }
-                StartResult startResult = bootstrap.Start();
-                if (startResult == StartResult.Success)
-                {
-                    txtMsg.AppendText(DateTime.Now + ">> 初始化服务器成功." + Environment.NewLine);
-                    mesServer = bootstrap.AppServers.Cast<MesServer>().FirstOrDefault();
-                    mesServer.Stop();
-                    //mesServer.Start();
-                    return true;
-                }
-                else
-                { 
-                    txtMsg.AppendRichText(DateTime.Now + ">> 初始化服务器失败,请检查服务器设置是否正确." + Environment.NewLine, new Font("微软雅黑", 9), Color.Crimson);
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private async void tsmpMenu_Click(object sender, EventArgs e)
+        private void tsmpMenu_Click(object sender, EventArgs e)
         {
             try
             {
                 ToolStripMenuItem tsmp = sender as ToolStripMenuItem;
+                if (mesServer == null)
+                    return;
+                IPEndPoint EndPoint = mesServer.Listeners[0].EndPoint;
 
-                if (tvServer.SelectedNode != null)
-                {
-                    TreeNode node = tvServer.SelectedNode;
-                    if (node.Level == 1)
-                    {
-                        MesSession session = GlobalData.ClientSessionList.Find(s => s.RemoteDeviceName == node.Text);
-                        if (session != null)
-                        {
-                            Frm_Msg frm = new Frm_Msg();
-                            frm.Text = session.RemoteDeviceName;
-                            frm.gbMsg.Text = tsmp.Text;
-                            frm.txtMsg.Text = tsmp.Tag.ToString();
-                            if (frm.ShowDialog() == DialogResult.OK)
-                            {
-                                string msg = frm.txtMsg.Text.Trim() + Environment.NewLine;
+                Frm_Msg frm = new Frm_Msg();
+                frm.Text = $"{ mesServer.Listeners[0].EndPoint} <<-- {tsmp.Text}";
+                frm.txtMsg.Text = tsmp.Tag.ToString();
+                frm.EndPoint = EndPoint;
+                if (frm.ShowDialog() != DialogResult.OK)
+                    return;
 
-                                EasyClient<StringPackageInfo> tcpClient = new EasyClient<StringPackageInfo>();
-                                tcpClient.Initialize(new MesClientTerminatorReceiveFiltercs());
-                                var connected = await tcpClient.ConnectAsync(session.LocalEndPoint);
-                                if (tcpClient.IsConnected)
-                                {
-                                    var data = Encoding.UTF8.GetBytes(msg.ToString());
-                                    tcpClient.Send(new ArraySegment<byte>(data, 0, data.Length));
-                                    if (tcpClient != null)
-                                    { 
-                                        await tcpClient.Close();
-                                        tcpClient = null;
-                                    }
-                                }
-                                else
-                                {
-                                    MessageUtilSkin.ShowError("连接失败.");
-                                }
-
-                            }
-                        }
-                        else
-                        {
-                            MessageUtilSkin.ShowTips("不存在该session请确认.");
-                        }
-                    }
-                    else
-                    {
-                        MessageUtilSkin.ShowTips("请选择客户端节点进行操作.");
-                    }
-                }
             }
             catch (Exception ex)
             {
                 MessageUtilSkin.ShowTips(ex.Message);
             }
         }
-        
-        #region 实时监控
 
-        private void tvServer_AfterCheck(object sender, TreeViewEventArgs e)
+        #region 切换业务数据/心跳数据页
+
+        private void ChangePage(TreeNode node)
         {
-            if (e.Action != TreeViewAction.Unknown)
+            string rootNodeText = string.Empty;
+            switch (node.Level)
             {
-                TreeViewHelper.TreeNodeCheck(e.Node);
-                MesSession session = null;
-                switch (e.Node.Level)
-                {
-                    case 0:
-                        session = GlobalData.ClientSessionList.Find(s => s.LocalDeviceName == e.Node.Text);
-                        break;
-
-                    case 1:
-                        session = GlobalData.ClientSessionList.Find(s => s.RemoteDeviceName == e.Node.Text);
-                        break;
-                }
-
-                if (session == null) return;
-                session.IsView = e.Node.Checked;
+                case 0:
+                    rootNodeText = node.Text;
+                    break;
+                case 1:
+                    rootNodeText = node.Parent.Text;
+                    break;
             }
-        }
 
-        private void tvServer_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
+            if (rootNodeText.Contains("心跳服务器"))
             {
-                Point ClickPoint = new Point(e.X, e.Y);
-                TreeNode CurrentNode = tvServer.GetNodeAt(ClickPoint);
-                if (CurrentNode != null)//判断你点的是不是一个节点
-                {
-                    tvServer.SelectedNode = CurrentNode;//选中这个节点
-                }
-
+                tabControlLogType.SelectedIndex = 1;
+            }
+            else
+            {
+                tabControlLogType.SelectedIndex = 0;
             }
         }
 
@@ -488,20 +598,39 @@ namespace MES.SocketService
         //清空记录
         private void tsmClear_Click(object sender, EventArgs e)
         {
-            richLog.ResetText();
+            switch (tabControlLogType.SelectedIndex)
+            {
+                case 0:
+                    richLog.ResetText();
+                    break;
+                case 1:
+                    richHeartLog.ResetText();
+                    break;
+            }
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
-            string filePath = string.Format(@"{0}\Logs\{1}.log", DirectoryUtil.GetCurrentDirectory(), DateTime.Now.ToString("yyyy-MM-dd"));
+            string filePath = string.Empty;
+            switch (tabControlLogType.SelectedIndex)
+            {
+                case 0:
+                    filePath = $@"{DirectoryUtil.GetCurrentDirectory()}\Logs\Data_{ DateTime.Now.ToString("yyyy-MM-dd")}.log";
+                    break;
+
+                case 1:
+                    filePath = $@"{DirectoryUtil.GetCurrentDirectory()}\Logs\Heart_{ DateTime.Now.ToString("yyyy-MM-dd")}.log";
+                    break;
+            }
+
 
             if (FileUtil.FileIsExist(filePath))
             {
-                System.Diagnostics.Process.Start(filePath);
+                Process.Start("notepad++.exe", filePath);
             }
             else
             {
-                MessageUtilSkin.ShowTips(string.Format("不存在文件：{0}", filePath));
+                MessageUtilSkin.ShowTips($"不存在文件：{filePath}");
             }
         }
 
@@ -509,231 +638,51 @@ namespace MES.SocketService
 
         private void LoadMethod()
         {
-            string filePath = string.Format(@"{0}\{1}.dll", DirectoryUtil.GetCurrentDirectory(), "DM_API");
-
-            if (FileUtil.FileIsExist(filePath))
-            {
-                try
-                {
-                    Assembly aBox = Assembly.LoadFrom(FileUtil.GetFileName(filePath));
-                    Type[] _t = aBox.GetTypes(); //获得全部Type
-                    foreach (Type t in _t)
-                    {
-                        if (t.Namespace == "DM_API" && t.Name == "DM_SFCInterface")
-                        {
-                            MethodInfo[] methods = t.GetMethods();
-
-                            LoadMethodTree(methods);
-                        }
-                    }
-                    //MessageBox.Show("File \"AboutBox.dll\" Invalid!\n\nAssembly Name Error.");
-                } //文件、命名空间、方法都相符，但执行该DLL 内容出错
-                catch (System.NullReferenceException ex)
-                {
-                    safelbl.Text = ">>" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "：File \"AboutBox.dll\" Invalid! ";
-                }
-                catch (Exception ex)
-                {
-                    safelbl.Text = ">>" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "：File \"AboutBox.dll\" Error: \n\n" + ex.Message;
-                }
-            }
-            else
-            {
-                safelbl.Text = ">>" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "：File \"AboutBox.dll\" Missing! ";
-            }
-
-        }
-        private void btnRefMethods_Click(object sender, EventArgs e)
-        {
-            LoadMethod();
-        }
-        private void LoadMethodTree(MethodInfo[] methods)
-        {
-            tvMethod.Nodes.Clear();
-
-            foreach (MethodInfo info in methods)
-            {
-                TreeNode node = new TreeNode(info.Name, 5, 5);
-                node.Tag = info;
-                tvMethod.Nodes.Add(node);
-            }
-        }
-
-        private void tvMethod_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (tvMethod.SelectedNode != null)
-            {
-                MethodInfo info = tvMethod.SelectedNode.Tag as MethodInfo;
-                ParameterInfo[] parameters = info.GetParameters();
-                txtParme.Text = string.Empty;
-                txtParme.ReadOnly = true;
-                StringBuilder sbParam = new StringBuilder();
-                for (int i = 0; i < parameters.Length; i++)
-                {
-                    txtParme.ReadOnly = false;
-                    sbParam.AppendFormat("【{0}({1})】", parameters[i].Name, parameters[i].ParameterType);
-                }
-
-                List<ParameterInfo> listParam = parameters.ToList();
-
-                StringBuilder sb = new StringBuilder();
-                sb.AppendFormat("所属程序集：{0} \r\n\r\n", info.Module);
-                sb.AppendFormat("方法名称：{0} \r\n\r\n", info.Name);
-                sb.AppendFormat("执行参数：{0} \r\n\r\n", (sbParam.Length == 0) ? "空" : sbParam.ToString());
-                sb.AppendFormat("返回类型：{0} \r\n", info.ReturnType);
-
-                txtMethodInfo.Text = sb.ToString();
-            }
-        }
-        private void btnAction_Click(object sender, EventArgs e)
-        {
-            if (tvMethod.SelectedNode != null)
-            {
-                tsPB.Visible = true;
-                safelbl.Text = ">>" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "：正在执行API.";
-                btnAction.Enabled = false;
-
-                string sRet = string.Format("{0}：", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-                try
-                {
-                    AppConfig appconfig = new AppConfig();
-                    int apiTimeout = ConvertHelper.ToInt32(appconfig.AppConfigGet("ApiTimeout"), 1000);
-                    MethodInfo mInfo = tvMethod.SelectedNode.Tag as MethodInfo;
-                    //创建实例
-                    object o = Activator.CreateInstance(mInfo.DeclaringType);
-                    object obj;
-                    string retMessage = string.Empty;
-                    if (txtParme.Text == string.Empty)
-                    {
-                        obj = TaskHelper.RunTaskWithTimeout<object>((Func<object>)delegate { return mInfo.Invoke(o, new object[] { }); }, apiTimeout, ref retMessage);
-                    }
-                    else
-                    {
-                        obj = TaskHelper.RunTaskWithTimeout<object>((Func<object>)delegate { return mInfo.Invoke(o, StringHelper.GetStrArray(txtParme.Text.Trim(), ',', false).ToArray()); }, apiTimeout, ref retMessage);
-                    }
-                    sRet += (obj == null) ? retMessage : obj.ToString();
-                }
-                catch (TargetException tex)
-                {
-                    sRet += tex.Message + ((tex.InnerException != null) ? tex.InnerException.ToString() : "");
-                }
-                catch (ArgumentException arex)
-                {
-                    sRet += arex.Message + ((arex.InnerException != null) ? arex.InnerException.ToString() : "");
-                }
-                catch (TargetInvocationException tix)
-                {
-                    sRet += tix.Message + ((tix.InnerException != null) ? tix.InnerException.ToString() : "");
-                }
-                catch (TargetParameterCountException tpex)
-                {
-                    sRet += tpex.Message + ((tpex.InnerException != null) ? tpex.InnerException.ToString() : "");
-                }
-                catch (MethodAccessException mex)
-                {
-                    sRet += mex.Message + ((mex.InnerException != null) ? mex.InnerException.ToString() : "");
-                }
-                catch (InvalidOperationException ioex)
-                {
-                    sRet += ioex.Message + ((ioex.InnerException != null) ? ioex.InnerException.ToString() : "");
-                }
-                catch (NotSupportedException noex)
-                {
-                    sRet += noex.Message + ((noex.InnerException != null) ? noex.InnerException.ToString() : "");
-                }
-                catch (Exception ex)
-                {
-                    sRet += ex.Message + ((ex.InnerException != null) ? ex.InnerException.ToString() : "");
-                }
-
-
-                txtMethodRet.Text = sRet;
-                btnAction.Enabled = true;
-
-                tsPB.Visible = false;
-                safelbl.Text = ">>" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + "：API执行结束.";
-            }
-            else
-            {
-                MessageUtilSkin.ShowTips("请选择API.");
-            }
+            apiTestView1.DllFullName = "DM_API.dll";
+            apiTestView1.Namespace = "DM_API";
+            apiTestView1.Classname = "DM_SFCInterface";
+            apiTestView1.LoadAPIMethod();
         }
 
         #endregion
 
-        #region 参数设置
-        private void btnSaveStorageId_Click(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            string comm = StringUtil.RemovePrefix(btn.Name, "btnSave_");
-            Control txtTemp = tPanelSet.Controls.Find("txt_" + comm, true)[0];
+        #region 加载测试指令
 
-            switch (btn.Text.Trim())
-            {
-                case "设置":
-                    btn.Image = Properties.Resources.btnSave;
-                    btn.Text = " 保存";
-                    CallCtrlWithThreadSafety.SetEnable(txtTemp, true, this);
-                    break;
-                case "保存":
-                    btn.Image = Properties.Resources.btnSet;
-                    btn.Text = " 设置";
-                    CallCtrlWithThreadSafety.SetEnable(txtTemp, false, this);
+        #region 读取本地文件
 
-                    string sValue = txtTemp.GetType().GetProperty("Text").GetValue(txtTemp, null).ToString();
-                    AppConfig config = new AppConfig();
-                    config.AppConfigSet(comm, sValue);
-                    ConfigurationManager.RefreshSection("appSettings");
-                    safelbl.Text = string.Format("{0} >> 保存成功.", DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss.fff"));
-
-                    break;
-            }
-        }
-
-        private void btnRefresh_StorageId_Click(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            string comm = StringUtil.RemovePrefix(btn.Name, "btnRefresh_");
-            Control txtTemp = tPanelSet.Controls.Find("txt_" + comm, true)[0];
-
-            AppConfig config = new AppConfig();
-            string value = config.AppConfigGet(comm);
-
-            txtTemp.Text = value;
-            safelbl.Text = string.Format("{0} >> 刷新成功.", DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss.fff"));
-        }
-
-        private void RefreshConfig()
+        private void LoadTxtFile(string txtPath)
         {
             try
             {
-                AppConfig config = new AppConfig();
-                foreach (Control c in tPanelSet.Controls)
+                if (string.IsNullOrWhiteSpace(txtPath))
+                    txtPath = $@"{DirectoryUtil.GetCurrentDirectory()}\Docs\protocol.txt";
+
+                if (!FileUtil.FileIsExist(txtPath))
+                    return;
+
+                string sFullText = FileUtil.FileToString(txtPath);
+                string[] arrComms = sFullText.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (string str in arrComms)
                 {
-                    if (c.Name.StartsWith("txt_"))
-                    {
-                        YunTextBox yTextbox = c as YunTextBox;
+                    ToolStripMenuItem tsmItem = new ToolStripMenuItem();
 
-                        string comm = StringUtil.RemovePrefix(c.Name, "txt_");
-                        string value = config.AppConfigGet(comm);
-                        yTextbox.Text = value;
-                        CallCtrlWithThreadSafety.SetEnable(yTextbox, false, this);
-                    }
+                    ArrayList al = StringUtil.ExtractInnerContent(str, "[", "]");
+                    tsmItem.Text = al[0].ToString();
+                    tsmItem.Tag = al[1].ToString();
+                    tsmItem.Click += tsmpMenu_Click;
+                    contextMenuStrip1.Items.Add(tsmItem);
                 }
-                safelbl.Text = string.Format("{0} >> 全部刷新成功.", DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss.fff"));
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                safelbl.Text = string.Format("{0} >> 刷新异常：{1}.", DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss.fff"), ex.Message);
+                return;
             }
-        }
 
-        private void btnRefreshAll_Click(object sender, EventArgs e)
-        {
-            RefreshConfig();
         }
 
 
+        #endregion
         #endregion
 
         private void Frm_Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -743,6 +692,7 @@ namespace MES.SocketService
             {
                 e.Cancel = true;//不关闭程序
 
+                this.Hide();
                 //最小化到托盘的时候显示图标提示信息，提示用户并未关闭程序
                 this.WindowState = FormWindowState.Minimized;
                 notifyIcon1.ShowBalloonTip(3000, "程序最小化提示",
@@ -773,41 +723,237 @@ namespace MES.SocketService
             }
         }
 
+        private void tsmItemExit_Click(object sender, EventArgs e)
+        {
+            notifyMenu_Exit_Click(null, null);
+        }
+
         private void notifyMenu_Exit_Click(object sender, EventArgs e)
         {
             try
             {
-                this.ShowInTaskbar = false; 
-                Application.Exit();
+                if (mesServer != null && mesServer.State == ServerState.Running)
+                {
+                    if (DialogResult.Yes == MessageUtilSkin.ShowYesNoAndTips("服务正在运行，请先关闭服务."))
+                    {
+                        TabControl1.SelectedIndex = 0;
+
+                        if (this.WindowState == FormWindowState.Minimized)
+                        {
+                            this.WindowState = FormWindowState.Maximized;
+                            this.Show();
+                            this.BringToFront();
+                            this.Activate();
+                            this.Focus();
+                        }
+                    }
+                }
+                else
+                {
+                    if (DialogResult.Yes == MessageUtilSkin.ShowYesNoAndTips("是否确定退出程序？"))
+                    {
+                        this.ShowInTaskbar = false;
+                        Application.Exit();
+                    }
+                }
             }
             catch
             {
+
                 // Nothing to do.
             }
         }
 
         private void Frm_Main_MaximizedBoundsChanged(object sender, EventArgs e)
-        { 
+        {
             this.Hide();
         }
 
         private void Frm_Main_Move(object sender, EventArgs e)
         {
-            if (this == null)
-            {
-                return;
-            }
 
-            //最小化到托盘的时候显示图标提示信息
-            if (this.WindowState == FormWindowState.Minimized)
+        }
+
+        #region 客户端工具
+
+
+
+        private void lnkClient_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            META_DevLinkInfo info = BLLFactory<META_DevLink>.Instance.FindSingle($"DevCode='OP010'");
+
+            //测试
+            META_ParameterInfo info2 = BLLFactory<META_Parameter>.Instance.FindSingle($"Key='WorkOrder'");
+            info2.Value = "TEST002";
+            BLLFactory<META_Parameter>.Instance.Update(info2, info2.ID);
+
+
+            info2 = BLLFactory<META_Parameter>.Instance.FindSingle($"Key='OK_RE'");
+
+            try
             {
-                this.Hide();
-                notifyIcon1.ShowBalloonTip(3000, "程序最小化提示",
-                    "图标已经缩小到托盘，打开窗口请双击图标即可。也可以使用Alt+S键来显示/隐藏窗体。",
-                    ToolTipIcon.Info);
+                if (mesServer == null)
+                {
+                    MessageUtilSkin.ShowTips("请启动数据服务器.");
+                    return;
+                }
+                TabControl1.SelectedIndex = 1;
+                IPEndPoint EndPoint = mesServer.Listeners[0].EndPoint;
+
+                Frm_Msg frm = new Frm_Msg();
+                frm.Text = $"{ EndPoint.Address}";
+                frm.txtMsg.Text = string.Empty;
+                frm.EndPoint = EndPoint;
+                if (frm.ShowDialog() != DialogResult.OK)
+                    return;
+            }
+            catch (Exception ex)
+            {
+                MessageUtilSkin.ShowTips(ex.Message);
             }
         }
 
+        private void btnClient_Click(object sender, EventArgs e)
+        {
+            lnkClient_LinkClicked(null, null);
+        }
+
+        #endregion
+
+        #region TabSelected
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MainTabIndex = TabControl1.SelectedIndex;
+
+            // 只要离开日志监控页，即清空日志队列
+            if (TabControl1.SelectedIndex != 1)
+                queueServer.ClearItems();
+
+            if (TabControl1.SelectedIndex == 1 && tabControlLogType.SelectedIndex == 1)
+                IsViewHeartLog = true;
+            else
+                IsViewHeartLog = false;
+        }
+
+        private void tabControlLogType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (TabControl1.SelectedIndex == 1 && tabControlLogType.SelectedIndex == 1)
+                IsViewHeartLog = true;
+            else
+                IsViewHeartLog = false;
+        }
+        #endregion
+
+        #region 更多
+
+        private void Frm_Main_SysBottomClick(object sender, SysButtonEventArgs e)
+        {
+            contextMenuStrip4.Show(e.SysButton.Location.X, e.SysButton.Location.Y + 30);
+        }
+        private void tsmItemRestart_Click(object sender, EventArgs e)
+        {
+            if (mesServer != null && mesServer.State == ServerState.Running)
+            {
+                if (DialogResult.Yes == MessageUtilSkin.ShowYesNoAndTips("服务正在运行，请先关闭服务."))
+                {
+                    TabControl1.SelectedIndex = 0;
+                    return; 
+                } 
+            }
+            else
+            {
+                if (DialogResult.Yes == MessageUtilSkin.ShowYesNoAndTips("是否注销系统，重新登陆。"))
+                {
+                    this.ShowInTaskbar = false;
+                    Application.Exit();
+                    Application.Restart();
+                    Environment.Exit(0);
+                }
+            }
+
+        }
+
+        private void tsmItemDoc_Click(object sender, EventArgs e)
+        {
+            string filePath = $@"{DirectoryUtil.GetCurrentDirectory()}\Docs\MES&PLC通讯系统使用说明书.pdf";
+
+            if (FileUtil.FileIsExist(filePath))
+            {
+                try
+                {
+                    Process.Start("FoxitReader.exe", filePath);
+                }
+                catch (Exception)
+                {
+                    Process.Start(filePath);
+                }
+            }
+            else
+            {
+                MessageUtilSkin.ShowTips($"不存在文件：{filePath}");
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 刷新设备连接历史记录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            wgvList.DataSource = null;
+            wgvList.DataSource = lstClientConnHistory;
+        }
+
+        /// <summary>
+        /// 客户端连接明细
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lblDataClientCount_Click(object sender, EventArgs e)
+        {
+            Label lbl = sender as Label;
+            if (lbl.Text == "0")
+                return;
+
+            Frm_ConnectClient frm;
+            switch (lbl.Tag.ToString())
+            {
+                case "5001":
+                    frm = new Frm_ConnectClient("5001");
+                    frm.ShowDialog();
+                    break;
+                case "5000":
+                    frm = new Frm_ConnectClient("5000");
+                    frm.ShowDialog();
+                    break;
+                default:
+                    return;
+            }
+        }
+
+
+    }
+
+    public class ClientInfo
+    {
+        public ClientInfo(string sessionID, string remoteDeviceName, string time, string mode, string reason)
+        {
+            SessionID = sessionID;
+            RemoteDeviceName = remoteDeviceName;
+            Time = time;
+            Mode = mode;
+            Reason = reason;
+        }
+
+        public string SessionID { get; set; }
+        public string RemoteDeviceName { get; set; }
+        public string Time { get; set; }
+        public string Mode { get; set; }
+        public string Reason { get; set; }
     }
 }
 

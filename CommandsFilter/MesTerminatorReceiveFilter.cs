@@ -30,7 +30,9 @@ namespace MES.SocketService
                 LogInfo log = null;
                 if (body.Length == 0)
                 {
+                    log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Info, GlobalData.Pre_Receive + body);
                     log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Error, "协议解析出错，原因：发送协议内容为空.");
+                    SendError("The protocol is empty.");
                     return null;
                 }
 
@@ -44,7 +46,10 @@ namespace MES.SocketService
                         #region 心跳
                         if (arrStr.Length != 4)
                         {
-                            log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Error, string.Format("协议解析出错，原因：协议长度不对，（按分号分割，正确为4段），当前请求内容：{0}。", body));
+                            log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Info, GlobalData.Pre_Receive + body);
+                            log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Error, $"协议解析出错，原因：协议长度不对，（按分号分割，正确为4段），当前请求内容：{body}。");
+
+                            SendError($"Parsing fail, should be 4 items, current is: [{body}]");
                             return null;
                         }
 
@@ -52,32 +57,50 @@ namespace MES.SocketService
                         transData.OpeIndex = arrStr[2];
                         transData.Status = arrStr[3];
                         #endregion
+
+                        log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Debug, GlobalData.Pre_Receive + body);
                         break;
                     default:
                         #region 业务数据 
                         if (arrStr.Length != 6)
                         {
-                            log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Error, string.Format("协议解析出错，原因：协议长度不对，（按分号分割，正确为6段），当前请求内容：{0}。", body));
+                            log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Info, GlobalData.Pre_Receive + body);
+                            log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Error, $"协议解析出错，原因：协议长度不对，（按分号分割，正确为6段），当前请求内容：{body}。");
+
+                            SendError($"Parsing fail, should be 6 items, current is: [{body}]");
                             return null;
                         }
                         transData.DeviceCode = arrStr[1];
                         transData.OpeIndex = arrStr[2];
-                        transData.SerialNumber = arrStr[3];
+                        transData.SN = arrStr[3];
                         transData.ProcessData = arrStr[4];
                         transData.Status = arrStr[5];
                         #endregion
+
+                        log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Info, GlobalData.Pre_Receive + body);
                         break;
                 }
-                log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Info, GlobalData.Pre_Receive + body);
                 return transData;
 
             }
             catch (Exception e)
             {
-                LogInfo log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Error, string.Format("协议解析出错，当前请求内容：{0}。", body));
+                LogInfo log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Info, GlobalData.Pre_Receive + body);
+                log = new SocketService.LogInfo(this.Session as MesSession, LogLevel.Error, $"协议解析出错，当前请求内容：{body};异常信息：{e.Message}。"); 
+                SendError($"Parsing fail, try catch, current is: [{body}]");
                 return null;
             }
         }
+
+        private void SendError(string message)
+        {
+            string msg = $"ERROR;{message}" + Environment.NewLine;
+            byte[] byteArray = System.Text.Encoding.ASCII.GetBytes(msg);
+            ArraySegment<byte> arrSegment = new ArraySegment<byte>(byteArray, 0, byteArray.Length);
+            this.Session.SocketSession.TrySend(arrSegment);
+            LogInfo log = new SocketService.LogInfo((MesSession)this.Session.SocketSession.AppSession, LogLevel.Info, GlobalData.Pre_Send + msg);
+        }
+
         protected override MesRequestInfo ProcessMatchedRequest(byte[] data, int offset, int length)
         {
             TransData TData = new TransData();

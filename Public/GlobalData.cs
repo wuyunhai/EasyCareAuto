@@ -1,39 +1,69 @@
 ﻿
+using MES.SocketService.BLL;
+using MES.SocketService.Entity;
 using SuperSocket.SocketBase.Protocol;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using YUN.Framework.Commons;
 using YUN.Framework.Commons.Collections;
 using YUN.Framework.Commons.Threading;
+using YUN.Framework.ControlUtil;
 
 namespace MES.SocketService
 {
+    /// <summary>
+    /// 全局数据
+    /// </summary> 
     public static class GlobalData
     {
         #region var
 
+        #region 定义常量
+
+        public static readonly string SplitChar = ";";
+        public static readonly string Pre_Send = "发送 >> ";
+        public static readonly string Pre_Receive = "接收 >> ";
+        public static readonly string ServerStart = "MES.SocketService 启动.";
+        public static readonly string ServerStop = "MES.SocketService 停止.";
+        public static readonly string ClientConnect = "客户端连接事件：";
+        public static readonly string ClientDisConnect = "客户端断开事件：";
+        public static readonly string UnknownRequest = "未注册功能码，请确认协议内容，当前请求内容：";
+        public static readonly string Exception = "异常信息：";
+
+        #endregion
+
         /// <summary>
-        /// 协议分隔符
+        /// UI刷新间隔（单位：ms）
         /// </summary>
-        public static string SplitChar;
+        public static int RefreshSecond = 1000;
+        /// <summary>
+        /// 是否调试模式，调试模式下不校验参数，不与MES服务器进行交互，直接返回OK
+        /// </summary>
+        public static bool IsDebug = true;
 
-        public static string Pre_Send;
-        public static string Pre_Receive;
-        public static string ServerStart;
-        public static string ServerStop;
-        public static string ClientConnect;
-        public static string ClientDisConnect;
-        public static string UnknownRequest;
-        public static string Exception;
-
+        //程序运行模式【w-桌面程序模式；r-控制台模式；i-服务模式】
         public static string RUN_TYPE;
 
-        public static SyncList<MesSession> ClientSessionList = new SyncList<MesSession>();
+        //设定本程序内API执行超时的限定时间
         public static int ApiTimeout = 1000;
+        //WebService接口用户登录名
+        public static string WebUserID = "Administrator";
+        //WebService接口用户登录密码
+        public static string WebPassword = "123456";
+
+        private static DM_API.DM_SFCInterface Dm_Interface = new DM_API.DM_SFCInterface();
+        //数据采集队列服务
+        public static QueueServer<TestItemFlex> queueServerNDQ = new QueueServer<TestItemFlex>();
+
+        //客户端连接的缓存List
+        public static SyncList<MesSession> ClientSessionList = new SyncList<MesSession>();
 
         #endregion
 
@@ -45,11 +75,15 @@ namespace MES.SocketService
             LoadConfig();
         }
 
-        public const string ProtocolFormalError = "通讯协议错误(正确格式为：三位功能码 + 空格 + json字符串 + 回车换行符号).";
-
-
         #region 程序超时执行处理
-
+        //
+        /// <summary>
+        /// 程序超时执行处理
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="TaskAction"></param>
+        /// <param name="TimeoutMillisecond"></param>
+        /// <returns></returns>
         public static T RunTaskWithTimeout<T>(Func<T> TaskAction, int TimeoutMillisecond)
         {
             Task<T> backgroundTask;
@@ -81,61 +115,101 @@ namespace MES.SocketService
             // task succeeded
             return backgroundTask.Result;
         }
-
-        #endregion
-
-        #region 校验接收数据是否正确
-
-        /// <summary>
-        /// 校验接收数据是否正确
-        /// </summary>
-        /// <param name="session"></param>
-        /// <param name="requestInfo"></param>
-        /// <param name="recvTransData"></param>
-        /// <returns></returns>
-        public static bool CheckMesRequestInfo(MesSession session, MesRequestInfo requestInfo, CheckType checkType)
+        public static T RunTaskWithTimeout<T>(Func<T> TaskAction, int TimeoutMillisecond, MesSession _session, TransData _transData, string actionParam, string caller, bool toPlc = true)
         {
-            if (requestInfo.TData == null)
+            LogInfo log;
+            Task<T> backgroundTask;
+
+            try
             {
-                GlobalData.KeyWordIsNullRecv(session, requestInfo.TData, "RequestInfo");
-                session.Logger.Error("RequestInfo is not format !");
-                return false;
+                backgroundTask = Task.Factory.StartNew(TaskAction);
+                backgroundTask.Wait(new TimeSpan(0, 0, 0, 0, TimeoutMillisecond));
+            }
+            catch (AggregateException ex)
+            {
+                // task failed
+                var failMessage = ex.Flatten().InnerException.Message;
+                log = new SocketService.LogInfo(_session, LogLevel.Error, $"[{_transData.SN}]执行【{caller}】接口超时（>{GlobalData.ApiTimeout}ms），原因：{failMessage}，执行参数：{actionParam}.");
+                _transData.ProcessData = $"Mission Timeout({TimeoutMillisecond}ms) , Please check the database connection";
+                if (toPlc) EmployeeComm.SendMsg(_session, _transData, CheckResult.NG);
+
+                return default(T);
+            }
+            catch (Exception ex)
+            {
+                // task failed
+                var failMessage = ex.Message;
+                log = new SocketService.LogInfo(_session, LogLevel.Error, $"[{_transData.SN}]执行【{caller}】接口超时（>{GlobalData.ApiTimeout}ms），原因：{failMessage}，执行参数：{actionParam}.");
+                _transData.ProcessData = $"Mission Timeout({TimeoutMillisecond}ms) , Please check the database connection";
+                if (toPlc) EmployeeComm.SendMsg(_session, _transData, CheckResult.NG);
+                return default(T);
             }
 
-            if (string.IsNullOrWhiteSpace(requestInfo.TData.DeviceCode))
+            if (!backgroundTask.IsCompleted)
             {
-                GlobalData.KeyWordIsNullRecv(session, requestInfo.TData, "DeviceCode");
-                session.Logger.Error("DeviceCode ERROR !");
-                return false;
-            }
-            if (checkType == CheckType.SerialNumber && string.IsNullOrWhiteSpace(requestInfo.TData.SerialNumber))
-            {
-                GlobalData.KeyWordIsNullRecv(session, requestInfo.TData, "SerialNumber");
-                session.Logger.Error("SerialNumber ERROR !");
-                return false;
+                // task timed out 
+                log = new SocketService.LogInfo(_session, LogLevel.Error, $"[{_transData.SN}]执行【{caller}】接口超时（>{GlobalData.ApiTimeout}ms），请检查网络状况或数据库连接配置文件是否正确，执行参数：{actionParam}.");
+                _transData.ProcessData = $"Mission Timeout({TimeoutMillisecond}ms) , Please check the database connection,Check SQLServer Connection. ";
+                if (toPlc) EmployeeComm.SendMsg(_session, _transData, CheckResult.NG);
+                return default(T);
             }
 
-            return true;
+            // task succeeded
+            log = new LogInfo(_session, LogLevel.Info, $"[{_transData.SN}]执行【{caller}】接口成功>> 执行参数：{actionParam}。");
+            return backgroundTask.Result;
         }
-
-        #endregion
-
-        #region 关键字段为空时处理方法
-
-        /// <summary>
-        /// 关键字段为空时处理方法
-        /// </summary>
-        /// <param name="_session"></param>
-        /// <param name="_transData"></param>
-        /// <param name="_keyWord"></param>
-        public static void KeyWordIsNullRecv(MesSession _session, TransData _transData, string _keyWord)
+        public static bool RunTaskWithTimeoutDT<DataTableT>(Func<DataTable> TaskAction, out DataTable dtR, int TimeoutMillisecond, MesSession _session, TransData _transData, string actionParam, string caller, bool toPlc = true)
         {
-            _transData.ProcessData = CheckResult.ERROR.ToString();
-            string errorMsg = _keyWord + " is null or white space or format error ?";
-            string msg = _transData.ToString();
-            _session.Send(msg);
+            LogInfo log;
+            Task<DataTable> backgroundTask;
+            dtR = null;
+            try
+            {
+                backgroundTask = Task.Factory.StartNew(TaskAction);
+                backgroundTask.Wait(new TimeSpan(0, 0, 0, 0, TimeoutMillisecond));
+            }
+            catch (AggregateException ex)
+            {
+                var failMessage = ex.Flatten().InnerException.Message;
+                log = new SocketService.LogInfo(_session, LogLevel.Error, $"[{_transData.SN}]执行【{caller}】接口超时（>{TimeoutMillisecond}ms），原因：{failMessage}，执行参数：{actionParam}.");
+                _transData.ProcessData = $"Mission Timeout({TimeoutMillisecond}ms) , Please check the database connection";
+                if (toPlc) EmployeeComm.SendMsg(_session, _transData, CheckResult.NG);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                var failMessage = ex.Message;
+                log = new SocketService.LogInfo(_session, LogLevel.Error, $"[{_transData.SN}]执行【{caller}】接口超时（>{TimeoutMillisecond}ms），原因：{failMessage}，执行参数：{actionParam}.");
+                _transData.ProcessData = $"Mission Timeout({TimeoutMillisecond}ms) , Please check the database connection";
+                if (toPlc) EmployeeComm.SendMsg(_session, _transData, CheckResult.NG);
+                return false;
+            }
 
-            LogInfo log = new SocketService.LogInfo(_session, LogLevel.Info, GlobalData.Pre_Send + msg);
+            if (!backgroundTask.IsCompleted)
+            {
+                log = new SocketService.LogInfo(_session, LogLevel.Error, $"[{_transData.SN}]执行【{caller}】接口超时（>{TimeoutMillisecond}ms），请检查网络状况或数据库连接配置文件是否正确，执行参数：{actionParam}.");
+                _transData.ProcessData = $"Mission Timeout({TimeoutMillisecond}ms) , Please check the database connection";
+                if (toPlc) EmployeeComm.SendMsg(_session, _transData, CheckResult.NG);
+                return false;
+            }
+
+            // task succeeded
+            dtR = backgroundTask.Result;
+            // 判断API是否执行成功 ---------------------------------
+            //string checkStatusR = DataTableHelper.GetCellValueinDT(dtR, 0, "CheckStatus");
+            //string checkMsgR = DataTableHelper.GetCellValueinDT(dtR, 0, "ReturnMsg");
+            string checkStatusR = DataTableHelper.GetCellValueinDT(dtR, 0, 0);
+            string checkMsgR = DataTableHelper.GetCellValueinDT(dtR, 0, 1);
+            if (checkStatusR == "-1")
+            {
+                log = new LogInfo(_session, LogLevel.Error, $"[{_transData.SN}]执行【{caller}】接口失败>> 接口返回({checkStatusR}---{checkMsgR})，执行参数：{actionParam}。");
+                _transData.ProcessData = $"Error:{checkMsgR}";
+                if (toPlc) EmployeeComm.SendMsg(_session, _transData, CheckResult.NG);
+                return false;
+            }
+
+            log = new LogInfo(_session, LogLevel.Info, $"[{_transData.SN}]执行【{caller}】接口成功>> 执行参数：{actionParam}。");
+            return true;
         }
 
         #endregion
@@ -176,7 +250,7 @@ namespace MES.SocketService
                     sb.Append(GlobalData.SplitChar);
                     sb.Append(_transData.OpeIndex);
                     sb.Append(GlobalData.SplitChar);
-                    sb.Append(_transData.SerialNumber);
+                    sb.Append(_transData.SN);
                     sb.Append(GlobalData.SplitChar);
                     sb.Append(_transData.ProcessData);
                     sb.Append(GlobalData.SplitChar);
@@ -185,11 +259,10 @@ namespace MES.SocketService
                     #endregion
                     break;
             }
-
-
             sb.Append(Environment.NewLine);
             return sb.ToString();
         }
+
         #endregion
 
         /// <summary>
@@ -197,24 +270,114 @@ namespace MES.SocketService
         /// </summary>
         public static void LoadConfig()
         {
-            SplitChar = ";";
+            try
+            {
+                List<META_ParameterInfo> lstParameter = BLLFactory<META_Parameter>.Instance.GetAll();
+                META_ParameterInfo info = lstParameter.Find(li => li.Key == "RefreshSecond");
+                if (info != null)
+                    RefreshSecond = ConvertHelper.ToInt32(info.Value, 1000);
 
-            Pre_Send = "发送 >> ";
-            Pre_Receive = "接收 >> ";
-            ServerStart = "MES.SocketService 启动.";
-            ServerStop = "MES.SocketService 停止.";
-            ClientConnect = "客户端连接事件：";
-            ClientDisConnect = "客户端断开事件：";
-            UnknownRequest = "未注册功能码，请确认协议内容，当前请求内容：";
-            Exception = "异常信息：";
+                info = lstParameter.Find(li => li.Key == "ApiTimeout");
+                if (info != null)
+                    ApiTimeout = ConvertHelper.ToInt32(info.Value, 1000);
 
+                info = lstParameter.Find(li => li.Key == "WebUserID");
+                if (info != null)
+                    WebUserID = info.Value;
 
-            AppConfig appconfig = new AppConfig();
-            ApiTimeout = ConvertHelper.ToInt32(appconfig.AppConfigGet("ApiTimeout"), 1000);
+                info = lstParameter.Find(li => li.Key == "WebPassword");
+                if (info != null)
+                    WebUserID = info.Value;
+
+                info = lstParameter.Find(li => li.Key == "IsDebug");
+                if (info != null)
+                    IsDebug = info.Value.Equals("是") ? true : false;
+
+                queueServerNDQ.IsBackground = true;
+                queueServerNDQ.ProcessItem += QueueServer_ProcessItem;
+
+            }
+            catch (Exception e)
+            {
+
+            }
 
         }
 
-        #region 
+        #region 参数采集
+
+
+        private static void QueueServer_ProcessItem(TestItemFlex item)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(item.Type))
+                {
+                    InsertNdqData(item);
+                }
+                else
+                {
+                    EmployeeComm.WorkingEfficiency(item.MesSession, item.TransData, item.EquipmentID, item.EmployeeName, item.Type);
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+
+        //采集数据存入db
+        private static void InsertNdqData(TestItemFlex item)
+        {
+            // 采集类别码
+            string type = item.ProcessData[0];
+            // 采集类别码中文描述
+            string typeDes = string.Empty;
+            switch (type)
+            {
+                case "01":
+                    typeDes = "螺丝数据采集";
+                    break;
+                case "02":
+                    typeDes = "气密性测试数据采集";
+                    break;
+                case "03":
+                    typeDes = "预热温度数据采集";
+                    break;
+                case "04":
+                    typeDes = "固化温度数据采集";
+                    break;
+                case "05":
+                    typeDes = "点胶胶量数据采集";
+                    break;
+            }
+
+            // 采集参数值
+            string testitem_NText = string.Empty;
+            for (int i = 1; i < item.ProcessData.Count; i++)
+            {
+                testitem_NText += item.ProcessData[i] + ",";
+            }
+            testitem_NText.TrimEnd(',');
+
+            try
+            {
+                Dm_Interface.SFC_DM_CheckRouterInsertTestItemAttache_NText(item.SN, item.EquipmentID, type, testitem_NText);
+                LogInfo log = new LogInfo(item.MesSession, LogLevel.Info, $"[{item.DevCode }]-[{item.SN}]{typeDes}成功，参数：{testitem_NText}");
+            }
+            catch (Exception e)
+            {
+                LogInfo log = new LogInfo(item.MesSession, LogLevel.Error, $"[{item.DevCode }]-[{item.SN}]{typeDes}失败，参数：{testitem_NText}，原因：{e.ToString()}");
+            }
+
+        }
+
+
+        #endregion
+
+        #region 选择日志显示模式
 
         public static void ViewLog(LogInfo log)
         {
@@ -245,10 +408,11 @@ namespace MES.SocketService
         }
 
         #endregion
+
     }
 
     /// <summary>
-    /// 
+    /// 协议请求状态枚举
     /// </summary>
     public enum CheckResult
     {
@@ -258,14 +422,24 @@ namespace MES.SocketService
         NG,
         ERROR
     }
-    public enum CheckType
+
+    public enum Comparator
     {
-        SerialNumber,
-        DeviceCode
+        [Description("大于")]
+        MoreThan,
+        [Description("小于")]
+        LessThan,
+        [Description("等于")]
+        Equal,
+        [Description("不等于")]
+        NotEqual
     }
-    public enum ActionResult
+    public enum DataFrom
     {
-        PASS,
-        FAIL
+        [Description("SQLite处获取")]
+        SQLite,
+        [Description("SQLServer处获取")]
+        SQLServer
     }
+
 }
